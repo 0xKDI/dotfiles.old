@@ -1035,6 +1035,7 @@
       b = "branch";
       l = "log";
       lo = "log --oneline";
+      sw = "switch";
     };
   };
 
