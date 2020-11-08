@@ -1,6 +1,6 @@
 # Installation
 
-Connect to interface
+Configure the wifi
 ```sh
 wpa_supplicant -B -i interface_name -c <(wpa_passphrase 'SSID' 'key')
 ```
