@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# fb - buku bookmarks fzfmenu opener
+buku -p -f 4 |
+    awk -F $'\t' '{
+        if ($4 == "")
+            printf "%s \t\x1b[38;5;208m%s\033[0m\n", $2, $3
+        else
+            printf "%s \t\x1b[38;5;124m%s \t\x1b[38;5;208m%s\033[0m\n", $2, $4, $3
+    }' |
+    fzf --ansi -d $'\t' --with-nth=2,3 \
+        --preview-window='bottom:10%' --preview 'printf "\x1b[38;5;117m%s\033[0m\n" {1}' |
+        awk '{print $1}' | xargs -d '\n' -I{} -n1 -r xdg-open '{}'

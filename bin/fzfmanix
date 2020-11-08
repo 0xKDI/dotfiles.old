@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# search {nix, nixos, home-manager} options with manix and fzf
+
+manix "" | grep "^# " | sed "s/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //" | fzf --preview="manix '{}'" | xargs manix

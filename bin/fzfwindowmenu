@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# TODO: finish script
+
+declare -a window_ids
+declare -A windows
+window_ids=$(bspc query -N)
+
+for id in $window_ids; do
+    windows[$id]="$(xprop -id $id WM_NAME)\n"
+done
+
+chosen=$(echo -e "${windows[@]}" | fzfmenu)
+
+# for window in windows; do
+#     if [ "$window"="$chosen" ]; then
+#         chosen_id=windows[$chosen]
+

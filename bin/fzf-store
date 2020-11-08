@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+fd . /nix/store -t d -d 1  | fzf -m --preview-window right:50% --preview 'nix-store -q --tree {}'

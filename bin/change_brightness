@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+msg_id="981141"
+brightnessctl set "$@"
+brightness=$(brightnessctl | grep Current | cut -d "(" -f 2 | cut -d ")" -f 1)
+dunstify -a "changeBrightness" -t 500 -u low -r "$msg_id" \
+    "Brightness: ${brightness}"

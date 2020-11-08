@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#  execute shell command with fzf and put job in background
+bin=$(compgen -c | sort -u | fzf)
+setsid "$bin" &>/dev/null &
+
+# otherwize script will exit immediately
+sleep 0.01
+exit 0

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# open file with $EDITOR
+
+if [ "$#" -ne 0  ]; then
+    "$EDITOR" "${@}"
+else
+    file="$(fd --type file --hidden -E ".git" | fzf --preview='bat --style=numbers --color=always {} 2> /dev/null')"\
+    && "$EDITOR" "${file}" || exit 0
+fi

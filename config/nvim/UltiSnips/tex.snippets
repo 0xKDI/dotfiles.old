@@ -1,0 +1,104 @@
+snippet rf
+(рисунок~\ref{$1})
+endsnippet
+
+snippet tab
+\begin{table}[H]
+    \caption{$1}\label{tab:$2}
+\begin{tabular}{$3}
+    $4
+\end{tabular}
+\end{table}
+endsnippet
+
+snippet xl
+\begin{xltabular}{\textwidth}{$3}
+  \caption{$1}\label{tab:$2}\\\\\hline
+  $4
+  \endfirsthead
+  \caption*{Продолжение таблицы \ref{tab:$2}}
+  \endhead
+  \endfoot
+  \endlastfoot
+  \hline
+  $5
+\end{xltabular}
+endsnippet
+
+snippet fg
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=$4\textwidth]{$1}
+    \caption{$3}\label{fig:$2}
+\end{figure}
+endsnippet
+
+snippet tikz
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+    $3
+    \end{tikzpicture}
+    \caption{$1}\label{fig:$2}
+\end{figure}
+endsnippet
+
+snippet <<
+<<$1>>
+endsnippet
+
+snippet long
+\begin{longtable}{$3}
+    \caption{$1}\label{tab:$2}\\\\\hline
+    $4
+\endfirsthead
+    \caption*{Продолжение таблицы \ref{tab:$2}}
+\endhead
+\endfoot
+\endlastfoot
+    $5
+\end{longtable}
+endsnippet
+
+snippet bib
+\begin{thebibliography}{00}
+
+\bibitem{$1}
+
+\setcounter{bibitems}{\value{enumiv}}
+\end{thebibliography}
+endsnippet
+
+snippet ffg
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=$4\textwidth]{$1}
+%     \caption{$3}\label{fig:$2}
+% \end{figure}
+endsnippet
+
+snippet da4
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage{g732}
+\begin{document}
+$1
+\end{document}
+endsnippet
+
+# snippet
+# \begin{table}[H]
+#     \caption{$1}\label{tab:$2}
+# \begin{tabularx}{${4:\textwidth}}{$3}
+# $5
+# \end{tabularx}
+# \end{table}
+# endsnippet
+
+# snippet
+# \begin{table}[H]
+#     \caption{$1}\label{tab:$2}
+# \begin{tabulary}{${4:\textwidth}}{$3}
+# $5
+# \end{tabulary}
+# \end{table}
+# endsnippet
