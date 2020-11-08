@@ -722,11 +722,10 @@
       vim-devicons
       vim-lion
       {
-        # FIXME
         plugin = dracula-vim;
         config = ''
-          autocmd VimEnter * colorscheme dracula
-          nnoremap <silent> <leader>. :colorscheme dracula<CR>
+          packadd! dracula-vim
+          colorscheme dracula
         '';
       }
       {
