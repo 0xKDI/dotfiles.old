@@ -1038,4 +1038,10 @@
     recursive = true;
   };
 
+  programs.git = {
+    enable = true;
+    userEmail = "0qqw0qqw@gmail.com";
+    userName = "qq";
+  };
+
 }
