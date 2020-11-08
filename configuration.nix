@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, options, ... }:
 
 {
 
@@ -15,11 +15,12 @@
   # nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
   boot.loader.systemd-boot.editor = false;
 
-
-
-
   nix.autoOptimiseStore = true;
   nix.trustedUsers = [ "root" "${config.dots.userName}" ];
+  nix.nixPath = options.nix.nixPath.default ++ [
+    "nixpkgs-overlays=/etc/nixos/overlays"
+  ];
+
   # nix.package = pkgs.nixUnstable;
   # nix.extraOptions = ''
   #   experimental-features = nix-command flakes
@@ -34,6 +35,7 @@
 
 
 
+
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
@@ -41,8 +43,6 @@
   };
 
 
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${config.dots.userName} = {
     isNormalUser = true;
     extraGroups = [

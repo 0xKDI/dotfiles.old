@@ -21,7 +21,6 @@
 
   home.packages = with pkgs; [
     cachix
-    # neovim-nightly
     python3
 
     tdesktop
@@ -559,6 +558,7 @@
 
     # git
     g = "git";
+    gs = "git status";
 
     y = "xclip -selection c";
     p = "xclip -selection c -o";
@@ -731,7 +731,7 @@
         plugin = dracula-vim;
         config = ''
           autocmd VimEnter * colorscheme dracula
-          nnoremap <silent> <leader>g :colorscheme dracula<CR>
+          nnoremap <silent> <leader>. :colorscheme dracula<CR>
         '';
       }
       {
