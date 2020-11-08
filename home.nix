@@ -558,14 +558,7 @@
     L = "exa -l --group-directories-first -s type -r";
 
     # git
-    gs = "git status";
-    ga = "git add";
-    gb = "git branch";
-    gc = "git commit";
-    gd = "git diff";
-    gl = "git log";
-    glo = "git log --oneline";
-    gco = "git checkout";
+    g = "git";
 
     y = "xclip -selection c";
     p = "xclip -selection c -o";
