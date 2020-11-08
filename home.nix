@@ -1030,6 +1030,15 @@
     enable = true;
     userEmail = "0qqw0qqw@gmail.com";
     userName = "qq";
+    aliases = {
+      s = "status";
+      c = "commit";
+      co = "checkout"; 
+      a = "add";
+      b = "branch";
+      l = "log";
+      lo = "log --oneline";
+    };
   };
 
 }
