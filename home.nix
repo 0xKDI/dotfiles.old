@@ -53,10 +53,8 @@
     curl
     wget
 
-    git
     file
     tree
-    bat
     exa
     fd
     ripgrep
@@ -1037,6 +1035,13 @@
       b = "branch";
       l = "log";
       lo = "log --oneline";
+    };
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "Dracula";
     };
   };
 
