@@ -12,11 +12,6 @@
      allowUnfree = true; 
     }
   '';
-  xdg.configFile."nixpkgs/overlays/neovim.nix".text = ''
-    import (builtins.fetchTarball {
-    url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
-    })
-  '';
 
 
   home.packages = with pkgs; [
@@ -712,7 +707,7 @@
 
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-nightly;
+    package = pkgs.neovim-nightly; #6 min build
     plugins = with pkgs.vimPlugins; [
       fzf-vim
       fzfWrapper

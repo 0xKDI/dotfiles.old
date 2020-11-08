@@ -3,7 +3,7 @@
 
 " @fzf
 command! -bang ProjectFiles call fzf#vim#files('~/prj', <bang>0)
-command! -bang Configs call fzf#vim#files('/etc/dotfiles', <bang>0)
+command! -bang Configs call fzf#vim#files('/etc/nixos', <bang>0)
 let g:fzf_layout = { "window": { "width": 0.8, "height": 0.6 } }
 
 " @defaults
@@ -49,10 +49,10 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " need 5.0 version
-" augroup highlight_yank
-"     autocmd!
-"     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
-" augroup END
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
+augroup END
 
 
 " @netrw

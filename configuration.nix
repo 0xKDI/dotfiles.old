@@ -18,7 +18,7 @@
   nix.autoOptimiseStore = true;
   nix.trustedUsers = [ "root" "${config.dots.userName}" ];
   nix.nixPath = options.nix.nixPath.default ++ [
-    "nixpkgs-overlays=/etc/nixos/overlays"
+    "nixpkgs-overlays=/etc/nixos/overlays-compat/"
   ];
 
   # nix.package = pkgs.nixUnstable;
@@ -32,7 +32,11 @@
       inherit pkgs;
     };
   };
-
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
 
 
 
@@ -66,7 +70,6 @@
       imports = [ ./home.nix ];
     };
   };
-
 
 
   system.stateVersion = "20.09";
