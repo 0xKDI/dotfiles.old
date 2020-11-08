@@ -16,7 +16,7 @@ with lib; {
 
       # paths
       dotDir = mkOption {
-        default = "/etc/nixos";
+        default =  builtins.toString ./.;
         type = types.path;
       };
 
