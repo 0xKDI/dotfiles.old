@@ -727,9 +727,10 @@
     package = pkgs.neovim-nightly; #6 min build
     plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
       {
-        # TODO
         plugin = fzf-checkout;
-        # config = "";
+        config = ''
+          nnoremap <silent> <leader>gb :GBranches<CR>
+          '';
       }
       {
         plugin = nvim-colorizer;
@@ -737,14 +738,46 @@
       }
       {
         plugin = fzf-vim;
-        config = builtins.readFile "${config.dots.confDir}/nvim/fzf.vim";
+
+        # TODO: add fzf function for cd
+        config = ''
+          let g:fzf_layout = { "window": { "width": 0.8, "height": 0.6 } }
+
+
+          nnoremap <silent> <leader>q :Files<CR>
+          nnoremap <silent> <leader>fh :History<CR>
+          nnoremap <silent> <leader><leader>; :History:<CR>
+
+          nnoremap <silent> <leader>, :Windows<CR>
+          nnoremap <silent> <leader>w :Buffers<CR>
+
+          nnoremap <leader>p :cd %:h<CR>
+
+          nnoremap <silent> <leader>/ :BLines<CR>
+          nnoremap <silent> <leader>? :Lines<CR>
+          nnoremap <silent> <leader><leader>/ :History/<CR>
+          nnoremap <silent> <leader>; :Commands<CR>
+          nnoremap <silent> <leader><CR> :Marks<CR>
+          nnoremap <leader>r :Rg 
+          nnoremap <leader>gf :GFiles<CR>
+          nnoremap <leader>gc :Commits<CR>
+          nnoremap <leader>bc :BCommits<CR>
+        '';
       }
       fzfWrapper
-      vim-fugitive
+      {
+        plugin = vim-fugitive;
+        config = ''
+          nnoremap <leader>gg :G<CR>
+        '';
+      }
       vim-surround
       vim-commentary
       vim-repeat
       vim-obsession # for tmux-resurrect
+      vim-polyglot
+      vim-devicons
+      vim-lion
       auto-pairs
       {
         plugin = indentLine;
@@ -753,9 +786,6 @@
           let g:indentLine_char = "|"
           '';
       } 
-      vim-polyglot
-      vim-devicons
-      vim-lion
       {
         plugin = dracula-vim;
         config = ''
@@ -765,7 +795,30 @@
       }
       {
         plugin = lightline-vim;
-        config = builtins.readFile "${config.dots.confDir}/nvim/lightline.vim";
+        config = ''
+          function! LightlineReadonly()
+            return &readonly ? "" : ""
+          endfunction
+
+          function! LightlineFugitive()
+            if exists("*FugitiveHead")
+                let branch = FugitiveHead()
+                return branch !=# "" ? "".branch : ""
+            endif
+            return ""
+          endfunction
+
+          let g:lightline = {
+            \ "colorscheme": "dracula",
+              \ "active": {
+              \   "left": [ [ "mode", "paste" ], [ "readonly","fugitive", "absolutepath", "modified" ] ]
+              \ },
+              \ "component_function": {
+              \   "readonly": "LightlineReadonly",
+              \   "fugitive": "LightlineFugitive"
+              \ },
+              \ }
+        '';
       }
       {
         plugin = ultisnips;
