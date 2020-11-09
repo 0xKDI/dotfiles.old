@@ -48,6 +48,7 @@
     acpi
 
     # essential
+    gnumake
     coreutils
     killall
     curl
