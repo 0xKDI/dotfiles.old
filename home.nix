@@ -705,10 +705,15 @@
     escapeTime = 0;
     historyLimit = 50000;
     keyMode = "vi";
+    tmuxp.enable = true;
     plugins = with pkgs.tmuxPlugins; [ 
       {
         plugin = open;
         extraConfig = "set -g @open-S 'https://www.duckduckgo.com/'";
+      }
+      {
+        plugin = resurrect;
+        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
       }
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/tmux/tmux.conf";
@@ -727,7 +732,7 @@
       vim-surround
       vim-commentary
       vim-repeat
-      vim-obsession
+      vim-obsession # for tmux-resurrect
       auto-pairs
       indentLine
       vim-polyglot
