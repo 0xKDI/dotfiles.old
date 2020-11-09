@@ -699,8 +699,18 @@
 
   programs.tmux = {
     enable = true;
+    terminal = "tmux-256color";
     newSession = true;
     baseIndex = 1;
+    escapeTime = 0;
+    historyLimit = 50000;
+    keyMode = "vi";
+    plugins = with pkgs.tmuxPlugins; [ 
+      {
+        plugin = open;
+        extraConfig = "set -g @open-S 'https://www.duckduckgo.com/'";
+      }
+    ];
     extraConfig = builtins.readFile "${config.dots.confDir}/tmux/tmux.conf";
   };
 
