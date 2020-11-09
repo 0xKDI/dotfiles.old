@@ -727,7 +727,13 @@
     package = pkgs.neovim-nightly; #6 min build
     plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
       {
+        # TODO
         plugin = fzf-checkout;
+        # config = "";
+      }
+      {
+        plugin = nvim-colorizer;
+        config = "lua require'colorizer'.setup()";
       }
       {
         plugin = fzf-vim;
