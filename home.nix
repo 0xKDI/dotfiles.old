@@ -708,8 +708,7 @@
     tmuxp.enable = true;
     plugins = with pkgs.tmuxPlugins; [ 
       {
-        plugin = open;
-        extraConfig = "set -g @open-S 'https://www.duckduckgo.com/'";
+        plugin = fzf-tmux-url;
       }
       {
         plugin = resurrect;
