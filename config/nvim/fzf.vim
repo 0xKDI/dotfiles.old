@@ -18,9 +18,9 @@ nnoremap <silent> <leader><leader>/ :History/<CR>
 nnoremap <silent> <leader>; :Commands<CR>
 nnoremap <silent> <leader><CR> :Marks<CR>
 nnoremap <leader>r :Rg 
-nnoremap <leader>gg :G
-nnoremap <leader>gf :GFiles
-nnoremap <leader>gc :Commits
-nnoremap <leader>bc :BCommits
+nnoremap <leader>gg :G<CR>
+nnoremap <leader>gf :GFiles<CR>
+nnoremap <leader>gc :Commits<CR>
+nnoremap <leader>bc :BCommits<CR>
 
 
