@@ -714,6 +714,10 @@
         plugin = resurrect;
         extraConfig = "set -g @resurrect-strategy-nvim 'session'";
       }
+      {
+        plugin = continuum;
+        extraConfig = "set -g @continuum-restore 'on'";
+      }
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/tmux/tmux.conf";
   };
