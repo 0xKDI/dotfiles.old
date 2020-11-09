@@ -1,22 +1,22 @@
 function! LightlineReadonly()
-    return &readonly ? '' : ''
+    return &readonly ? "" : ""
 endfunction
 
 function! LightlineFugitive()
-    if exists('*FugitiveHead')
+    if exists("*FugitiveHead")
         let branch = FugitiveHead()
-        return branch !=# '' ? ''.branch : ''
+        return branch !=# "" ? "".branch : ""
     endif
-    return ''
+    return ""
 endfunction
 
 let g:lightline = {
-    \ 'colorscheme': 'dracula',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'readonly','fugitive', 'absolutepath', 'modified' ] ]
+    \ "colorscheme": "dracula",
+      \ "active": {
+      \   "left": [ [ "mode", "paste" ], [ "readonly","fugitive", "absolutepath", "modified" ] ]
       \ },
-      \ 'component_function': {
-      \   'readonly': 'LightlineReadonly',
-      \   'fugitive': 'LightlineFugitive'
+      \ "component_function": {
+      \   "readonly": "LightlineReadonly",
+      \   "fugitive": "LightlineFugitive"
       \ },
       \ }

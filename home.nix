@@ -708,7 +708,10 @@
     enable = true;
     package = pkgs.neovim-nightly; #6 min build
     plugins = with pkgs.vimPlugins; [
-      fzf-vim
+      {
+        plugin = fzf-vim;
+        config = builtins.readFile "${config.dots.confDir}/nvim/fzf.vim";
+      }
       fzfWrapper
       vim-fugitive
       vim-surround
