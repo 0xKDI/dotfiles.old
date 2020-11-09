@@ -737,7 +737,13 @@
       vim-repeat
       vim-obsession # for tmux-resurrect
       auto-pairs
-      indentLine
+      {
+        plugin = indentLine;
+        config = ''
+          let g:indentLine_enabled = 0
+          let g:indentLine_char = "|"
+          '';
+      } 
       vim-polyglot
       vim-devicons
       vim-lion
