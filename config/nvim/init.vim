@@ -35,10 +35,6 @@ set foldmethod=syntax
 set foldlevelstart=99
 set foldnestmax=10
 
-" Move highlighted stuff up down
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
 " need 5.0 version
 augroup highlight_yank
     autocmd!
@@ -117,6 +113,11 @@ nnoremap <silent> <leader>[ :tabprevious<CR>
 
 " buffers
 nnoremap <silent> <leader>bk :bdelete<CR>
+
+
+" Move highlighted stuff up down
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 
 " open new file in vertical split

@@ -725,7 +725,10 @@
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly; #6 min build
-    plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
+      {
+        plugin = fzf-checkout;
+      }
       {
         plugin = fzf-vim;
         config = builtins.readFile "${config.dots.confDir}/nvim/fzf.vim";
