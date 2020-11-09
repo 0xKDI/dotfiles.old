@@ -1045,6 +1045,9 @@
     enable = true;
     userEmail = "0qqw0qqw@gmail.com";
     userName = "qq";
+    ignores = [
+      "Session.vim"
+    ];
     aliases = {
       s = "status";
       c = "commit";
