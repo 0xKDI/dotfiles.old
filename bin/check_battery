@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-# FIXME
 msgId="4355"
 BATTINFO=$(acpi -b | awk '{print $3,$4,$5,$6}')
 
@@ -9,7 +8,7 @@ if [[ $(echo "$BATTINFO" | grep Discharging) && $(echo "$BATTINFO" | cut -f 3 -d
     "${BATTINFO}"
 fi
 
-if [[ $(echo "$BATTINFO" | grep -e Charging -e Full) && $(echo "$BATTINFO" | cut -f 2 -d ",") > 95%, ]] ; then
+if [[ $(echo "$BATTINFO" | grep -e Charging -e Full) && $(echo "$BATTINFO" | cut -f 2 -d ",") > 90%, ]] ; then
     dunstify -a "checkBattery" -t 3000 -u low -r "$msgId" \
     "Charged"
 fi

@@ -15,6 +15,7 @@
 
 
   home.packages = with pkgs; [
+    aws
     cachix
     python3
 
@@ -321,7 +322,6 @@
     MANPAGER = "nvim +Man!";
     MANWIDTH = 999;
 
-    # TODO
     AWS_SHARED_CREDENTIALS_FILE = "$XDG_CONFIG_HOME/aws/credentials";
     AWS_CONFIG_FILE = "$XDG_CONFIG_HOME/aws/config";
 
@@ -710,6 +710,9 @@
         plugin = fzf-tmux-url;
       }
       {
+        # FIXME: doesn't work well in NixOS
+        # https://github.com/tmux-plugins/tmux-resurrect/issues/247
+        # https://github.com/NixOS/nixpkgs/issues/78033
         plugin = resurrect;
         extraConfig = ''
           set -g @resurrect-strategy-nvim "session"
