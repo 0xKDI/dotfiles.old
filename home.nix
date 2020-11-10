@@ -98,7 +98,7 @@
 
   xsession.windowManager.bspwm = {
     enable = true;
-    monitors = { "eDP1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
+    monitors = { "eDP-1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
     startupPrograms = [
       "xset r rate 250 60"
     ];
@@ -292,7 +292,7 @@
 
   services.polybar = {
     enable = true;
-    script = "killall -q polybar; polybar main &";
+    script = "polybar main &";
     package = pkgs.polybar.override {
       pulseSupport = true;
       nlSupport = true;

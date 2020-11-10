@@ -31,7 +31,8 @@ compositing-border = over
 
 
 [bar/main]
-;monitor = ${env:MONITOR:HDMI-1} width = 100%
+monitor = ${env:MONITOR:eDP-1}
+width = 100%
 bottom = false
 height = 30
 fixed-center = false
