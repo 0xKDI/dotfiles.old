@@ -705,14 +705,16 @@
     escapeTime = 0;
     historyLimit = 50000;
     keyMode = "vi";
-    tmuxp.enable = true;
     plugins = with pkgs.tmuxPlugins; [ 
       {
         plugin = fzf-tmux-url;
       }
       {
         plugin = resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
+        extraConfig = ''
+          set -g @resurrect-strategy-nvim "session"
+          set -g @resurrect-dir "~/.local/share/tmux/resurrect"
+        '';
       }
       {
         plugin = continuum;
