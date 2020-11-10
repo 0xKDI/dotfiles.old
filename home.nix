@@ -729,7 +729,7 @@
 
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly; #6 min build
+    package = pkgs.neovim-nightly;
     plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
       {
         plugin = fzf-checkout;

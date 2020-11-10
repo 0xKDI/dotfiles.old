@@ -31,7 +31,6 @@
       allowedUDPPorts = [ 80 443 ];
     };
   };
-  # FIXME: this doesn't mask service
   systemd.services.NetworkManager-wait-online.enable = false; #this is only increases boot time
 
   time.timeZone = "Europe/Moscow";
