@@ -1144,4 +1144,9 @@
     };
   };
 
+  # https://github.com/rakshasa/rtorrent/wiki/User-Guide
+  programs.rtorrent = {
+    enable = true;
+  };
+
 }
