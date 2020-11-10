@@ -92,9 +92,9 @@
     resyncTimer = "30min";
   };
 
-  virtualisation.virtualbox.host = {
-    enable = true;
-    package = pkgs.virtualbox;
+  virtualisation.virtualbox = {
+    host.enable = true;
+    # host.enableExtensionPack = true;
   };
 
   # remap the most useless key to the most useful one

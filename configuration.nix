@@ -53,6 +53,7 @@
       "wheel"
       "networkmanager"
       "audio"
+      "vboxusers"
     ];
     shell = pkgs.zsh;
     initialPassword = "nix";
