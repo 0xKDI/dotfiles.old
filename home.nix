@@ -1155,4 +1155,5 @@
     urls = import "${config.home.homeDirectory}/rss.nix";
   };
 
+  programs.noti.enable = true;
 }
