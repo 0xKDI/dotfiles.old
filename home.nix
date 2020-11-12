@@ -1152,6 +1152,7 @@
   programs.newsboat = {
     enable = true;
     autoReload = true;
+    urls = import "${config.home.homeDirectory}/rss.nix";
   };
 
 }
