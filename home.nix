@@ -308,7 +308,7 @@
   home.sessionVariables = {
     # z-lua
     _ZL_CMD = "q";
-    _ZL_DATA = "\$XDG_DATA_HOME/zlua";
+    _ZL_DATA = "${config.xdg.configHome}/zlua";
 
     # clipmenu
     CM_LAUNCHER = "fzf";
@@ -322,28 +322,28 @@
     MANPAGER = "nvim +Man!";
     MANWIDTH = 999;
 
-    AWS_SHARED_CREDENTIALS_FILE = "$XDG_CONFIG_HOME/aws/credentials";
-    AWS_CONFIG_FILE = "$XDG_CONFIG_HOME/aws/config";
+    AWS_SHARED_CREDENTIALS_FILE = "${config.xdg.configHome}/aws/credentials";
+    AWS_CONFIG_FILE = "${config.xdg.configHome}/aws/config";
 
 
     # NOTE: doesn't work, 
     # move .compose_cache out of $HOME
-    XCOMPOSEFILE = "$XDG_CONFIG_HOME/x11/xcompose";
-    XCOMPOSECACHE = "$XDG_CACHE_HOME/x11/xcompose";
+    XCOMPOSEFILE = "${config.xdg.configHome}/x11/xcompose";
+    XCOMPOSECACHE = "${config.xdg.cacheHome}x11/xcompose";
     # same with .xsession_errors
-    USERXSESSION = "$XDG_CACHE_HOME/x11/xsession";
-    USERXSESSIONRC = "$XDG_CACHE_HOME/x11/xsessionrc";
-    ALTUSERXSESSION = "$XDG_CACHE_HOME/x11/Xsession";
-    ERRFILE = "$XDG_CACHE_HOME/x11/xsession-errors";
-    PARALLEL_HOME = "$XDG_CONFIG_HOME/parallel";
-    CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
+    USERXSESSION = "${config.xdg.cacheHome}/x11/xsession";
+    USERXSESSIONRC = "${config.xdg.cacheHome}/x11/xsessionrc";
+    ALTUSERXSESSION = "${config.xdg.cacheHome}/x11/Xsession";
+    ERRFILE = "${config.xdg.cacheHome}/x11/xsession-errors";
+    PARALLEL_HOME = "${config.xdg.configHome}/parallel";
+    CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
     # Ruby
-    GEM_HOME = "$XDG_DATA_HOME/gem";
-    GEM_SPEC_CACHE = "$XDG_CACHE_HOME/gem";
+    GEM_HOME = "${config.xdg.dataHome}/gem";
+    GEM_SPEC_CACHE = "${config.xdg.cacheHome}/gem";
 
     # Jupiter/IPython
-    IPYTHONDIR = "$XDG_CONFIG_HOME/jupyter";
-    JUPYTER_CONFIG_DIR = "$XDG_CONFIG_HOME/jupyter";
+    IPYTHONDIR = "${config.xdg.configHome}/jupyter";
+    JUPYTER_CONFIG_DIR = "${config.xdg.configHome}/jupyter";
   };
 
 
@@ -504,7 +504,7 @@
     autocd = true;
     defaultKeymap = "viins";
     dotDir = ".config/zsh";
-    history.path = "/home/${config.home.username}/.cache/zsh/history";
+    history.path = "${config.xdg.cacheHome}/zsh/history";
     initExtra = ''
             bindkey '\eq' fzf-cd-widget
             bindkey '\er' fzf-history-widget
@@ -844,7 +844,7 @@
 
   programs.password-store.enable = true;
   programs.password-store.settings = {
-    PASSWORD_STORE_DIR = "$HOME/.password-store";
+    PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
   };
 
   services.udiskie = {
@@ -879,7 +879,7 @@
     '';
     settings = {
       "devtools.theme" = "dark";
-      "browser.download.dir" = "/home/${config.dots.userName}/dl";
+      "browser.download.dir" = "${config.home.homeDirectory}/dl";
       # bad
       "general.smoothScroll" = false;
 
