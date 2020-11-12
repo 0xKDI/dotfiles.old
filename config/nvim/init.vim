@@ -1,4 +1,3 @@
-" defaults
 set clipboard+=unnamedplus
 set ignorecase
 set smartcase
@@ -9,6 +8,7 @@ set mouse=a
 set cursorline
 set noshowmode
 set noswapfile
+set hidden
 set t_Co=256
 set termguicolors
 if !&scrolloff
@@ -27,10 +27,8 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 " set smartindent
-" splits
 set splitbelow
 set splitright
-" folds
 set foldmethod=syntax
 set foldlevelstart=99
 set foldnestmax=10
@@ -41,15 +39,12 @@ augroup highlight_yank
     au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
 augroup END
 
-
 " netrw
 let g:netrw_banner = 0
 let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 let g:netrw_winsize = 30
 
-
-
-
+" TODO
 " " nvim-lspconfig
 " autocmd BufEnter * lua require'completion'.on_attach()
 " " Use <Tab> and <S-Tab> to navigate through popup menu
@@ -59,13 +54,10 @@ inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
 
 
-
-
 " Avoid showing message extra message when using completion
 " set shortmess+=c
 " FIXME
 " lua require'nvim_lsp'.gopls.setup{}
-
 
 
 " TODO
@@ -76,12 +68,6 @@ set completeopt=menuone,noinsert,noselect
 " \]
 " let g:completion_enable_snippet = 'UltiSnips'
 
-
-
-
-
-" nvim-colorizer
-" lua require'colorizer'.setup()
 
 let mapleader = " "
 
