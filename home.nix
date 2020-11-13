@@ -308,7 +308,7 @@
   home.sessionVariables = {
     # z-lua
     _ZL_CMD = "q";
-    _ZL_DATA = "${config.xdg.configHome}/zlua";
+    _ZL_DATA = "${config.xdg.dataHome}/zlua";
 
     # clipmenu
     CM_LAUNCHER = "fzf";
