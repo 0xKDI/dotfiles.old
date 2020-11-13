@@ -774,7 +774,7 @@
         plugin = vim-fugitive;
         config = ''
           nnoremap <leader>gg :G<CR>
-          nnoremap <leader>gl :Glog<CR>
+          nnoremap <leader>gl :Gllog<CR>
         '';
       }
       vim-surround
