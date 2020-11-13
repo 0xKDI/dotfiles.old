@@ -365,6 +365,7 @@
       "file:///home/${config.home.username}/uni"
       "file:///home/${config.home.username}/proj"
       "file:///home/${config.home.username}/bks"
+      "file:///home/${config.home.username}/snc"
     ];
     theme = {
       name = "Dracula";
