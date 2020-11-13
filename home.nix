@@ -562,6 +562,8 @@
       qrencode -o /tmp/grencode.png;
       devour sxiv -b /tmp/grencode.png
     '';
+
+    n = "noti";
   };
 
 
