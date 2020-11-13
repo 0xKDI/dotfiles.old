@@ -543,7 +543,7 @@
     Q = "cd ~ ; clear";
 
     sxiv = "devour sxiv -b";
-    zathura= "devour zathura";
+    zt= "devour zathura";
 
     # exa
     l = "exa -al --group-directories-first -s type -r";
