@@ -61,7 +61,7 @@
     fd
     ripgrep
     tealdeer # faster tldr
-    manix
+    unstable.manix
 
     # for scripts
     dunst
@@ -369,7 +369,7 @@
     ];
     theme = {
       name = "Dracula";
-      package = pkgs.dracula-theme;
+      package = pkgs.unstable.dracula-theme;
     };
   };
 
