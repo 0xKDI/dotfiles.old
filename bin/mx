@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+if [ $TERM = "tmux-256color" ]; then
+  echo "don't work within tmux"
+  exit 0
+fi
+
+session=$(tmuxp ls | fzf)
+
+if [ -n $session ]; then
+  tmuxp load "${session}"
+fi
