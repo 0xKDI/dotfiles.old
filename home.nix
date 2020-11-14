@@ -513,7 +513,6 @@
   };
 
   programs.zsh.shellAliases = {
-    mx = "tmuxinator";
 
     b = "buku --suggest";
 
@@ -708,7 +707,7 @@
     baseIndex = 1;
     escapeTime = 0;
     historyLimit = 50000;
-    tmuxinator.enable = true;
+    tmuxp.enable = true;
     keyMode = "vi";
     plugins = with pkgs.tmuxPlugins; [ 
       {
