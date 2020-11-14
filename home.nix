@@ -513,6 +513,7 @@
   };
 
   programs.zsh.shellAliases = {
+    mx = "tmuxinator";
 
     b = "buku --suggest";
 
@@ -707,24 +708,11 @@
     baseIndex = 1;
     escapeTime = 0;
     historyLimit = 50000;
+    tmuxinator.enable = true;
     keyMode = "vi";
     plugins = with pkgs.tmuxPlugins; [ 
       {
         plugin = fzf-tmux-url;
-      }
-      {
-        # FIXME: doesn't work well in NixOS
-        # https://github.com/tmux-plugins/tmux-resurrect/issues/247
-        # https://github.com/NixOS/nixpkgs/issues/78033
-        plugin = resurrect;
-        extraConfig = ''
-          set -g @resurrect-strategy-nvim "session"
-          set -g @resurrect-dir "~/.local/share/tmux/resurrect"
-        '';
-      }
-      {
-        plugin = continuum;
-        extraConfig = "set -g @continuum-restore 'on'";
       }
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/tmux/tmux.conf";
