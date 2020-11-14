@@ -11,7 +11,7 @@ fi
 session=$(tmuxp ls | fzf)
 
 if [ $session ]; then
-  tmuxp load "${session}"
+  tmuxp load -y "${session}"
   # otherwise term will exit after detaching
   zsh
 fi
