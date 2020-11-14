@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
+# choose tmuxp session and attach to one
 
+# can't attach within tmux
+# WIP: https://github.com/tmux-python/tmuxp/pull/501
 if [ $TERM = "tmux-256color" ]; then
   echo "don't work within tmux"
   exit 0
@@ -9,5 +12,6 @@ session=$(tmuxp ls | fzf)
 
 if [ $session ]; then
   tmuxp load "${session}"
+  # otherwise term will exit after detaching
   zsh
 fi
