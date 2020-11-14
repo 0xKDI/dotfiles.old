@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# choose X-client and focus to one
 # TODO: finish script
 
 declare -a window_ids
