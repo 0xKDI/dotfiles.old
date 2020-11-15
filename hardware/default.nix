@@ -101,4 +101,8 @@
   # (Caps lock become Ctrl when used with another key and Esc when used without one)
   services.interception-tools.enable = true;
 
+  services.logind.extraConfig = ''
+    HandlePowerKey=suspend
+  '';
+
 }
