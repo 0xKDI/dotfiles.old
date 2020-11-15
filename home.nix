@@ -1148,4 +1148,6 @@
   };
 
   programs.noti.enable = true;
+
+  programs.jq.enable = true;
 }
