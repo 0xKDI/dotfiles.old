@@ -542,7 +542,7 @@
     "...." = "cd ../../..";
     Q = "cd ~ ; clear";
 
-    sxiv = "devour sxiv -b";
+    sxiv = "sxiv -b";
     zt= "devour zathura";
 
     # exa
