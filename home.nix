@@ -24,7 +24,8 @@
     # texlive.combined.scheme-full
     (texlive.combine {
       inherit (texlive) 
-      scheme-medium
+      scheme-small
+      latexmk
       polyglossia
       geometry
       fancyhdr
@@ -36,7 +37,6 @@
       xurl
       hyperref
       footmisc
-      # amsmath,amsfonts,amssymb,amsthm,mathtools
       enumitem
       graphics
       float
@@ -44,7 +44,6 @@
       pdfpages
       caption
       subfig
-      # array,tabularx,tabulary,booktabs,longtable
       tabulary
       booktabs
       diagbox
@@ -58,7 +57,6 @@
       cite
       csquotes
       chngcntr
-      # more packages
       was
       pict2e
       ltablex
