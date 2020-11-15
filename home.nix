@@ -21,7 +21,54 @@
 
     tdesktop
 
-    texlive.combined.scheme-full
+    # texlive.combined.scheme-full
+    (texlive.combine {
+      inherit (texlive) 
+      scheme-medium
+      polyglossia
+      geometry
+      fancyhdr
+      titlesec
+      bigfoot
+      setspace
+      hyphenat
+      blindtext
+      xurl
+      hyperref
+      footmisc
+      # amsmath,amsfonts,amssymb,amsthm,mathtools
+      enumitem
+      graphics
+      float
+      pgf
+      pdfpages
+      caption
+      subfig
+      # array,tabularx,tabulary,booktabs,longtable
+      tabulary
+      booktabs
+      diagbox
+      multirow
+      xltabular
+      makecell
+      floatrow
+      minted
+      etoolbox
+      lastpage
+      cite
+      csquotes
+      chngcntr
+      # more packages
+      was
+      pict2e
+      ltablex
+      fvextra
+      catchfile
+      xstring
+      framed
+      upquote
+      totcount
+      ;}) 
     python38Packages.pygments
     corefonts # Microsoft fonts
 
