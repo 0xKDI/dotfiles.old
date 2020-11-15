@@ -68,14 +68,6 @@
     }];
   };
 
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override {
-      fonts = [ "Iosevka" "JetBrainsMono" "FiraCode" ];
-    })
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-  ];
 
   services.dbus.packages = [ pkgs.gnome3.dconf ];
 

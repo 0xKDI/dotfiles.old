@@ -70,6 +70,13 @@
     python38Packages.pygments
     corefonts # Microsoft fonts
 
+    (nerdfonts.override {
+      fonts = [ "Iosevka" "JetBrainsMono" "FiraCode" ];
+    })
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+
     mpvc # a mpc-like control interface for mpv
     youtube-dl
     libreoffice-fresh
