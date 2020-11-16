@@ -57,6 +57,7 @@
       "networkmanager"
       "audio"
       "vboxusers"
+      "docker"
     ];
     shell = pkgs.zsh;
     initialPassword = "nix";

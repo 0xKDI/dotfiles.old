@@ -88,6 +88,7 @@
     host.enable = true;
     # host.enableExtensionPack = true;
   };
+  virtualisation.docker.enable = true;
 
   # remap the most useless key to the most useful one
   # (Caps lock become Ctrl when used with another key and Esc when used without one)
