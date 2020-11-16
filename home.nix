@@ -567,10 +567,17 @@
   };
 
   programs.zsh.shellAliases = {
+    dkr = "docker";
+
+    n = "noti";
+
+    py3 = "python3";
+    py2 = "python2";
+    py = "python3";
+
+    mkdir = "mkdir -p";
 
     b = "buku --suggest";
-
-    # general
     v = "nvim";
 
     # systemd
@@ -616,8 +623,6 @@
       qrencode -o /tmp/grencode.png;
       devour sxiv -b /tmp/grencode.png
     '';
-
-    n = "noti";
   };
 
 
