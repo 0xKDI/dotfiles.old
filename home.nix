@@ -646,6 +646,7 @@
       add_newline = false;
       character.symbol = "➜ ";
       line_break.disabled = true;
+      python.python_binary = "python3";
       format = [ 
         "username"
         "hostname"
