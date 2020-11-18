@@ -607,10 +607,10 @@
     zt= "devour zathura";
 
     # exa
-    l = "exa -al --group-directories-first -s";
-    ll ="exa -a --group-directories-first -s ";
-    lt = "exa -a --tree --group-directories-first -s";
-    L = "exa -l --group-directories-first -s";
+    l = "exa -al --group-directories-first";
+    ll = "exa -a --group-directories-first";
+    lt = "exa -a --tree --group-directories-first";
+    L = "exa -l --group-directories-first";
 
     # git
     g = "git";
