@@ -22,57 +22,62 @@
     tdesktop
 
     # texlive.combined.scheme-full
-    (texlive.combine {
-      inherit (texlive) 
-      scheme-small
-      latexmk
-      polyglossia
-      geometry
-      fancyhdr
-      titlesec
-      bigfoot
-      setspace
-      hyphenat
-      blindtext
-      xurl
-      hyperref
-      footmisc
-      enumitem
-      graphics
-      float
-      pgf
-      pdfpages
-      caption
-      subfig
-      tabulary
-      booktabs
-      diagbox
-      multirow
-      xltabular
-      makecell
-      floatrow
-      minted
-      etoolbox
-      lastpage
-      cite
-      csquotes
-      chngcntr
-      was
-      pict2e
-      ltablex
-      fvextra
-      catchfile
-      xstring
-      framed
-      upquote
-      totcount
-      ;}) 
+    (
+      texlive.combine {
+        inherit (texlive)
+          scheme-small
+          latexmk
+          polyglossia
+          geometry
+          fancyhdr
+          titlesec
+          bigfoot
+          setspace
+          hyphenat
+          blindtext
+          xurl
+          hyperref
+          footmisc
+          enumitem
+          graphics
+          float
+          pgf
+          pdfpages
+          caption
+          subfig
+          tabulary
+          booktabs
+          diagbox
+          multirow
+          xltabular
+          makecell
+          floatrow
+          minted
+          etoolbox
+          lastpage
+          cite
+          csquotes
+          chngcntr
+          was
+          pict2e
+          ltablex
+          fvextra
+          catchfile
+          xstring
+          framed
+          upquote
+          totcount
+          ;
+      }
+    )
     python38Packages.pygments
     corefonts # Microsoft fonts
 
-    (nerdfonts.override {
-      fonts = [ "Iosevka" "JetBrainsMono" "FiraCode" ];
-    })
+    (
+      nerdfonts.override {
+        fonts = [ "Iosevka" "JetBrainsMono" "FiraCode" ];
+      }
+    )
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
@@ -160,26 +165,26 @@
 
   xsession.windowManager.bspwm.settings = {
     border_width = 2;
-    window_gap   = 0;
+    window_gap = 0;
 
-    top_padding    = 0;
+    top_padding = 0;
     bottom_padding = 0;
-    left_padding   = 0;
-    right_padding  = 0;
-    single_monocle     = true;
+    left_padding = 0;
+    right_padding = 0;
+    single_monocle = true;
 
-    split_ratio        = 0.50;
-    automatic_scheme   = "spiral";
-    initial_polarity   = "second_child";
+    split_ratio = 0.50;
+    automatic_scheme = "spiral";
+    initial_polarity = "second_child";
     borderless_monocle = true;
-    gapless_monocle    = true;
+    gapless_monocle = true;
 
-    focus_follows_pointer      = true;
+    focus_follows_pointer = true;
 
-    remove_disabled_monitors   = true;
+    remove_disabled_monitors = true;
     merge_overlapping_monitors = true;
-    ignore_ewmh_fullscreen     = "all";
-    ignore_ewmh_focus          = true;
+    ignore_ewmh_fullscreen = "all";
+    ignore_ewmh_focus = true;
 
     pointer_modifier = "mod4";
     pointer_action1 = "move";
@@ -219,27 +224,27 @@
   };
 
   services.sxhkd.enable = true;
-  services.sxhkd.keybindings = { 
+  services.sxhkd.keybindings = {
     # volume keys
     "super + F3" = "${config.dots.binDir}/change_volume -i 5";
     "super + F2" = "${config.dots.binDir}/change_volume -d 5";
     "super + F1" = "${config.dots.binDir}/change_volume -t";
 
     # switch layout
-    "super + a"  = "${pkgs.xkb-switch}/bin/xkb-switch -n";
+    "super + a" = "${pkgs.xkb-switch}/bin/xkb-switch -n";
 
     # backlight
     "super + F4" = "${config.dots.binDir}/change_brightness 5%-";
     "super + F5" = "${config.dots.binDir}/change_brightness +5%";
 
     # terminal
-    "super + Return"         = "${pkgs.xst}/bin/xst -e ${config.dots.binDir}/mx";
+    "super + Return" = "${pkgs.xst}/bin/xst -e ${config.dots.binDir}/mx";
     "super + shift + Return" = "${pkgs.xst}/bin/xst";
 
     # program launcher
     "super + space" = "${pkgs.xst}/bin/xst -c fzfmenu -e ${config.dots.binDir}/fzfappmenu";
     # browser bookmarks
-    "super + e"     = "${pkgs.xst}/bin/xst -c fzfmenu -e ${config.dots.binDir}/fzfbuku";
+    "super + e" = "${pkgs.xst}/bin/xst -c fzfmenu -e ${config.dots.binDir}/fzfbuku";
     # clipboard manager
     "super + s" = "${pkgs.xst}/bin/xst -c clipmenu -e ${pkgs.clipmenu}/bin/clipmenu";
 
@@ -403,7 +408,7 @@
 
   fonts.fontconfig.enable = true;
 
-  
+
   services.unclutter.enable = true; # hide cursor when it's not used
 
   xsession.pointerCursor = {
@@ -460,35 +465,35 @@
     enable = true;
     settings = {
       global = {
-        monitor              = 0;
-        follow               = "mouse";
-        geometry             = "0x5-30+50";
-        indicate_hidden      = "yes";
-        shrink               = "no";
-        transparency         = 0;
-        notification_height  = 0;
-        separator_height     = 2;
-        padding              = 16;
-        horizontal_padding   = 16;
-        frame_width          = 2;
-        frame_color          = "#bd93f9";
-        separator_color      = "frame";
-        sort                 = "yes";
-        font                 = "JetBrains 12";
-        idle_threshold       = 120;
-        line_height          = 2;
-        markup               = "full";
-        format               = "<b>%s</b>\\n%b";
-        alignment            = "left";
-        show_age_threshold   = 60;
-        word_wrap            = "yes";
-        ellipsize            = "middle";
-        ignore_newline       = "no";
-        stack_duplicates     = true;
+        monitor = 0;
+        follow = "mouse";
+        geometry = "0x5-30+50";
+        indicate_hidden = "yes";
+        shrink = "no";
+        transparency = 0;
+        notification_height = 0;
+        separator_height = 2;
+        padding = 16;
+        horizontal_padding = 16;
+        frame_width = 2;
+        frame_color = "#bd93f9";
+        separator_color = "frame";
+        sort = "yes";
+        font = "JetBrains 12";
+        idle_threshold = 120;
+        line_height = 2;
+        markup = "full";
+        format = "<b>%s</b>\\n%b";
+        alignment = "left";
+        show_age_threshold = 60;
+        word_wrap = "yes";
+        ellipsize = "middle";
+        ignore_newline = "no";
+        stack_duplicates = true;
         hide_duplicate_count = false;
-        show_indicators      = "yes";
-        sticky_history       = "yes";
-        history_length       = 20;
+        show_indicators = "yes";
+        sticky_history = "yes";
+        history_length = 20;
       };
       shortcuts = {
         close = "ctrl+space";
@@ -536,7 +541,7 @@
 
   systemd.user.timers."check_battery" = {
     Unit = {
-      Description="Timer to check battery status";
+      Description = "Timer to check battery status";
     };
     Timer = {
       OnActiveSec = "5min";
@@ -561,8 +566,8 @@
     dotDir = ".config/zsh";
     history.path = "${config.xdg.cacheHome}/zsh/history";
     initExtra = ''
-            bindkey '\eq' fzf-cd-widget
-            bindkey '\er' fzf-history-widget
+      bindkey '\eq' fzf-cd-widget
+      bindkey '\er' fzf-history-widget
     '';
   };
 
@@ -604,7 +609,7 @@
     Q = "cd ~ ; clear";
 
     sxiv = "sxiv -b";
-    zt= "devour zathura";
+    zt = "devour zathura";
 
     # exa
     l = "exa -al --group-directories-first";
@@ -626,7 +631,7 @@
   };
 
 
-  home.sessionPath = [ 
+  home.sessionPath = [
     # add bin directory to path
     "${config.dots.binDir}"
   ];
@@ -647,7 +652,7 @@
       character.symbol = "➜ ";
       line_break.disabled = true;
       python.python_binary = "python3";
-      format = [ 
+      format = [
         "username"
         "hostname"
         "shlvl"
@@ -755,7 +760,7 @@
     fileWidgetCommand = "fd -H -t f";
     fileWidgetOptions = [
       "--preview='bat"
-      "--style=numbers" 
+      "--style=numbers"
       "--color=always {}"
     ];
   };
@@ -769,7 +774,7 @@
     historyLimit = 50000;
     tmuxp.enable = true;
     keyMode = "vi";
-    plugins = with pkgs.tmuxPlugins; [ 
+    plugins = with pkgs.tmuxPlugins; [
       {
         plugin = fzf-tmux-url;
       }
@@ -791,7 +796,7 @@
         config = ''
           packadd! nvim-lspconfig
           lua require'nvim_lsp'.pyls.setup{}
-          lua require'lspconfig'.rnix.setup{}
+          lua require'nvim_lsp'.rnix.setup{}
         '';
       }
       {
@@ -815,13 +820,14 @@
             \{'mode': '<c-n>'}
             \]
           let g:completion_enable_snippet = 'UltiSnips'
-          '';
+          command! Format  execute 'lua vim.lsp.buf.formatting()'
+        '';
       }
       {
         plugin = fzf-checkout;
         config = ''
           nnoremap <silent> <leader>gb :GBranches<CR>
-          '';
+        '';
       }
       {
         plugin = nvim-colorizer;
@@ -876,8 +882,8 @@
         config = ''
           let g:indentLine_enabled = 0
           let g:indentLine_char = "|"
-          '';
-      } 
+        '';
+      }
       {
         plugin = dracula-vim;
         config = ''
@@ -917,7 +923,7 @@
         config = ''
           let g:UltiSnipsSnippetDirectories=["${config.dots.confDir}/nvim/UltiSnips"]
           let g:UltiSnipsExpandTrigger="<c-u>"
-          '';
+        '';
       }
       vim-snippets
     ];
@@ -965,7 +971,7 @@
     name = "${config.dots.userName}";
     isDefault = true;
     userContent = ''
-        :root{ scrollbar-width: none !important } 
+      :root{ scrollbar-width: none !important } 
     '';
     settings = {
       "devtools.theme" = "dark";
@@ -1060,21 +1066,21 @@
   xresources.properties = {
     "*.foreground" = "#F8F8F2";
     "*.background" = "#1E2029";
-    "*.color0"  = "#000000";
-    "*.color8"  = "#4D4D4D";
-    "*.color1"  = "#FF5555";
-    "*.color9"  = "#FF6E67";
-    "*.color2"  = "#50FA7B";
+    "*.color0" = "#000000";
+    "*.color8" = "#4D4D4D";
+    "*.color1" = "#FF5555";
+    "*.color9" = "#FF6E67";
+    "*.color2" = "#50FA7B";
     "*.color10" = "#5AF78E";
-    "*.color3"  = "#F1FA8C";
+    "*.color3" = "#F1FA8C";
     "*.color11" = "#F4F99D";
-    "*.color4"  = "#BD93F9";
+    "*.color4" = "#BD93F9";
     "*.color12" = "#CAA9FA";
-    "*.color5"  = "#FF79C6";
+    "*.color5" = "#FF79C6";
     "*.color13" = "#FF92D0";
-    "*.color6"  = "#8BE9FD";
+    "*.color6" = "#8BE9FD";
     "*.color14" = "#9AEDFE";
-    "*.color7"  = "#BFBFBF";
+    "*.color7" = "#BFBFBF";
     "*.color15" = "#E6E6E6";
     "st.font" = "JetBrains Mono nerd font:pixelsize=16:antialias=true:autohint=true";
     "st.bold_font" = 1;
@@ -1218,7 +1224,7 @@
     aliases = {
       s = "status";
       c = "commit";
-      co = "checkout"; 
+      co = "checkout";
       a = "add";
       b = "branch";
       l = "log";
