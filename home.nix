@@ -801,27 +801,7 @@
       }
       {
         plugin = completion-nvim;
-        config = ''
-          " Use completion-nvim in every buffer
-          autocmd BufEnter * lua require'completion'.on_attach()
-          " Use <Tab> and <S-Tab> to navigate through popup menu
-          inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-          inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-          " Set completeopt to have a better completion experience
-          set completeopt=menuone,noinsert,noselect
-
-          " Avoid showing message extra message when using completion
-          set shortmess+=c
-
-          let g:completion_chain_complete_list = [
-            \{'complete_items': ['lsp', 'snippet']},
-            \{'mode': '<c-p>'},
-            \{'mode': '<c-n>'}
-            \]
-          let g:completion_enable_snippet = 'UltiSnips'
-          command! Format  execute 'lua vim.lsp.buf.formatting()'
-        '';
+        config = builtins.readFile "${config.dots.confDir}/nvim/fzf-vim.vim";
       }
       {
         plugin = fzf-checkout;
@@ -835,31 +815,7 @@
       }
       {
         plugin = fzf-vim;
-
-        # TODO: add fzf function for cd
-        config = ''
-          let g:fzf_layout = { "window": { "width": 0.8, "height": 0.6 } }
-
-
-          nnoremap <silent> <leader>q :Files<CR>
-          nnoremap <silent> <leader>fh :History<CR>
-          nnoremap <silent> <leader><leader>; :History:<CR>
-
-          nnoremap <silent> <leader>, :Windows<CR>
-          nnoremap <silent> <leader>w :Buffers<CR>
-
-          nnoremap <leader>p :cd %:h<CR>
-
-          nnoremap <silent> <leader>/ :BLines<CR>
-          nnoremap <silent> <leader>? :Lines<CR>
-          nnoremap <silent> <leader><leader>/ :History/<CR>
-          nnoremap <silent> <leader>; :Commands<CR>
-          nnoremap <silent> <leader><CR> :Marks<CR>
-          nnoremap <leader>r :Rg 
-          nnoremap <leader>gf :GFiles<CR>
-          nnoremap <leader>gc :Commits<CR>
-          nnoremap <leader>bc :BCommits<CR>
-        '';
+        config = builtins.readFile "${config.dots.confDir}/nvim/fzf-vim.vim";
       }
       fzfWrapper
       {
@@ -872,7 +828,7 @@
       vim-surround
       vim-commentary
       vim-repeat
-      vim-obsession # for tmux-resurrect
+      vim-obsession # for resurrecting sessions
       vim-polyglot
       vim-devicons
       vim-lion
@@ -893,30 +849,7 @@
       }
       {
         plugin = lightline-vim;
-        config = ''
-          function! LightlineReadonly()
-            return &readonly ? "" : ""
-          endfunction
-
-          function! LightlineFugitive()
-            if exists("*FugitiveHead")
-                let branch = FugitiveHead()
-                return branch !=# "" ? "".branch : ""
-            endif
-            return ""
-          endfunction
-
-          let g:lightline = {
-            \ "colorscheme": "dracula",
-              \ "active": {
-              \   "left": [ [ "mode", "paste" ], [ "readonly","fugitive", "absolutepath", "modified" ] ]
-              \ },
-              \ "component_function": {
-              \   "readonly": "LightlineReadonly",
-              \   "fugitive": "LightlineFugitive"
-              \ },
-              \ }
-        '';
+        config = builtins.readFile "${config.dots.confDir}/nvim/lightline-vim.vim";
       }
       {
         plugin = ultisnips;
