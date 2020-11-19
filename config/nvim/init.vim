@@ -44,12 +44,6 @@ let g:netrw_banner = 0
 let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 let g:netrw_winsize = 30
 
-
-" FIXME
-" lua require'nvim_lsp'.gopls.setup{}
-
-
-
 let mapleader = " "
 
 " windows
