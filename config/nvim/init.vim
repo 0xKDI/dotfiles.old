@@ -25,7 +25,7 @@ autocmd BufNewFile,BufRead buku-edit-* set filetype=conf
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set expandtab
+" set expandtab
 " set smartindent
 set splitbelow
 set splitright
@@ -44,29 +44,10 @@ let g:netrw_banner = 0
 let g:netrw_home=$XDG_CACHE_HOME.'/nvim'
 let g:netrw_winsize = 30
 
-" TODO
-" " nvim-lspconfig
-" autocmd BufEnter * lua require'completion'.on_attach()
-" " Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr><Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
 
-
-" Avoid showing message extra message when using completion
-" set shortmess+=c
 " FIXME
 " lua require'nvim_lsp'.gopls.setup{}
 
-
-" TODO
-" completion-buffers
-" let g:completion_chain_complete_list = [
-"     \{'complete_items': ['snippets', 'lsp', 'buffers']},
-"     \{'mode': '<c-n>'}
-" \]
-" let g:completion_enable_snippet = 'UltiSnips'
 
 
 let mapleader = " "
