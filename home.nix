@@ -788,6 +788,8 @@
     extraPackages = with pkgs; [
       python38Packages.python-language-server # pyls
       rnix-lsp
+      texlab
+      nodePackages.yaml-language-server
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
     plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
@@ -797,11 +799,13 @@
           packadd! nvim-lspconfig
           lua require'nvim_lsp'.pyls.setup{}
           lua require'nvim_lsp'.rnix.setup{}
+          lua require'nvim_lsp'.texlab.setup{}
+          lua require'nvim_lsp'.yamlls.setup{}
         '';
       }
       {
         plugin = completion-nvim;
-        config = builtins.readFile "${config.dots.confDir}/nvim/fzf-vim.vim";
+        config = builtins.readFile "${config.dots.confDir}/nvim/completion-nvim.vim";
       }
       {
         plugin = fzf-checkout;
