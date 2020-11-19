@@ -780,8 +780,9 @@
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
-    extraPackages = [
-      pkgs.python38Packages.python-language-server # pyls
+    extraPackages = with pkgs; [
+      python38Packages.python-language-server # pyls
+      rnix-lsp
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
     plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
@@ -790,6 +791,7 @@
         config = ''
           packadd! nvim-lspconfig
           lua require'nvim_lsp'.pyls.setup{}
+          lua require'lspconfig'.rnix.setup{}
         '';
       }
       {
