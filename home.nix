@@ -15,7 +15,10 @@
 
 
   home.packages = with pkgs; [
+    progress
+    htop
     unstable.ddgr # DuckDuckGo-cli
+    unstable.googler
     aws
     cachix
     python3
