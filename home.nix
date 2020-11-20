@@ -15,6 +15,7 @@
 
 
   home.packages = with pkgs; [
+    unstable.ddgr # DuckDuckGo-cli
     aws
     cachix
     python3
