@@ -366,6 +366,8 @@
   '';
 
   home.sessionVariables = {
+    DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
+
     # z-lua
     _ZL_CMD = "q";
     _ZL_DATA = "${config.xdg.dataHome}/zlua";
@@ -573,6 +575,7 @@
   };
 
   programs.zsh.shellAliases = {
+    s = "ddgr";
     dkr = "docker";
 
     n = "noti";
