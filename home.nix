@@ -22,7 +22,7 @@
     aws
     cachix
     python3
-
+    python38Packages.ipython
     tdesktop
 
     # texlive.combined.scheme-full
