@@ -19,7 +19,9 @@
   { buildInputs = [ pulseaudio ]; } ''
         mkdir "$out"
         cp ${pulseaudio}/etc/pulse/default.pa "$out/default.pa"
-        sed -i -e 's|load-module module-esound-protocol-unix|# ...|' "$out/default.pa"
+        sed -i -e 's|load-module module-esound-protocol-unix|# ...|' \
+                -e 's|load-module module-suspend-on-idle|# ...|' \
+        "$out/default.pa"
   '';
   in "${paConfigFile}/default.pa";
 
