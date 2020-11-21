@@ -4,7 +4,7 @@
 # can't attach within tmux
 # WIP: https://github.com/tmux-python/tmuxp/pull/501
 if [ $TERM = "tmux-256color" ]; then
-  echo "don't work within tmux"
+  echo "doesn't work within tmux"
   exit 0
 fi
 
