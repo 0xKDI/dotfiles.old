@@ -65,6 +65,7 @@ nnoremap <silent> <C-Up> :resize +3<CR>
 nnoremap <silent> <C-Down> :resize -3<CR>
 
 nnoremap <leader>d :close<CR> 
+nnoremap \ /
 
 " tabs
 nnoremap <silent> <leader>tk :tabclose<CR>
