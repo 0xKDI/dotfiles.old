@@ -1189,12 +1189,6 @@
     enable = true;
   };
 
-  programs.newsboat = {
-    enable = true;
-    autoReload = true;
-    urls = import "${config.home.homeDirectory}/rss.nix";
-  };
-
   programs.noti.enable = true;
 
   programs.jq.enable = true;
