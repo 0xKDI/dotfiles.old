@@ -15,6 +15,7 @@
 
 
   home.packages = with pkgs; [
+    drive
     progress
     htop
     unstable.ddgr # DuckDuckGo-cli
