@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# simple script to copy/move files from download directory
+
+# TODO: selecting multiple files
+DEST="$(pwd)"
+cd "/home/qq/dl"
+FILE=$(fd --type file | fzf --preview='bat')
+
+[[ -z $FILE ]] && exit 0
+[[ -n $2 ]] && DEST="$DEST/$2"
+[[ "$1" = "cp" ]] && cp -r "$FILE" "$DEST"
+[[ "$1" = "mv" ]] && mv "$FILE" "$DEST"
