@@ -869,9 +869,8 @@
       {
         plugin = indentLine;
         config = ''
-          let g:indentLine_defaultGroup = 'DraculaComment' 
           let g:indentLine_enabled = 0
-          let g:indentLine_char = "┊"
+          let indentLine_char = '│'
         '';
       }
       {
