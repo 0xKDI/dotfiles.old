@@ -48,7 +48,7 @@ padding-right = 1
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = "iosevka nerd font:style=Bold:size=12;3"
+font-0 = "FantasqueSansMono nerd font:style=Bold:size=12;3"
 ; font-1 = "iosevka nerd font:style=Bold:size=28;6"
 ; font-2 = "iosevka nerd font:style=Bold:size=6;4"
 
@@ -70,7 +70,7 @@ wm-restack = bspwm
 
 [module/bspwm]
 type = internal/bspwm
-format = <label-state> <label-mode>
+format = <label-state>
 label-padding = 1
 ws-icon-0 = "1; "
 ws-icon-1 = "2; "

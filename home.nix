@@ -95,7 +95,12 @@
 
     (
       nerdfonts.override {
-        fonts = [ "Iosevka" "JetBrainsMono" "FiraCode" ];
+        fonts = [
+          "Iosevka"
+          "JetBrainsMono"
+          "FiraCode"
+          "FantasqueSansMono"
+        ];
       }
     )
     noto-fonts
@@ -1044,7 +1049,7 @@
     "*.color14" = "#9AEDFE";
     "*.color7" = "#BFBFBF";
     "*.color15" = "#E6E6E6";
-    "st.font" = "JetBrains Mono nerd font:pixelsize=16:antialias=true:autohint=true";
+    "st.font" = "FantasqueSansMono nerd font:pixelsize=20:antialias=true:autohint=true";
     "st.bold_font" = 1;
     "st.italic_font" = 1;
     "st.roman_font" = 1;
