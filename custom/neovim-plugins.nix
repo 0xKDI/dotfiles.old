@@ -24,8 +24,4 @@
     };
   };
 
-# neovim/nvim-lspconfig
-# nvim-lua/completion-nvim
-# steelsojka/completion-buffers
-
 }
