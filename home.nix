@@ -13,6 +13,21 @@
     }
   '';
 
+  xdg.configFile."python/startup.py".text = ''
+    import atexit
+    import os
+    import readline
+
+    histfile = os.path("${config.xdg.dataHome}/python_history")
+    try:
+      readline.read_history_file(histfile)
+      readline.set_history_length(1000)
+    except FileNotFoundError:
+    pass
+
+    atexit.register(readline.write_history_file, histfile)
+    '';
+
 
   home.packages = with pkgs; [
     drive
@@ -370,6 +385,7 @@
   '';
 
   home.sessionVariables = {
+    PYTHONSTARTUP = "${config.xdg.configHome}/python/startup.py";
     DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
 
     # z-lua
