@@ -244,28 +244,28 @@ battery = BAT0
 adapter = ADP0
 full-at = 98
 
-format-discharging = "<ramp-capacity>  <label-discharging>"
+format-discharging = "<ramp-capacity> <label-discharging>"
 label-discharging = %percentage%%
 
-ramp-capacity-0 = 
+ramp-capacity-0 = " "
 ramp-capacity-0-foreground= #ff5555
-ramp-capacity-1 = 
+ramp-capacity-1 = " "
 ramp-capacity-1-foreground= #ffb86c
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
 
 
 format-charging-prefix = " "
-format-charging = <animation-charging>  <label-charging>
+format-charging = <animation-charging> <label-charging>
 format-charging-foreground = fd4ca
 label-charging = ${self.label-discharging}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
 animation-charging-foreground = #f1fa8c
 animation-charging-framerate = 750
 
