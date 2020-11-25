@@ -100,4 +100,6 @@
     HandlePowerKey=suspend
   '';
 
+  programs.bash.interactiveShellInit = ''HISTFILE="$XDG_DATA_HOME"/bash/history'';
+
 }
