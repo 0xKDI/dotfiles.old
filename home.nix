@@ -30,6 +30,7 @@
 
 
   home.packages = with pkgs; [
+    kubectl
     du-dust # du + rust
     drive
     progress
