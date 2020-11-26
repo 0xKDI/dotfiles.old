@@ -420,7 +420,7 @@
     # NOTE: doesn't work, 
     # move .compose_cache out of $HOME
     XCOMPOSEFILE = "${config.xdg.configHome}/x11/xcompose";
-    XCOMPOSECACHE = "${config.xdg.cacheHome}x11/xcompose";
+    XCOMPOSECACHE = "${config.xdg.cacheHome}/x11/xcompose";
     # same with .xsession_errors
     USERXSESSION = "${config.xdg.cacheHome}/x11/xsession";
     USERXSESSIONRC = "${config.xdg.cacheHome}/x11/xsessionrc";
