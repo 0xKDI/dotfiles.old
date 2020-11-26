@@ -392,6 +392,7 @@
   '';
 
   home.sessionVariables = {
+    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot='$XDG_CONFIG_HOME'/java";
     PYTHONSTARTUP = "${config.xdg.configHome}/python/startup.py";
     DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
 
