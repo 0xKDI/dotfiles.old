@@ -30,6 +30,7 @@
 
 
   home.packages = with pkgs; [
+    du-dust # du + rust
     drive
     progress
     htop
@@ -600,6 +601,7 @@
   };
 
   programs.zsh.shellAliases = {
+    dst = "dust -r";
     s = "ddgr";
     dkr = "docker";
 
