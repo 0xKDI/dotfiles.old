@@ -600,6 +600,7 @@
     defaultKeymap = "viins";
     dotDir = ".config/zsh";
     history.path = "${config.xdg.cacheHome}/zsh/history";
+    # TODO change fzf-cd widget
     initExtra = ''
       bindkey '\eq' fzf-cd-widget
       bindkey '\er' fzf-history-widget
@@ -832,17 +833,11 @@
     plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
       {
         plugin = nvim-lspconfig;
-        config = ''
-          packadd! nvim-lspconfig
-          lua require'nvim_lsp'.pyls.setup{}
-          lua require'nvim_lsp'.rnix.setup{}
-          lua require'nvim_lsp'.texlab.setup{}
-          lua require'nvim_lsp'.yamlls.setup{}
-        '';
+        config = "luafile ${config.dots.confDir}/nvim/lspconfig.lua";
       }
       {
         plugin = completion-nvim;
-        config = builtins.readFile "${config.dots.confDir}/nvim/completion-nvim.vim";
+        config = builtins.readFile "${config.dots.confDir}/nvim/completion.vim";
       }
       {
         plugin = fzf-checkout;
