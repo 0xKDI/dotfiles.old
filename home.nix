@@ -826,7 +826,6 @@
     extraPackages = with pkgs; [
       python38Packages.python-language-server # pyls
       rnix-lsp
-      texlab
       nodePackages.yaml-language-server
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
