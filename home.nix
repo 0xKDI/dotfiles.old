@@ -226,27 +226,14 @@
 
   xsession.windowManager.bspwm = {
     rules = {
-      "firefox" = {
-        desktop = "^1";
-      };
-      "Firefox" = {
-        desktop = "^1";
-      };
-      "TelegramDesktop" = {
-        state = "floating";
-      };
-      "Spotify" = {
-        desktop = "^9";
-      };
-      "Zathura" = {
-        state = "tiled";
-      };
-      "fzfmenu" = {
-        state = "floating";
-      };
-      "clipmenu" = {
-        state = "floating";
-      };
+      "firefox".desktop = "^1";
+      "Firefox".desktop = "^1";
+      "TelegramDesktop".state = "floating";
+      "Spotify".desktop = "^9";
+      "Zathura".state = "tiled";
+      "fzfmenu".state = "floating";
+      "clipmenu".state = "floating";
+      "nvimedit".state = "floating";
     };
   };
 
@@ -1018,7 +1005,7 @@
       set scrollduration 20
       set allowautofocus false
       set keytranslatemap {"о":"j", "л":"k"}
-      set editorcmd ${pkgs.xst}/bin/xst -e ${pkgs.neovim}/bin/nvim %f "+normal!%lGzv%c|"
+      set editorcmd ${pkgs.xst}/bin/xst -c nvimedit -e ${pkgs.neovim}/bin/nvim %f "+normal!%lGzv%c|"
 
       " C-c C-p
       " make d take you to the tab you were just on (I find it much less confusing)
