@@ -392,6 +392,9 @@
   '';
 
   home.sessionVariables = {
+    TEXMFHOME = "${config.xdg.dataHome}/texmf";
+    TEXMFVAR = "${config.xdg.cacheHome}/texlive/texmf-var";
+    TEXMFCONFIG = "${config.xdg.configHome}/texlive/texmf-config";
     DOCKER_CONFIG = "${config.xdg.configHome}/docker";
     _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
     PYTHONSTARTUP = "${config.xdg.configHome}/python/startup.py";
