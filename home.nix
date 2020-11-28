@@ -357,7 +357,7 @@
       pulseSupport = true;
       nlSupport = true;
     };
-    config = "${config.dots.confDir}/polybar/config";
+    config = "${config.dots.confDir}/polybar";
   };
 
   xsession.initExtra = ''
