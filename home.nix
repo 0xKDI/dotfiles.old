@@ -13,20 +13,7 @@
     }
   '';
 
-  xdg.configFile."python/startup.py".text = ''
-    import atexit
-    import os
-    import readline
-
-    histfile = os.path("${config.xdg.dataHome}/python_history")
-    try:
-      readline.read_history_file(histfile)
-      readline.set_history_length(1000)
-    except FileNotFoundError:
-    pass
-
-    atexit.register(readline.write_history_file, histfile)
-    '';
+  xdg.configFile."python/startup.py".source = "${config.dots.confDir}/python_startup.py";
 
 
   home.packages = with pkgs; [
