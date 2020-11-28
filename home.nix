@@ -812,6 +812,7 @@
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
     plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
+      vim-sneak
       {
         plugin = vim-tmux-navigator;
         config = ''
