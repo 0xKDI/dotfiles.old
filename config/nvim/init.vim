@@ -47,17 +47,6 @@ let g:netrw_winsize = 30
 
 let mapleader = " "
 
-" windows
-nnoremap <leader>h :wincmd h<CR>
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
-" moving
-nnoremap <leader><leader>h <C-w>H
-nnoremap <leader><leader>j <C-w>J
-nnoremap <leader><leader>k <C-w>K
-nnoremap <leader><leader>l <C-w>L
-nnoremap <leader><leader>r <C-W>r
 " resize 
 nnoremap <leader>= <C-W>=
 nnoremap <silent> <C-left> :vertical resize +3<CR>

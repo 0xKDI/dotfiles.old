@@ -799,9 +799,7 @@
     historyLimit = 50000;
     keyMode = "vi";
     plugins = with pkgs.tmuxPlugins; [
-      {
-        plugin = fzf-tmux-url;
-      }
+      fzf-tmux-url
       {
         plugin = resurrect;
         extraConfig = "set -g @resurrect-strategy-nvim 'session'";
@@ -827,6 +825,18 @@
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
     plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
+      {
+        plugin = vim-tmux-navigator;
+        config = ''
+          let g:tmux_navigator_no_mappings = 1
+
+          nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+          nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+          nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+          nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+          nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
+        '';
+      }
       {
         plugin = nvim-lspconfig;
         config = "luafile ${config.dots.confDir}/nvim/lspconfig.lua";
