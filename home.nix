@@ -799,7 +799,7 @@
         '';
       }
     ];
-    extraConfig = builtins.readFile "${config.dots.confDir}/tmux/tmux.conf";
+    extraConfig = builtins.readFile "${config.dots.confDir}/tmux.conf";
   };
 
   programs.neovim = {
