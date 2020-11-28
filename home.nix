@@ -252,7 +252,7 @@
     "super + F5" = "${config.dots.binDir}/change_brightness +5%";
 
     # terminal
-    "super + Return" = "${pkgs.xst}/bin/xst -e ${pkgs.tmux}/bin/tmux";
+    "super + Return" = "${pkgs.xst}/bin/xst -e ${pkgs.tmux}/bin/tmux attach";
     "super + shift + Return" = "${pkgs.xst}/bin/xst";
 
     # program launcher
