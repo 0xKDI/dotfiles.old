@@ -809,6 +809,7 @@
       python38Packages.python-language-server # pyls
       rnix-lsp
       nodePackages.yaml-language-server
+      texlab
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
     plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [

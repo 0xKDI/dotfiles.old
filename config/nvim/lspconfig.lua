@@ -35,3 +35,4 @@ end
 lspconfig.pyls.setup{ on_attach = on_attach }
 lspconfig.rnix.setup{}
 lspconfig.yamlls.setup{}
+lspconfig.texlab.setup{ on_attach = on_attach  }
