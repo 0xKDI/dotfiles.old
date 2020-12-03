@@ -17,6 +17,7 @@
 
 
   home.packages = with pkgs; [
+    graphviz
     kubectl
     du-dust # du + rust
     drive
