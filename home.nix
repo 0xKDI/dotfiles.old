@@ -861,7 +861,12 @@
       vim-commentary
       vim-repeat
       vim-obsession # for resurrecting sessions
-      vim-polyglot
+      {
+        plugin = vim-polyglot;
+        config = ''
+          let g:polyglot_disabled = ['yaml']
+          '';
+      }
       vim-devicons
       vim-lion
       auto-pairs
