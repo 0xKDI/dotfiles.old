@@ -93,3 +93,7 @@ nnoremap <silent> <leader>7 7gt
 nnoremap <silent> <leader>8 8gt
 nnoremap <silent> <leader>9 9gt
 nnoremap <silent> <leader>9 9gt
+
+" Faster up/down movement
+map <C-j> 8j
+map <C-k> 8k
