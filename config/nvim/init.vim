@@ -82,3 +82,14 @@ vmap > >gv
 " Change Y to copy to end of line and behave like C
 nnoremap Y y$
 
+" switch to n-th tab with leader + n
+nnoremap <silent> <leader>1 1gt
+nnoremap <silent> <leader>2 2gt
+nnoremap <silent> <leader>3 3gt
+nnoremap <silent> <leader>4 4gt
+nnoremap <silent> <leader>5 5gt
+nnoremap <silent> <leader>6 6gt
+nnoremap <silent> <leader>7 7gt
+nnoremap <silent> <leader>8 8gt
+nnoremap <silent> <leader>9 9gt
+nnoremap <silent> <leader>9 9gt
