@@ -166,13 +166,17 @@
       "FZF_DEFAULT_OPTS"
       "CM_HISTLENGTH"
     ];
+    initExtra = ''
+      rm ~/.xsession-errors ~/.xsession-errors.old
+      ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${config.dots.confDir}/wallpaper &
+      xset r rate 250 60
+      '';
   };
 
   xsession.windowManager.bspwm = {
     enable = true;
     monitors = { "eDP-1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
     startupPrograms = [
-      "xset r rate 250 60"
       # https://github.com/nix-community/home-manager/issues/195
       "systemctl --user restart polybar"
     ];
@@ -360,11 +364,6 @@
     };
     config = "${config.dots.confDir}/polybar";
   };
-
-  xsession.initExtra = ''
-    rm ~/.xsession-errors ~/.xsession-errors.old
-    ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${config.dots.confDir}/wallpaper &
-  '';
 
   home.sessionVariables = {
     TEXMFHOME = "${config.xdg.dataHome}/texmf";
@@ -564,7 +563,7 @@
 
   services.screen-locker = {
     enable = true;
-    inactiveInterval = 5;
+    inactiveInterval = 10;
     lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
   };
 
