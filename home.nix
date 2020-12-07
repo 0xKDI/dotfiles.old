@@ -837,9 +837,7 @@
       }
       {
         plugin = fzf-checkout;
-        config = ''
-          nnoremap <silent> <leader>gb :GBranches<CR>
-        '';
+        config = "nnoremap <silent> <leader>gb :GBranches<CR>";
       }
       {
         plugin = nvim-colorizer;
@@ -863,9 +861,7 @@
       vim-obsession # for resurrecting sessions
       {
         plugin = vim-polyglot;
-        config = ''
-          let g:polyglot_disabled = ['yaml']
-          '';
+        config = "let g:polyglot_disabled = ['yaml']";
       }
       vim-devicons
       vim-lion
