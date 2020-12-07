@@ -17,6 +17,7 @@
 
 
   home.packages = with pkgs; [
+    discord
     graphviz
     kubectl
     du-dust # du + rust
