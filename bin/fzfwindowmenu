@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # choose X-client and focus to one
-# FIXME: throws error
 
 declare -a window_ids
 declare -A windows
@@ -10,7 +9,7 @@ for id in $window_ids; do
     windows[$id]="$(xprop -id $id WM_CLASS | sed "s/.* //g" | tr -d '"')"
 done
 
-chosen=$(printf '%s\n' "${windows[@]}" | fzfmenu)
+chosen=$(printf '%s\n' "${windows[@]}" | fzf)
 echo -e "${windows[@]}" 
 
 for id in "${!windows[@]}"; do
@@ -19,6 +18,6 @@ for id in "${!windows[@]}"; do
         break
     fi
 done
-echo $window_id
+
 bspc node "$window_id".window --focus
 
