@@ -176,7 +176,7 @@
 
   xsession.windowManager.bspwm = {
     enable = true;
-    monitors = { "eDP-1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
+    monitors = { "eDP1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
     startupPrograms = [
       # https://github.com/nix-community/home-manager/issues/195
       "systemctl --user restart polybar"

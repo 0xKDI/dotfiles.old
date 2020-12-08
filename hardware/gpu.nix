@@ -9,8 +9,8 @@
   # bumblebee.service will fall, reboot needed
   hardware.nvidiaOptimus.disable = true;
   boot.blacklistedKernelModules = [ "nouveau" "nvidia" ];
-  # services.xserver.videoDrivers = [ "intel" ];
-  services.xserver.videoDrivers = [ "modesetting" ];
+  services.xserver.videoDrivers = [ "intel" ];
+  # services.xserver.videoDrivers = [ "modesetting" ];
   services.xserver.useGlamor = true;
 
   # https://nixos.wiki/wiki/Accelerated_Video_Playback
