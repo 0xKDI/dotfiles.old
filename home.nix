@@ -257,6 +257,9 @@
     # clipboard manager
     "super + s" = "${pkgs.xst}/bin/xst -c clipmenu -e ${pkgs.clipmenu}/bin/clipmenu";
 
+    # windowmenu
+    "super + w" = "${pkgs.xst}/bin/xst -c fzfmenu -e ${config.dots.binDir}/fzfwindowmenu";
+
     # screenshot
     "super + F11" = ''
       ${pkgs.maim}/bin/maim -s | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png
@@ -317,8 +320,6 @@
     # focus the desktop
     "super + Tab" = "bspc desktop -f last";
 
-    # focus the last node
-    "super + w" = "${pkgs.xst}/bin/xst -c bookmarks -e ${config.dots.binDir}/fzfwindowmenu";
 
     # focus the older or newer node in the focus history
     "super + {o,i}" = ''

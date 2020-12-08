@@ -1,18 +1,24 @@
 #!/usr/bin/env bash
 # choose X-client and focus to one
-# TODO: finish script
+# FIXME: throws error
 
 declare -a window_ids
 declare -A windows
 window_ids=$(bspc query -N)
 
 for id in $window_ids; do
-    windows[$id]="$(xprop -id $id WM_NAME)\n"
+    windows[$id]="$(xprop -id $id WM_CLASS | sed "s/.* //g" | tr -d '"')"
 done
 
-chosen=$(echo -e "${windows[@]}" | fzfmenu)
+chosen=$(printf '%s\n' "${windows[@]}" | fzfmenu)
+echo -e "${windows[@]}" 
 
-# for window in windows; do
-#     if [ "$window"="$chosen" ]; then
-#         chosen_id=windows[$chosen]
+for id in "${!windows[@]}"; do
+    if [ "${windows[$id]}" = "$chosen" ]; then
+        window_id="$id"
+        break
+    fi
+done
+echo $window_id
+bspc node "$window_id".window --focus
 
