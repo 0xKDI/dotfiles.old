@@ -17,6 +17,7 @@
 
 
   home.packages = with pkgs; [
+    python38Packages.pip
     discord
     graphviz
     kubectl
