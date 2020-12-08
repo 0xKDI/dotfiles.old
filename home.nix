@@ -17,7 +17,6 @@
 
 
   home.packages = with pkgs; [
-    python38Packages.pip
     discord
     graphviz
     kubectl
@@ -29,9 +28,12 @@
     unstable.googler
     aws
     cachix
-    python3
-    python38Packages.ipython
     tdesktop
+
+    python38
+    python38Packages.ipython
+    python38Packages.pip
+    python38Packages.pygments
 
     # texlive.combined.scheme-full
     (
@@ -82,7 +84,6 @@
           ;
       }
     )
-    python38Packages.pygments
     corefonts # Microsoft fonts
 
     (
