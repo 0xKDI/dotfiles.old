@@ -17,15 +17,19 @@ if !&scrolloff
 endif
 set updatetime=300
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
-autocmd FileType plaintex set filetype=tex
-" autocmd FileType tex set tabstop=3 shiftwidth=3 softtabstop=3
-autocmd FileType help wincmd L
-" for buku -w
-autocmd BufNewFile,BufRead buku-edit-* set filetype=conf
+
 " tabs
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+autocmd FileType plaintex set filetype=tex
+" autocmd FileType tex set tabstop=3 shiftwidth=3 softtabstop=3
+autocmd FileType yaml set tabstop=2 shiftwidth=2
+autocmd FileType help wincmd L
+
+" for buku -w
+autocmd BufNewFile,BufRead buku-edit-* set filetype=conf
+
 " set expandtab
 " set smartindent
 set splitbelow
