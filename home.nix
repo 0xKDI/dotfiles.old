@@ -998,8 +998,7 @@
     target = ".local/share/tridactyl/native_main.py";
   };
 
-  home.file.tridactylrc = {
-    text = ''
+  xdg.configFile."tridactyl/tridactylrc".text = ''
       sanitise tridactyllocal tridactylsync
       bind j scrollline 4
       bind k scrollline -4
@@ -1020,9 +1019,7 @@
       " Stupid workaround to let hint -; be used with composite which steals semi-colons
       command hint_focus hint -;
       bind ;C composite hint_focus; !s xdotool key Menu
-    '';
-    target = ".config/tridactyl/tridactylrc";
-  };
+  '';
 
   xresources.properties = {
     "*.foreground" = "#F8F8F2";
