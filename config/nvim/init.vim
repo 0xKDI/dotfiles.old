@@ -62,8 +62,6 @@ nnoremap <leader>d :close<CR>
 nnoremap \ /
 
 " tabs
-nnoremap <silent> <leader>tk :tabclose<CR>
-nnoremap <silent> <leader>tf :tabfind %<CR>
 nnoremap <silent> <leader>] :tabnext<CR>
 nnoremap <silent> <leader>[ :tabprevious<CR>
 
@@ -75,9 +73,6 @@ nnoremap <silent> <leader>bk :bdelete<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-
-" open new file in vertical split
-nnoremap <leader>fn :vs 
 
 " visual
 vmap < <gv 
