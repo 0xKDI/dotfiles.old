@@ -586,6 +586,7 @@
   };
 
   programs.zsh.shellAliases = {
+    k = "kubectl";
     dst = "dust -r";
     s = "ddgr";
     dkr = "docker";
