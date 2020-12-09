@@ -1201,11 +1201,6 @@
     };
   };
 
-  # https://github.com/rakshasa/rtorrent/wiki/User-Guide
-  programs.rtorrent = {
-    enable = true;
-  };
-
   programs.noti.enable = true;
 
   programs.jq.enable = true;
