@@ -6,7 +6,6 @@
     ./options.nix
   ];
 
-
   xdg.configFile."nixpkgs/config.nix".text = ''
     {
      allowUnfree = true; 
@@ -14,7 +13,6 @@
   '';
 
   xdg.configFile."python/startup.py".source = "${config.dots.confDir}/python_startup.py";
-
 
   home.packages = with pkgs; [
     discord
@@ -418,9 +416,7 @@
     JUPYTER_CONFIG_DIR = "${config.xdg.configHome}/jupyter";
   };
 
-
   fonts.fontconfig.enable = true;
-
 
   services.unclutter.enable = true; # hide cursor when it's not used
 
@@ -429,7 +425,6 @@
     size = 20;
     name = "capitaine-cursors";
   };
-
 
   gtk = {
     enable = true;
@@ -571,7 +566,6 @@
     lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
   };
 
-
   programs.zsh = {
     enable = true;
     autocd = true;
@@ -647,7 +641,6 @@
     '';
   };
 
-
   home.sessionPath = [
     # add bin directory to path
     "${config.dots.binDir}"
@@ -658,7 +651,6 @@
     enableZshIntegration = true;
     options = [ "fzf" ];
   };
-
 
   programs.starship = {
     enable = true;
@@ -1006,7 +998,6 @@
     target = ".local/share/tridactyl/native_main.py";
   };
 
-  # FIXME: editor doesn't use user config
   home.file.tridactylrc = {
     text = ''
       sanitise tridactyllocal tridactylsync
