@@ -999,6 +999,7 @@
   };
 
   xdg.configFile."tridactyl/tridactylrc".text = ''
+      colourscheme quakelight
       sanitise tridactyllocal tridactylsync
       bind j scrollline 4
       bind k scrollline -4
