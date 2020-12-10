@@ -980,6 +980,7 @@
       "toolkit.telemetry.archive.enabled" = false;
       "toolkit.telemetry.bhrPing.enabled" = false;
       "toolkit.telemetry.firstShutdownPing.enabled" = false;
+      "full-screen-api.ignore-widgets"  = true;
     };
   };
 
