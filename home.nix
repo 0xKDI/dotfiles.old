@@ -1000,6 +1000,7 @@
   };
 
   xdg.configFile."tridactyl/tridactylrc".text = ''
+      set guiset tabs autohide
       colourscheme quakelight
       sanitise tridactyllocal tridactylsync
       bind j scrollline 4
