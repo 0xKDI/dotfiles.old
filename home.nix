@@ -15,16 +15,18 @@
   xdg.configFile."python/startup.py".source = "${config.dots.confDir}/python_startup.py";
 
   home.packages = with pkgs; [
+    unstable.minikube
+    kubectl
+    aws
+
     discord
     graphviz
-    kubectl
     du-dust # du + rust
     drive
     progress
     htop
     unstable.ddgr # DuckDuckGo-cli
     unstable.googler
-    aws
     cachix
     tdesktop
 
@@ -572,7 +574,6 @@
     defaultKeymap = "viins";
     dotDir = ".config/zsh";
     history.path = "${config.xdg.cacheHome}/zsh/history";
-    # TODO change fzf-cd widget
     initExtra = ''
       bindkey '\eq' fzf-cd-widget
       bindkey '\er' fzf-history-widget
@@ -1000,7 +1001,6 @@
   };
 
   xdg.configFile."tridactyl/tridactylrc".text = ''
-      set guiset tabs autohide
       colourscheme quakelight
       sanitise tridactyllocal tridactylsync
       bind j scrollline 4
