@@ -660,7 +660,11 @@
     settings = {
       scan_timeout = 10;
       add_newline = false;
-      character.symbol = "➜ ";
+      character = {
+        success_symbol = "[➜ ](bold green)";
+        error_symbol = "[➜ ](bold red)";
+        vicmd_symbol = "[V ](bold green)";
+      };
       line_break.disabled = true;
       python.python_binary = "python3";
       format = [
