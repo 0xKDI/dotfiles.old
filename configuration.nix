@@ -31,9 +31,6 @@
     nur = import <nur> {
       inherit pkgs;
     };
-    unstable = import <unstable> {
-      inherit pkgs;
-    };
   };
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
