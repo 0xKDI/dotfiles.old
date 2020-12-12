@@ -800,6 +800,8 @@
     extraConfig = builtins.readFile "${config.dots.confDir}/tmux.conf";
   };
 
+  xdg.configFile."nvim/init.vim".text = "let g:polyglot_disabled = ['yaml']";
+
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
@@ -810,8 +812,17 @@
       texlab
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
-    plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
+    plugins = with pkgs.unstable.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
       vim-sneak
+      vim-surround
+      vim-commentary
+      vim-repeat
+      vim-obsession # for resurrecting sessions
+      vim-devicons
+      vim-lion
+      auto-pairs
+      vim-snippets
+      vim-polyglot
       {
         plugin = vim-tmux-navigator;
         config = ''
@@ -852,17 +863,6 @@
           nnoremap <leader>gl :Gllog<CR>
         '';
       }
-      vim-surround
-      vim-commentary
-      vim-repeat
-      vim-obsession # for resurrecting sessions
-      {
-        plugin = vim-polyglot;
-        config = "let g:polyglot_disabled = ['yaml']";
-      }
-      vim-devicons
-      vim-lion
-      auto-pairs
       {
         plugin = indentLine;
         config = ''
@@ -888,7 +888,6 @@
           let g:UltiSnipsExpandTrigger="<c-u>"
         '';
       }
-      vim-snippets
     ];
   };
 
