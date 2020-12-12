@@ -171,7 +171,7 @@
       "CM_HISTLENGTH"
     ];
     initExtra = ''
-      rm ~/.xsession-errors ~/.xsession-errors.old
+      rm -drf ~/.xsession-errors ~/.xsession-errors.old ~/.compose_cache
       ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${config.dots.confDir}/wallpaper &
       xset r rate 250 60
       '';
@@ -398,18 +398,18 @@
     AWS_SHARED_CREDENTIALS_FILE = "${config.xdg.configHome}/aws/credentials";
     AWS_CONFIG_FILE = "${config.xdg.configHome}/aws/config";
 
-
     # NOTE: doesn't work, 
     # move .compose_cache out of $HOME
-    XCOMPOSEFILE = "${config.xdg.configHome}/x11/xcompose";
-    XCOMPOSECACHE = "${config.xdg.cacheHome}/x11/xcompose";
+    XCOMPOSEFILE = "${config.xdg.configHome}/X11/xcompose";
+    XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
     # same with .xsession_errors
-    USERXSESSION = "${config.xdg.cacheHome}/x11/xsession";
-    USERXSESSIONRC = "${config.xdg.cacheHome}/x11/xsessionrc";
-    ALTUSERXSESSION = "${config.xdg.cacheHome}/x11/Xsession";
-    ERRFILE = "${config.xdg.cacheHome}/x11/xsession-errors";
+    USERXSESSION = "${config.xdg.cacheHome}/X11/xsession";
+    USERXSESSIONRC = "${config.xdg.cacheHome}/X11/xsessionrc";
+    ALTUSERXSESSION = "${config.xdg.cacheHome}/X11/Xsession";
+    ERRFILE = "${config.xdg.cacheHome}/X11/xsession-errors";
     PARALLEL_HOME = "${config.xdg.configHome}/parallel";
     CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+
     # Ruby
     GEM_HOME = "${config.xdg.dataHome}/gem";
     GEM_SPEC_CACHE = "${config.xdg.cacheHome}/gem";
