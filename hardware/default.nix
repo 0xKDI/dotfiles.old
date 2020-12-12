@@ -33,6 +33,7 @@
       allowedUDPPorts = [ 80 443 ];
     };
   };
+
   systemd.services.NetworkManager-wait-online.enable = false; #this is only increases boot time
 
   time.timeZone = "Europe/Moscow";
@@ -45,7 +46,6 @@
     # idk why it isn't default
     naturalScrolling = true;
   };
-
 
   services.xserver = {
     enable = true;
@@ -70,7 +70,6 @@
     }];
   };
 
-
   services.dbus.packages = [ pkgs.gnome3.dconf ];
 
   # NOTE:nix-zsh-completions doesn't work without enabling zsh system wide
@@ -90,6 +89,7 @@
     host.enable = true;
     # host.enableExtensionPack = true;
   };
+
   virtualisation.docker.enable = true;
 
   # remap the most useless key to the most useful one

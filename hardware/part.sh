@@ -8,7 +8,6 @@ if [ "$USER" != "root" ]; then
   exit 0
 fi
 
-
 parted /dev/nvme0n1 -- mklabel gpt
 parted /dev/nvme0n1 -- mkpart ESP fat32 1MiB 512MiB
 parted /dev/nvme0n1 -- mkpart primary 512MiB 100%

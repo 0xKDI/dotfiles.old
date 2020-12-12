@@ -26,26 +26,26 @@
   #   experimental-features = nix-command flakes
   # '';
 
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import <nur> {
-      inherit pkgs;
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      nur = import <nur> {
+        inherit pkgs;
+      };
     };
   };
+
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
       url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
     }))
   ];
 
-
-
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
-
 
   users.users.${config.dots.userName} = {
     isNormalUser = true;
@@ -72,7 +72,6 @@
       imports = [ ./home.nix ];
     };
   };
-
 
   system.stateVersion = "20.09";
 }

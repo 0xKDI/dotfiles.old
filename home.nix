@@ -7,9 +7,7 @@
   ];
 
   xdg.configFile."nixpkgs/config.nix".text = ''
-    {
-     allowUnfree = true; 
-    }
+    { allowUnfree = true; }
   '';
 
   xdg.configFile."python/startup.py".source = "${config.dots.confDir}/python_startup";
@@ -266,10 +264,8 @@
       ${pkgs.maim}/bin/maim -s | ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png
     '';
 
-
     # make sxhkd reload its configuration files:
     "super + shift + r" = "pkill -USR1 -x sxhkd";
-
 
     # BSPWM
 
@@ -294,7 +290,6 @@
     # rotate node by 90 deg
     "super + r" = "bspc node -R 90";
 
-
     # STATE/FLAGS
 
     # set the window state
@@ -302,7 +297,6 @@
 
     # set the node flags
     "super + ctrl + {m,x,y,z}" = "bspc node -g {marked,locked,sticky,private}";
-
 
     # FOCUS/SWAP
 
@@ -321,7 +315,6 @@
     # focus the desktop
     "super + Tab" = "bspc desktop -f last";
 
-
     # focus the older or newer node in the focus history
     "super + {o,i}" = ''
       bspc wm -h off; \
@@ -331,7 +324,6 @@
 
     # focus or send to the given desktop
     "super + {_,shift + }{1-9,0}" = ''bspc {desktop -f,node -d} "^{1-9,10}"'';
-
 
     # PRESELECT
 
@@ -346,7 +338,6 @@
 
     # cancel the preselection for the focused desktop
     "super + ctrl + shift + space" = "bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel";
-
 
     # MOVE/RESIZE
 
@@ -407,6 +398,7 @@
     USERXSESSIONRC = "${config.xdg.cacheHome}/X11/xsessionrc";
     ALTUSERXSESSION = "${config.xdg.cacheHome}/X11/Xsession";
     ERRFILE = "${config.xdg.cacheHome}/X11/xsession-errors";
+
     PARALLEL_HOME = "${config.xdg.configHome}/parallel";
     CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
 

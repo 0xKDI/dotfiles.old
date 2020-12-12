@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-
   # https://www.kernel.org/doc/html/v5.3/gpu/i915.html
   boot.kernelModules = [ "i915" ];
 

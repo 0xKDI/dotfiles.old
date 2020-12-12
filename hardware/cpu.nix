@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-
   nix.maxJobs = lib.mkDefault 8;
   powerManagement.cpuFreqGovernor = "performance";
 
