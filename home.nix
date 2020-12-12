@@ -16,7 +16,7 @@
 
   home.packages = with pkgs; [
     terraform
-    unstable.minikube
+    minikube
     kubectl
     aws
 
@@ -26,8 +26,8 @@
     drive
     progress
     htop
-    unstable.ddgr # DuckDuckGo-cli
-    unstable.googler
+    ddgr # DuckDuckGo-cli
+    googler
     cachix
     tdesktop
 
@@ -137,7 +137,7 @@
     fd
     ripgrep
     tealdeer # faster tldr
-    unstable.manix
+    manix
 
     # for scripts
     dunst
@@ -439,7 +439,7 @@
     ];
     theme = {
       name = "Dracula";
-      package = pkgs.unstable.dracula-theme;
+      package = pkgs.dracula-theme;
     };
   };
 
@@ -814,7 +814,7 @@
       terraform-ls
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
-    plugins = with pkgs.unstable.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
+    plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
       vim-sneak
       vim-surround
       vim-commentary
@@ -825,6 +825,7 @@
       auto-pairs
       vim-snippets
       vim-polyglot
+      fzfWrapper
       {
         plugin = vim-tmux-navigator;
         config = ''
@@ -857,7 +858,6 @@
         plugin = fzf-vim;
         config = builtins.readFile "${config.dots.confDir}/nvim/fzf-vim.vim";
       }
-      fzfWrapper
       {
         plugin = vim-fugitive;
         config = ''
