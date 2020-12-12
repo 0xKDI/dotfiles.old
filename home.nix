@@ -15,6 +15,7 @@
   xdg.configFile."python/startup.py".source = "${config.dots.confDir}/python_startup.py";
 
   home.packages = with pkgs; [
+    terraform
     unstable.minikube
     kubectl
     aws
