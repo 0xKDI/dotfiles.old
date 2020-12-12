@@ -1,14 +1,11 @@
 vim.cmd('packadd! nvim-lspconfig')
-local lspconfig = require'nvim_lsp'
+local lspconfig = require'lspconfig'
 local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 		vim.lsp.diagnostic.on_publish_diagnostics, {
 			-- disable virtual text
 			virtual_text = false,
-
-			-- show signs
-			signs = true,
 
 			-- delay update diagnostics
 			update_in_insert = false,
@@ -33,6 +30,7 @@ local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 lspconfig.pyls.setup{ on_attach = on_attach }
-lspconfig.rnix.setup{}
-lspconfig.yamlls.setup{}
+lspconfig.rnix.setup{ on_attach = on_attach }
+lspconfig.yamlls.setup{ on_attach = on_attach }
+lspconfig.terraformls.setup{ on_attach = on_attach }
 lspconfig.texlab.setup{ on_attach = on_attach  }

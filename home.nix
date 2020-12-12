@@ -811,6 +811,7 @@
       rnix-lsp
       nodePackages.yaml-language-server
       texlab
+      terraform-ls
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
     plugins = with pkgs.unstable.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
