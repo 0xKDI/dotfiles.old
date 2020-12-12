@@ -12,7 +12,7 @@
     }
   '';
 
-  xdg.configFile."python/startup.py".source = "${config.dots.confDir}/python_startup.py";
+  xdg.configFile."python/startup.py".source = "${config.dots.confDir}/python_startup";
 
   home.packages = with pkgs; [
     terraform
