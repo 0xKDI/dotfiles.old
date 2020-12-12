@@ -568,6 +568,8 @@
     dotDir = ".config/zsh";
     history.path = "${config.xdg.cacheHome}/zsh/history";
     initExtra = ''
+      autoload -Uz edit-command-line; zle -N edit-command-line
+      bindkey '^ ' edit-command-line
       bindkey '\eq' fzf-cd-widget
       bindkey '\er' fzf-history-widget
     '';
