@@ -64,9 +64,7 @@ nnoremap \ /
 " tabs
 nnoremap <silent> <leader>] :tabnext<CR>
 nnoremap <silent> <leader>[ :tabprevious<CR>
-
-" buffers
-nnoremap <silent> <leader>bk :bdelete<CR>
+nnoremap <silent> <leader>b :tabnew %<CR>
 
 
 " Move highlighted stuff up down

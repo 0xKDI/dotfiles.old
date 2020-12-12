@@ -19,4 +19,4 @@ nnoremap <silent> <leader><CR> :Marks<CR>
 nnoremap <leader>r :Rg 
 nnoremap <leader>gf :GFiles<CR>
 nnoremap <leader>gc :Commits<CR>
-nnoremap <leader>bc :BCommits<CR>
+" nnoremap <leader>gC :BCommits<CR>
