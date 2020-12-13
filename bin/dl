@@ -3,7 +3,7 @@
 
 # TODO: selecting multiple files
 DEST="$(pwd)"
-cd "/home/qq/dl"
+cd ~/dl
 FILE=$(fd --type file | fzf --preview='bat')
 
 [[ -z $FILE ]] && exit 0
