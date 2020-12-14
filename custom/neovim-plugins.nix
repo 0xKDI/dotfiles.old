@@ -23,5 +23,16 @@
       sha256 = "0gvqdfkqf6k9q46r0vcc3nqa6w45gsvp8j4kya1bvi24vhifg2p9";
     };
   };
+  nvim-lspfuzzy = pkgs.vimUtils.buildVimPlugin {
+    pname = "nvim-lspfuzzy";
+    version = "2020-12-14";
+    src = pkgs.fetchFromGitHub {
+      owner = "ojroques";
+      repo = "nvim-lspfuzzy";
+      rev = "6b5dc735709aa3c67268d1c310b35f65ee86c7ef";
+      sha256 = "0jbx5mac95nnbm1jnzdhkgxidin17lwg9gyvsqn0qcdly4gl4iqk";
+    };
+
+  };
 
 }

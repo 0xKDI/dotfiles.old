@@ -825,6 +825,12 @@
       vim-polyglot
       fzfWrapper
       {
+        plugin = nvim-lspfuzzy;
+        config = ''
+          lua require('lspfuzzy').setup {}
+          '';
+      }
+      {
         plugin = vim-tmux-navigator;
         config = ''
           let g:tmux_navigator_no_mappings = 1
