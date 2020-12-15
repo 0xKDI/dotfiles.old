@@ -14,6 +14,7 @@
 
   home.packages = with pkgs; [
     terraform
+    terraform-ls
     minikube
     kubectl
     aws
