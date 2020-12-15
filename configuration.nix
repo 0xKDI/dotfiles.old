@@ -30,7 +30,7 @@
     allowUnfree = true;
     packageOverrides = pkgs: {
       nur = import <nur> { inherit pkgs; };
-      vimPlugins = pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {};
+      vimPlugins = pkgs.vimPlugins // pkgs.callPackage ./packages/vimPlugins.nix {};
     };
   };
 
