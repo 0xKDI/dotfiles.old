@@ -18,7 +18,7 @@
   nix.autoOptimiseStore = true;
   nix.trustedUsers = [ "root" "${config.dots.userName}" ];
   nix.nixPath = options.nix.nixPath.default ++ [
-    "nixpkgs-overlays=/etc/nixos/overlays-compat/"
+    "nixpkgs-overlays=/etc/nixos/overlays"
   ];
 
   # nix.package = pkgs.nixUnstable;
@@ -29,9 +29,8 @@
   nixpkgs.config = {
     allowUnfree = true;
     packageOverrides = pkgs: {
-      nur = import <nur> {
-        inherit pkgs;
-      };
+      nur = import <nur> { inherit pkgs; };
+      vimPlugins = pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {};
     };
   };
 

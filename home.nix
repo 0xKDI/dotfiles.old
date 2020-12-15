@@ -813,7 +813,7 @@
       terraform-ls
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
-    plugins = with pkgs.vimPlugins // pkgs.callPackage ./custom/neovim-plugins.nix {}; [
+    plugins = with pkgs.vimPlugins; [
       vim-sneak
       vim-surround
       vim-commentary
