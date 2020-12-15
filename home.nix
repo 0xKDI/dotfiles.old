@@ -1210,4 +1210,8 @@
   programs.noti.enable = true;
 
   programs.jq.enable = true;
+  programs.go = {
+    enable = true;
+    goPath = ".local/share/go";
+  };
 }
