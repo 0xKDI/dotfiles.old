@@ -4,7 +4,7 @@
   fzf-checkout = pkgs.vimUtils.buildVimPlugin {
     pname = "fzf-checkout";
     version = "2020-11-09";
-    buildPhase = "echo hi";
+    dontBuild = true;
     src = pkgs.fetchFromGitHub {
       owner = "stsewd";
       repo = "fzf-checkout.vim";
@@ -23,6 +23,7 @@
       sha256 = "0gvqdfkqf6k9q46r0vcc3nqa6w45gsvp8j4kya1bvi24vhifg2p9";
     };
   };
+
   nvim-lspfuzzy = pkgs.vimUtils.buildVimPlugin {
     pname = "nvim-lspfuzzy";
     version = "2020-12-14";
@@ -34,5 +35,4 @@
     };
 
   };
-
 }
