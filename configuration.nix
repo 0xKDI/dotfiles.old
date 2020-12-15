@@ -38,6 +38,7 @@
     (import (builtins.fetchTarball {
       url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
     }))
+    # (import ./packages/tmux.nix)
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
