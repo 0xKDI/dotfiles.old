@@ -33,6 +33,17 @@
       rev = "6b5dc735709aa3c67268d1c310b35f65ee86c7ef";
       sha256 = "0jbx5mac95nnbm1jnzdhkgxidin17lwg9gyvsqn0qcdly4gl4iqk";
     };
+  };
 
+  completion-buffers = pkgs.vimUtils.buildVimPlugin {
+    pname = "completion-buffers";
+    version = "2020-12-16";
+    dontBuild = true;
+    src = pkgs.fetchFromGitHub {
+      owner = "steelsojka";
+      repo = "completion-buffers";
+      rev = "441a58b77c04409e8ccb35fd4970598ae551462f";
+      sha256 = "14q5n7h5kaqf71cfd9mlhwb0xsihm6d3kizrxhlfnzxk6zkn8p0s";
+    };
   };
 }

@@ -824,6 +824,7 @@
       vim-snippets
       vim-polyglot
       fzfWrapper
+      completion-buffers
       {
         plugin = nvim-lspfuzzy;
         config = ''
