@@ -930,7 +930,6 @@
   # NOTE: extensions must be enabled manually
   programs.firefox.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
     stylus
-    https-everywhere
     ublock-origin
     tridactyl
     browserpass
