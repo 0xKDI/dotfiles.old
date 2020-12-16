@@ -24,7 +24,6 @@
     du-dust # du + rust
     drive
     progress
-    htop
     ddgr # DuckDuckGo-cli
     googler
     cachix
@@ -1226,4 +1225,6 @@
     enable = true;
     goPath = ".local/share/go";
   };
+
+  programs.htop.enable = true;
 }
