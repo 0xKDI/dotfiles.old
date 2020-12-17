@@ -28,6 +28,7 @@
     googler
     cachix
     tdesktop
+    transmission
 
     python38
     python38Packages.ipython
@@ -580,6 +581,7 @@
     dst = "dust -r";
     s = "ddgr";
     dkr = "docker";
+    trr = "transmission-remote";
 
     n = "noti";
 
