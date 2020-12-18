@@ -111,7 +111,6 @@
     # TODO: add spicetify-cli
     # https://github.com/khanhas/spicetify-cli
     spotifywm
-    brave
     xst
 
     # for firefox
