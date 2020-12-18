@@ -125,6 +125,7 @@
 
     # essential
     gnumake
+    gcc
     coreutils
     killall
     curl
