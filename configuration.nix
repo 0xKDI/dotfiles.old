@@ -30,7 +30,7 @@
     allowUnfree = true;
     packageOverrides = pkgs: {
       nur = import <nur> { inherit pkgs; };
-      vimPlugins = pkgs.vimPlugins // pkgs.callPackage ./packages/vimPlugins.nix {};
+      vimPlugins = pkgs.vimPlugins // pkgs.callPackage ./pkgs/vimPlugins.nix {};
     };
   };
 
@@ -38,7 +38,7 @@
     (import (builtins.fetchTarball {
       url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
     }))
-    # (import ./packages/tmux.nix)
+    # (import ./pkgs/tmux.nix)
   ];
 
   i18n.defaultLocale = "en_US.UTF-8";
