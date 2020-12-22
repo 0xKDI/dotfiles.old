@@ -108,8 +108,7 @@
     imagemagick
     sxiv
 
-    # TODO: add spicetify-cli
-    # https://github.com/khanhas/spicetify-cli
+    spicetify-cli
     spotifywm
     xst
 
