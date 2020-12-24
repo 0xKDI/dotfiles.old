@@ -19,6 +19,7 @@
     kubectl
     kubernetes-helm
     aws
+    doctl
 
     discord
     graphviz
