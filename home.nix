@@ -16,6 +16,7 @@
     terraform
     terraform-ls
     minikube
+    docker-credential-helpers
     kubectl
     kubernetes-helm
     aws
