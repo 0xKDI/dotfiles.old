@@ -581,6 +581,8 @@
   };
 
   programs.zsh.shellAliases = {
+    tf = "terraform";
+
     k = "kubectl";
     ka = "kubectl apply";
     kg = "kubectl get";
