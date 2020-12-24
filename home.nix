@@ -580,6 +580,12 @@
 
   programs.zsh.shellAliases = {
     k = "kubectl";
+    ka = "kubectl apply";
+    kg = "kubectl get";
+    kd = "kubectl describe";
+    ke = "kubectl explain";
+    kdel = "kubectl delete";
+
     dst = "dust -r";
     s = "ddgr";
     dkr = "docker";
