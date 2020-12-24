@@ -17,6 +17,7 @@
     terraform-ls
     minikube
     kubectl
+    kubernetes-helm
     aws
 
     discord
