@@ -15,12 +15,13 @@
   home.packages = with pkgs; [
     terraform
     terraform-ls
+
     minikube
-    docker-credential-helpers
     kubectl
     kubernetes-helm
     aws
     doctl
+    docker-credential-helpers
 
     discord
     graphviz
