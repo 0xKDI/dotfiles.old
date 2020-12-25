@@ -1182,13 +1182,7 @@
     };
   };
 
-  xdg.configFile."latexmk/latexmkrc".text = ''
-    $xelatex = "xelatex --shell-escape %O %S";
-    $pdf_mode = 5;
-    $interaction = "nonstopmode";
-    $preview_continuous_mode = 1;
-    $pdf_previewer="zathura %S";
-  '';
+  xdg.configFile."latexmk/latexmkrc".source = "${config.dots.confDir}/latexmkrc.rb";
 
   xdg.configFile."sxiv" = {
     source = "${config.dots.confDir}/sxiv";
