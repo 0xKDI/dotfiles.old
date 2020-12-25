@@ -1230,10 +1230,16 @@
   programs.noti.enable = true;
 
   programs.jq.enable = true;
+
   programs.go = {
     enable = true;
     goPath = ".local/share/go";
   };
 
   programs.htop.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }
