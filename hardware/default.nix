@@ -36,6 +36,8 @@
 
   systemd.services.NetworkManager-wait-online.enable = false; #this is only increases boot time
 
+  hardware.bluetooth.enable = true;
+
   time.timeZone = "Europe/Moscow";
 
   services.tlp.enable = true;
