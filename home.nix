@@ -769,7 +769,7 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
-    changeDirWidgetCommand = "fd -HL --type d";
+    changeDirWidgetCommand = "fd -HL --type d --exclude .git";
     changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ];
     defaultCommand = "fd --type f --hidden --follow --exclude .git";
     defaultOptions = [
