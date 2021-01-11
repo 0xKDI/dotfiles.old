@@ -917,8 +917,8 @@
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    defaultCacheTtl = 10000;
-    defaultCacheTtlSsh = 10000;
+    defaultCacheTtl = 50000;
+    defaultCacheTtlSsh = 50000;
   };
 
   programs.password-store.enable = true;
