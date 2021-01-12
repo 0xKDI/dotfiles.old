@@ -239,6 +239,8 @@
 
   services.sxhkd.enable = true;
   services.sxhkd.keybindings = {
+    "super + F6" = "${config.dots.binDir}/toggle_mute";
+
     # volume keys
     "super + F3" = "${config.dots.binDir}/change_volume -i 5";
     "super + F2" = "${config.dots.binDir}/change_volume -d 5";
