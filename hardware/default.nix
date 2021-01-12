@@ -74,7 +74,7 @@
 
   services.dbus.packages = [ pkgs.gnome3.dconf ];
 
-  # NOTE:nix-zsh-completions doesn't work without enabling zsh system wide
+  # nix-zsh-completions doesn't work without enabling zsh system wide
   programs.zsh = {
     enable = true;
     # useless since home-manager runs compinit anyway
