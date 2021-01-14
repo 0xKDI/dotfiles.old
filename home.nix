@@ -447,7 +447,7 @@
   # FIXME: Vbox doesn't care
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme = "gnome";
   };
 
   xdg = {
