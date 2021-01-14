@@ -55,6 +55,7 @@
       "audio"
       "vboxusers"
       "docker"
+      "plugdev"
     ];
     shell = pkgs.zsh;
     initialPassword = "nix";

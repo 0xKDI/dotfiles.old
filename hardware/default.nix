@@ -105,6 +105,8 @@
     HandlePowerKey=suspend
   '';
 
+  hardware.keyboard.zsa.enable = true;
+
   programs.bash.interactiveShellInit = ''HISTFILE="$XDG_DATA_HOME"/bash/history'';
 
 }
