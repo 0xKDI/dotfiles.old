@@ -130,6 +130,7 @@
     # essential
     gnumake
     gcc
+    gdb
     coreutils
     killall
     curl
