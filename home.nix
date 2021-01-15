@@ -248,6 +248,9 @@
     "super + F3" = "${config.dots.binDir}/change_volume -i 5";
     "super + F2" = "${config.dots.binDir}/change_volume -d 5";
     "super + F1" = "${config.dots.binDir}/change_volume -t";
+    "XF86AudioRaiseVolume" = "${config.dots.binDir}/change_volume -i 5";
+    "XF86AudioLowerVolume" = "${config.dots.binDir}/change_volume -d 5";
+    "XF86AudioMute" = "${config.dots.binDir}/change_volume -t";
 
     # switch layout
     "super + a" = "${pkgs.xkb-switch}/bin/xkb-switch -n";
@@ -255,6 +258,8 @@
     # backlight
     "super + F4" = "${config.dots.binDir}/change_brightness 5%-";
     "super + F5" = "${config.dots.binDir}/change_brightness +5%";
+    "XF86MonBrightnessUp" = "${config.dots.binDir}/change_brightness 5%-";
+    "XF86MonBrightnessDown" = "${config.dots.binDir}/change_brightness +5%";
 
     # terminal
     "super + Return" = "${pkgs.xst}/bin/xst -e ${pkgs.tmux}/bin/tmux attach";
