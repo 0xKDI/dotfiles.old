@@ -13,6 +13,7 @@
   xdg.configFile."python/startup.py".source = "${config.dots.confDir}/python_startup";
 
   home.packages = with pkgs; [
+    libqalculate
     wally-cli
 
     terraform
