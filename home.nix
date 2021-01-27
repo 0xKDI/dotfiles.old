@@ -982,6 +982,8 @@
 
       # Hardware video acceleration
       "media.ffmpeg.vaapi.enabled" = true;
+      "media.hardware-video-decoding.enabled" = true;
+      "media.hardware-video-decoding.force-enabled" = true;
       # Enable OpenGL compositor
       "layers.acceleration.force-enabled" = true;
       # Enable WebRender compositor
