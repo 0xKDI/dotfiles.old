@@ -747,13 +747,7 @@
     }
     {
       name = "fzf-tab";
-      src = pkgs.fetchFromGitHub {
-        owner = "Aloxaf";
-        repo = "fzf-tab";
-        rev = "a7c4890445d6c7a8cc7b64fed3c4e62711ad5b5f";
-        sha256 = "1x3xwbqxknkwa891q1bnzvaikx45hfdhhi6l617ik15z3j9wjb06";
-      };
-      file = "fzf-tab.zsh";
+      src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
     }
     {
       name = "zsh-autopair";
