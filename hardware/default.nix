@@ -46,7 +46,7 @@
   services.xserver.libinput = {
     enable = true;
     # idk why it isn't default
-    naturalScrolling = true;
+    touchpad.naturalScrolling = true;
   };
 
   services.xserver = {
