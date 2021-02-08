@@ -442,7 +442,7 @@
     enable = true;
     gtk3.bookmarks = [
       "file:///home/${config.home.username}/uni"
-      "file:///home/${config.home.username}/proj"
+      "file:///home/${config.home.username}/prj"
       "file:///home/${config.home.username}/bks"
       "file:///home/${config.home.username}/snc"
     ];
