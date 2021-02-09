@@ -17,7 +17,7 @@
     libqalculate
     wally-cli
 
-    terraform
+    terraform_0_14
     terraform-ls
 
     minikube
