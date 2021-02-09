@@ -23,7 +23,7 @@
     minikube
     kubectl
     kubernetes-helm
-    aws
+    awscli2
     doctl
     docker-credential-helpers
 
