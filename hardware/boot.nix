@@ -6,6 +6,7 @@
 	  (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+
   boot = {
     # Use the systemd-boot EFI boot loader.
     loader = {
@@ -19,5 +20,4 @@
     kernelModules = [ "kvm-intel" ];
     extraModulePackages = [ ];
   };
-
 }

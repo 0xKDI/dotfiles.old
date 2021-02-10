@@ -1,30 +1,34 @@
 { config, pkgs, options, ... }:
 
 {
-
   imports = [
     <home-manager/nixos>
     ./hardware
     ./options.nix
   ];
 
+
   # burn /tmp
   boot.cleanTmpDir = true;
+
 
   # Fix a security hole in place for backwards compatibility. See desc in
   # nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
   boot.loader.systemd-boot.editor = false;
 
-  nix.autoOptimiseStore = true;
-  nix.trustedUsers = [ "root" "${config.dots.userName}" ];
-  nix.nixPath = options.nix.nixPath.default ++ [
-    "nixpkgs-overlays=/etc/nixos/overlays"
-  ];
 
-  # nix.package = pkgs.nixUnstable;
-  # nix.extraOptions = ''
-  #   experimental-features = nix-command flakes
-  # '';
+  nix = {
+    # package = pkgs.nixUnstable;
+    # extraOptions = ''
+    #   experimental-features = nix-command flakes
+    # '';
+    autoOptimiseStore = true;
+    trustedUsers = [ "root" "${config.dots.userName}" ];
+    nixPath = options.nix.nixPath.default ++ [
+      "nixpkgs-overlays=/etc/nixos/overlays"
+    ];
+  };
+
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -32,20 +36,21 @@
       nur = import <nur> { inherit pkgs; };
       vimPlugins = pkgs.vimPlugins // pkgs.callPackage ./pkgs/vimPlugins.nix {};
     };
+    overlays = [
+      (import (builtins.fetchTarball {
+        url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
+      }))
+      # (import ./pkgs/tmux.nix)
+    ];
   };
 
-  nixpkgs.overlays = [
-    (import (builtins.fetchTarball {
-      url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
-    }))
-    # (import ./pkgs/tmux.nix)
-  ];
 
   i18n.defaultLocale = "en_US.UTF-8";
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
   };
+
 
   users.users.${config.dots.userName} = {
     isNormalUser = true;
@@ -61,6 +66,7 @@
     initialPassword = "nix";
   };
 
+
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
@@ -73,6 +79,7 @@
       imports = [ ./home.nix ];
     };
   };
+
 
   system.stateVersion = "20.09";
 }

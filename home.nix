@@ -1,16 +1,18 @@
 { config, pkgs, ... }:
 
 {
-
   imports = [
     ./options.nix
   ];
+
 
   xdg.configFile."nixpkgs/config.nix".text = ''
     { allowUnfree = true; }
   '';
 
+
   xdg.configFile."python/startup.py".source = "${config.dots.confDir}/python_startup";
+
 
   home.packages = with pkgs; [
     gh
@@ -167,7 +169,9 @@
     xclip
   ];
 
+
   programs.home-manager.enable = true;
+
 
   xsession = {
     enable = true;
@@ -186,6 +190,7 @@
       '';
   };
 
+
   xsession.windowManager.bspwm = {
     enable = true;
     monitors = { "eDP1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
@@ -194,6 +199,7 @@
       "systemctl --user restart polybar"
     ];
   };
+
 
   xsession.windowManager.bspwm.settings = {
     border_width = 2;
@@ -229,6 +235,7 @@
     presel_feedback_color = "#6272a4";
   };
 
+
   xsession.windowManager.bspwm = {
     rules = {
       "firefox".desktop = "^1";
@@ -241,6 +248,7 @@
       "nvimedit".state = "floating";
     };
   };
+
 
   services.sxhkd.enable = true;
   services.sxhkd.keybindings = {
@@ -369,6 +377,7 @@
     "super + ctrl + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
   };
 
+
   services.polybar = {
     enable = true;
     script = "polybar main &";
@@ -378,6 +387,7 @@
     };
     config = "${config.dots.confDir}/polybar";
   };
+
 
   home.sessionVariables = {
     TEXMFHOME = "${config.xdg.dataHome}/texmf";
@@ -429,15 +439,19 @@
     JUPYTER_CONFIG_DIR = "${config.xdg.configHome}/jupyter";
   };
 
+
   fonts.fontconfig.enable = true;
 
+
   services.unclutter.enable = true; # hide cursor when it's not used
+
 
   xsession.pointerCursor = {
     package = pkgs.capitaine-cursors;
     size = 20;
     name = "capitaine-cursors";
   };
+
 
   gtk = {
     enable = true;
@@ -453,11 +467,13 @@
     };
   };
 
+
   # FIXME: Vbox doesn't care
   qt = {
     enable = true;
     platformTheme = "gnome";
   };
+
 
   xdg = {
     enable = true;
@@ -481,6 +497,7 @@
       };
     };
   };
+
 
   services.dunst = {
     enable = true;
@@ -541,9 +558,12 @@
     };
   };
 
+
   services.clipmenu.enable = true;
 
+
   systemd.user.startServices = true;
+
 
   systemd.user.services."check_battery" = {
     Unit = {
@@ -560,6 +580,7 @@
     };
   };
 
+
   systemd.user.timers."check_battery" = {
     Unit = {
       Description = "Timer to check battery status";
@@ -573,11 +594,13 @@
     };
   };
 
+
   services.screen-locker = {
     enable = true;
     inactiveInterval = 10;
     lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
   };
+
 
   programs.zsh = {
     enable = true;
@@ -592,6 +615,7 @@
       bindkey '\er' fzf-history-widget
     '';
   };
+
 
   programs.zsh.shellAliases = {
     tf = "terraform";
@@ -664,16 +688,19 @@
     '';
   };
 
+
   home.sessionPath = [
     # add bin directory to path
     "${config.dots.binDir}"
   ];
+
 
   programs.z-lua = {
     enable = true;
     enableZshIntegration = true;
     options = [ "fzf" ];
   };
+
 
   programs.starship = {
     enable = true;
@@ -741,6 +768,7 @@
     };
   };
 
+
   programs.zsh.plugins = with pkgs; [
     {
       name = "fast-syntax-highlighting";
@@ -772,6 +800,7 @@
     }
   ];
 
+
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
@@ -794,6 +823,7 @@
       "--color=always {}"
     ];
   };
+
 
   programs.tmux = {
     enable = true;
@@ -820,7 +850,9 @@
     extraConfig = builtins.readFile "${config.dots.confDir}/tmux.conf";
   };
 
+
   xdg.configFile."nvim/init.vim".text = "let g:polyglot_disabled = ['yaml']";
+
 
   programs.neovim = {
     enable = true;
@@ -919,6 +951,7 @@
     ];
   };
 
+
   programs.gpg.enable = true;
   services.gpg-agent = {
     enable = true;
@@ -927,10 +960,15 @@
     defaultCacheTtlSsh = 28800;
   };
 
-  programs.password-store.enable = true;
-  programs.password-store.settings = {
-    PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
+
+  
+  programs.password-store = {
+    enable = true;
+    settings = {
+      PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
+    };
   };
+
 
   services.udiskie = {
     enable = true;
@@ -939,14 +977,18 @@
     tray = "never";
   };
 
+
   services.syncthing.enable = true;
 
+
   programs.ssh.enable = true;
+
 
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;
   };
+
 
   # NOTE: extensions must be enabled manually
   programs.firefox.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -955,6 +997,7 @@
     tridactyl
     browserpass
   ];
+
 
   programs.firefox.profiles.${config.dots.userName} = {
     name = "${config.dots.userName}";
@@ -1013,20 +1056,24 @@
     };
   };
 
+
   programs.browserpass = {
     enable = true;
     browsers = [ "firefox" ];
   };
+
 
   home.file.tridactylManifest = {
     source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
     target = ".mozilla/native-messaging-hosts/tridactyl.json";
   };
 
+
   home.file.tridactylNative = {
     source = "${pkgs.tridactyl-native}/share/tridactyl/native_main.py";
     target = ".local/share/tridactyl/native_main.py";
   };
+
 
   xdg.configFile."tridactyl/tridactylrc".text = ''
       colourscheme quakelight
@@ -1051,6 +1098,7 @@
       command hint_focus hint -;
       bind ;C composite hint_focus; !s xdotool key Menu
   '';
+
 
   xresources.properties = {
     "*.foreground" = "#F8F8F2";
@@ -1077,6 +1125,7 @@
     "st.roman_font" = 1;
     "st.termname" = "st-256color";
   };
+
 
   programs.alacritty = {
     enable = true;
@@ -1128,49 +1177,53 @@
     };
   };
 
-  programs.zathura.enable = true;
-  programs.zathura.options = {
-    page-padding = 2;
-    recolor = "true";
 
-    completion-bg = "#282a36";
-    completion-fg = "#f8f8f2";
-    completion-group-bg = "#282a36";
-    completion-group-fg = "#ff79c6";
-    completion-highlight-bg = "#f8f8f2";
-    completion-highlight-fg = "#282a36";
+  programs.zathura = {
+    enable = true;
+    options = {
+      page-padding = 2;
+      recolor = "true";
 
-    recolor-lightcolor = "rgba(40,42,54,0.8)";
-    recolor-darkcolor = "#f8f8f2";
-    default-bg = "rgba(40,42,54,1.0)";
-    recolor-reverse-video = "true";
+      completion-bg = "#282a36";
+      completion-fg = "#f8f8f2";
+      completion-group-bg = "#282a36";
+      completion-group-fg = "#ff79c6";
+      completion-highlight-bg = "#f8f8f2";
+      completion-highlight-fg = "#282a36";
 
-    inputbar-bg = "rgba(40,42,54,0)";
-    inputbar-fg = "#f8f8f2";
-    notification-bg = "#282a36";
-    notification-fg = "#f8f8f2";
-    notification-error-bg = "#ff5555";
-    notification-error-fg = "#f8f8f2";
-    notification-warning-bg = "#ff5555";
-    notification-warning-fg = "#f8f8f2";
-    statusbar-bg = "rgba(40,42,54,0)";
-    statusbar-fg = "#ffb86c";
-    index-bg = "rgba(40,42,54,0)";
-    index-fg = "#f8f8f2";
-    index-active-bg = "#f8f8f2";
-    index-active-fg = "#282a36";
-    render-loading-bg = "#282a36";
-    render-loading-fg = "#dfd4ca";
+      recolor-lightcolor = "rgba(40,42,54,0.8)";
+      recolor-darkcolor = "#f8f8f2";
+      default-bg = "rgba(40,42,54,1.0)";
+      recolor-reverse-video = "true";
 
-    window-title-home-tilde = "true";
-    statusbar-basename = "true";
-    guioptions = "";
-    font = "Noto Sans Bold 10";
+      inputbar-bg = "rgba(40,42,54,0)";
+      inputbar-fg = "#f8f8f2";
+      notification-bg = "#282a36";
+      notification-fg = "#f8f8f2";
+      notification-error-bg = "#ff5555";
+      notification-error-fg = "#f8f8f2";
+      notification-warning-bg = "#ff5555";
+      notification-warning-fg = "#f8f8f2";
+      statusbar-bg = "rgba(40,42,54,0)";
+      statusbar-fg = "#ffb86c";
+      index-bg = "rgba(40,42,54,0)";
+      index-fg = "#f8f8f2";
+      index-active-bg = "#f8f8f2";
+      index-active-fg = "#282a36";
+      render-loading-bg = "#282a36";
+      render-loading-fg = "#dfd4ca";
 
-    selection-clipboard = "clipboard";
-    zoom-center = "true";
-    show-hidden = "true";
+      window-title-home-tilde = "true";
+      statusbar-basename = "true";
+      guioptions = "";
+      font = "Noto Sans Bold 10";
+
+      selection-clipboard = "clipboard";
+      zoom-center = "true";
+      show-hidden = "true";
+    };
   };
+
 
   programs.mpv = {
     enable = true;
@@ -1190,12 +1243,15 @@
     };
   };
 
+
   xdg.configFile."latexmk/latexmkrc".source = "${config.dots.confDir}/latexmkrc.rb";
+
 
   xdg.configFile."sxiv" = {
     source = "${config.dots.confDir}/sxiv";
     recursive = true;
   };
+
 
   programs.git = {
     enable = true;
@@ -1228,6 +1284,7 @@
     };
   };
 
+
   programs.bat = {
     enable = true;
     config = {
@@ -1235,16 +1292,21 @@
     };
   };
 
+
   programs.noti.enable = true;
 
+
   programs.jq.enable = true;
+
 
   programs.go = {
     enable = true;
     goPath = ".local/share/go";
   };
 
+
   programs.htop.enable = true;
+
 
   programs.direnv = {
     enable = true;

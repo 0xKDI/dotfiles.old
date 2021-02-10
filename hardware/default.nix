@@ -8,11 +8,14 @@
     ./gpu.nix
   ];
 
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
+
   sound.enable = true;
   hardware.pulseaudio.enable = true;
+
 
   hardware.pulseaudio.configFile = let inherit (pkgs) runCommand pulseaudio;
   paConfigFile = runCommand "disablePulseaudioEsoundModule"
@@ -25,6 +28,7 @@
   '';
   in "${paConfigFile}/default.pa";
 
+
   networking = {
     networkmanager.enable = true;
     hostName = "${config.dots.hostName}";
@@ -34,13 +38,18 @@
     };
   };
 
+
   systemd.services.NetworkManager-wait-online.enable = false; #this is only increases boot time
+
 
   hardware.bluetooth.enable = true;
 
+
   time.timeZone = "Europe/Moscow";
 
+
   services.tlp.enable = true;
+
 
   # touchpad
   services.xserver.libinput = {
@@ -49,30 +58,32 @@
     touchpad.naturalScrolling = true;
   };
 
+
   services.xserver = {
     enable = true;
     layout = "us,ru";
     # xkbOptions = "caps:escape";
     # xkbOptions = "caps:ctrl_modifier";
-  };
-
-  services.xserver.displayManager = {
-    autoLogin = {
-      enable = true;
-      user = "${config.dots.userName}";
-    };
-    defaultSession = "none+home-manager";
-    session = [{
-      name = "home-manager";
-      manage = "window";
-      start = ''
+    displayManager = {
+      autoLogin = {
+        enable = true;
+        user = "${config.dots.userName}";
+      };
+      defaultSession = "none+home-manager";
+      session = [{
+        name = "home-manager";
+        manage = "window";
+        start = ''
           ${pkgs.stdenv.shell} $HOME/.xsession &
           waitPID=$!
-      '';
-    }];
+        '';
+      }];
+    };
   };
 
+
   services.dbus.packages = [ pkgs.gnome3.dconf ];
+
 
   # nix-zsh-completions doesn't work without enabling zsh system wide
   programs.zsh = {
@@ -81,32 +92,40 @@
     enableGlobalCompInit = false;
   };
 
+
   # for firefox
   services.psd = {
     enable = true;
     resyncTimer = "30min";
   };
 
-  virtualisation.virtualbox = {
-    host.enable = true;
-    # host.enableExtensionPack = true;
+
+  virtualisation = {
+    virtualbox = {
+      host.enable = true;
+      # host.enableExtensionPack = true;
+    };
+    docker = {
+      enable = true;
+      enableOnBoot = false;
+    };
+
   };
 
-  virtualisation.docker = {
-    enable = true;
-    enableOnBoot = false;
-  };
+
 
   # remap the most useless key to the most useful one
   # (Caps lock become Ctrl when used with another key and Esc when used without one)
   services.interception-tools.enable = true;
 
+
   services.logind.extraConfig = ''
     HandlePowerKey=suspend
   '';
 
+
   hardware.keyboard.zsa.enable = true;
 
-  programs.bash.interactiveShellInit = ''HISTFILE="$XDG_DATA_HOME"/bash/history'';
 
+  programs.bash.interactiveShellInit = ''HISTFILE="$XDG_DATA_HOME"/bash/history'';
 }
