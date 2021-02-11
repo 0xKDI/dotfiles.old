@@ -1273,6 +1273,7 @@
       l = "log";
       lo = "log --oneline";
       sw = "switch";
+      rb = "rebase -i";
     };
     delta = {
       enable = true;
