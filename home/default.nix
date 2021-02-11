@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./options.nix
+    ../lib
   ];
 
 

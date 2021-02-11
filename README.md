@@ -5,19 +5,19 @@ Configure the wifi
 wpa_supplicant -B -i interface_name -c <(wpa_passphrase 'SSID' 'key')
 ```
 
-Partition the disks
+Clone the repo
 ```sh
-hardware/part.sh
+nix-shell -p git nixFlakes
+git clone https://github.com/0qq/dotfiles
 ```
 
-Add channels
+Partition the disks
 ```sh
-nix-channel --add "https://nixos.org/channels/nixpkgs-unstable" nixos 
-nix-channel --add "https://github.com/nix-community/home-manager/archive/master.tar.gz" home-manager 
-nix-channel --add "https://github.com/nix-community/NUR/archive/master.tar.gz" nur
+hosts/xia/part.sh
 ```
 
 Install nixos
 ```sh
-nixos-install --root /mnt
+mv ../ /mnt/etc/nixos
+nixos-install --root /mnt --flake /mnt/etc/nixos#xia
 ```
