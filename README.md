@@ -13,11 +13,11 @@ git clone https://github.com/0qq/dotfiles
 
 Partition the disks
 ```sh
-hosts/xia/part.sh
+dotfiles/hosts/xia/part.sh
 ```
 
 Install nixos
 ```sh
-mv ../ /mnt/etc/nixos
+mv dotfiles /mnt/etc/nixos
 nixos-install --root /mnt --flake /mnt/etc/nixos#xia
 ```
