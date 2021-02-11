@@ -618,6 +618,10 @@
 
 
   programs.zsh.shellAliases = {
+    vim = "nvim";
+    vi = "nvim";
+    fs = "f -S";
+
     tf = "terraform";
 
     k = "kubectl";
