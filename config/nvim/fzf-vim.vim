@@ -1,7 +1,8 @@
 " TODO: add fzf function for cd
 let g:fzf_layout = { "window": { "width": 0.8, "height": 0.6 } }
 
-
+autocmd! FileType fzf set laststatus=0 noshowmode noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
 nnoremap <silent> <leader>q :Files!<CR>
 nnoremap <silent> <leader>fh :History<CR>
