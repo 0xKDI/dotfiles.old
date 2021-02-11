@@ -24,25 +24,24 @@
     # '';
     autoOptimiseStore = true;
     trustedUsers = [ "root" "${config.dots.userName}" ];
-    nixPath = options.nix.nixPath.default ++ [
-      "nixpkgs-overlays=/etc/nixos/overlays"
-    ];
   };
 
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    packageOverrides = pkgs: {
-      nur = import <nur> { inherit pkgs; };
-      vimPlugins = pkgs.vimPlugins // pkgs.callPackage ./pkgs/vimPlugins.nix {};
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      packageOverrides = pkgs: {
+        nur = import <nur> { inherit pkgs; };
+        vimPlugins = pkgs.vimPlugins // pkgs.callPackage ./pkgs/vimPlugins.nix {};
+      };
     };
     overlays = [
       (import (builtins.fetchTarball {
-        url = https://github.com/mjlbach/neovim-nightly-overlay/archive/master.tar.gz;
+        url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
       }))
-      # (import ./pkgs/tmux.nix)
     ];
   };
+
 
 
   i18n.defaultLocale = "en_US.UTF-8";
