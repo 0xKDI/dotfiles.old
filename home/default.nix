@@ -870,6 +870,7 @@
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
     plugins = with pkgs.vimPlugins; [
+      vim-gitgutter
       vim-sneak
       vim-surround
       vim-commentary
