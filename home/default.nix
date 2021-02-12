@@ -395,6 +395,7 @@
 
 
   home.sessionVariables = {
+    DOTS = "/etc/nixos";
     TEXMFHOME = "${config.xdg.dataHome}/texmf";
     TEXMFVAR = "${config.xdg.cacheHome}/texlive/texmf-var";
     TEXMFCONFIG = "${config.xdg.configHome}/texlive/texmf-config";
