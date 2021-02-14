@@ -35,14 +35,21 @@
     docker-credential-helpers
 
     discord
+    drawio
     graphviz
+    tdesktop
+    transmission
+
     du-dust # du + rust
     progress
     ddgr # DuckDuckGo-cli
     googler
     cachix
-    tdesktop
-    transmission
+
+    lsof
+    nmap
+    openssl
+    tcpdump
 
     python38
     python38Packages.ipython
