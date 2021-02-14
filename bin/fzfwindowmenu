@@ -1,23 +1,30 @@
 #!/usr/bin/env bash
 # choose X-client and focus to one
+# TODO: rewrite
 
 declare -a window_ids
 declare -A windows
+
+function get_xclients() {
+	for id in $window_ids; do
+		WM_CLASS=$(xprop -id $id WM_CLASS | sed "s/.* //g" | tr -d '"')
+		WM_NAME=$(xprop -id $id WM_NAME | cut -d = -f 2 | tr -d '"')
+		windows[$id]="${WM_CLASS} -${WM_NAME}"
+	done
+}
+
+function get_window_id() {
+	for id in "${!windows[@]}"; do
+		if [ "${windows[$id]}" = "$chosen" ]; then
+			window_id="$id"
+			break
+		fi
+	done
+}
+
 window_ids=$(bspc query -N)
-
-for id in $window_ids; do
-    windows[$id]="$(xprop -id $id WM_CLASS | sed "s/.* //g" | tr -d '"')"
-done
-
+get_xclients
 chosen=$(printf '%s\n' "${windows[@]}" | fzf)
-echo -e "${windows[@]}" 
-
-for id in "${!windows[@]}"; do
-    if [ "${windows[$id]}" = "$chosen" ]; then
-        window_id="$id"
-        break
-    fi
-done
-
+get_window_id
 bspc node "$window_id".window --focus
 
