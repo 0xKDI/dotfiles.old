@@ -78,6 +78,7 @@
       "fzfmenu".state = "floating";
       "clipmenu".state = "floating";
       "nvimedit".state = "floating";
+      "draw.io".desktop = "^3";
     };
   };
 }
