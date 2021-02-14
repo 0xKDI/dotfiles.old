@@ -6,6 +6,7 @@
     drawio
     tdesktop
     libreoffice-fresh
+    spotifywm
 
     gimp
     sxiv
