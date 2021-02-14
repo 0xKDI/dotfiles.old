@@ -6,6 +6,8 @@
     xkb-switch
     pamixer
     maim
+
+    dunst # required for dunstify
   ];
 
 
