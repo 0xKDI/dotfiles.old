@@ -5,7 +5,7 @@ endfunction
 function! LightlineFugitive()
 	if exists("*FugitiveHead")
 		let branch = FugitiveHead()
-		return branch !=# "" ? "".branch : ""
+		return branch !=# "" ? " ".branch : ""
 	endif
 	return ""
 endfunction
