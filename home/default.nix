@@ -37,7 +37,6 @@
     discord
     graphviz
     du-dust # du + rust
-    gdrivefs
     progress
     ddgr # DuckDuckGo-cli
     googler
