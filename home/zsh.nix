@@ -98,22 +98,12 @@
       }
       {
         name = "zsh-autopair";
-        src = fetchFromGitHub {
-          owner = "hlissner";
-          repo = "zsh-autopair";
-          rev = "34a8bca0c18fcf3ab1561caef9790abffc1d3d49";
-          sha256 = "1h0vm2dgrmb8i2pvsgis3lshc5b0ad846836m62y8h3rdb3zmpy1";
-        };
+        src = "${pkgs.zsh-autopair}/share/zsh/zsh-autopair";
         file = "autopair.zsh";
       }
       {
         name = "zsh-system-clipboard";
-        src = fetchFromGitHub {
-          owner = "kutsan";
-          repo = "zsh-system-clipboard";
-          rev = "v0.7.0";
-          sha256 = "09lqav1mz5zajklr3xa0iaivhpykv3azkjb7yj9wyp0hq3vymp8i";
-        };
+        src = "${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard";
         file = "zsh-system-clipboard.zsh";
       }
     ];
