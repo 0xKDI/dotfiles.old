@@ -35,6 +35,11 @@ with lib; {
         type = types.path;
       };
 
+      wallpapers = mkOption {
+        default = "${config.dots.dotDir}/wallpapers";
+        type = types.path;
+      };
+
     };
   };
 }

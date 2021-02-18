@@ -23,7 +23,7 @@
     ];
     initExtra = ''
       rm -drf ~/.xsession-errors ~/.xsession-errors.old ~/.compose_cache
-      ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${config.dots.confDir}/wallpaper &
+      ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${config.dots.wallpapers}/nix-wallpaper-dracula.png &
       xset r rate 250 60
     '';
   };
