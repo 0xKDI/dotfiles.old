@@ -2,7 +2,7 @@ set clipboard+=unnamedplus
 set ignorecase
 set smartcase
 set formatoptions-=o
-set formatoptions+=rq
+set formatoptions+=rj
 set relativenumber
 set number
 set mouse=a
