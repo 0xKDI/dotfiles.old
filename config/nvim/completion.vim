@@ -17,3 +17,8 @@ let g:completion_chain_complete_list = [
                               \]
 let g:completion_enable_snippet = 'UltiSnips'
 command! Format  execute 'lua vim.lsp.buf.formatting()'
+
+" Return key conflict with jiangmiao/auto-pairs.
+" See: https://github.com/nvim-lua/completion-nvim/issues/62#issuecomment-628764832
+let g:completion_confirm_key = ""
+inoremap <expr> <cr>    pumvisible() ? "\<Plug>(completion_confirm_completion)" : "\<cr>"
