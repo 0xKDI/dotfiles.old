@@ -13,6 +13,7 @@
       nodePackages.yaml-language-server
       texlab
       terraform-ls
+      gopls
     ];
     extraConfig = builtins.readFile "${config.dots.confDir}/nvim/init.vim";
     plugins = with pkgs.vimPlugins; [

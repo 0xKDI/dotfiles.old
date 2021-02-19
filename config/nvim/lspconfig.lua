@@ -30,8 +30,10 @@ local on_attach = function(_, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>sl', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>fb', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
+-- TODO : rewrite
 lspconfig.pyls.setup{ on_attach = on_attach }
 lspconfig.rnix.setup{ on_attach = on_attach }
 lspconfig.yamlls.setup{ on_attach = on_attach }
 lspconfig.terraformls.setup{ on_attach = on_attach }
 lspconfig.texlab.setup{ on_attach = on_attach  }
+lspconfig.gopls.setup{ on_attach = on_attach }
