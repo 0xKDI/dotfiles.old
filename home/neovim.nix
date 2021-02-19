@@ -49,6 +49,10 @@
         '';
       }
       {
+        plugin = nvim-treesitter;
+        config = "luafile ${config.dots.confDir}/nvim/tree-sitter.lua";
+      }
+      {
         plugin = nvim-lspconfig;
         config = "luafile ${config.dots.confDir}/nvim/lspconfig.lua";
       }
