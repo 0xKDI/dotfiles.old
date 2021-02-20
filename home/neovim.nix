@@ -80,11 +80,8 @@
         '';
       }
       {
-        plugin = indentLine;
-        config = ''
-          let g:indentLine_enabled = 0
-          let indentLine_char = '│'
-        '';
+        plugin = indent-guides-nvim;
+        config = "luafile ${config.dots.confDir}/nvim/indent-guides.lua";
       }
       {
         plugin = dracula-vim;
