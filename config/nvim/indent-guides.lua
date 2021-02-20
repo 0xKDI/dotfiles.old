@@ -11,7 +11,8 @@ require('indent_guides').setup({
 			'dashpreview',
 			'NvimTree',
 			'vista',
-			'sagahover'
+			'sagahover',
+			'fzf'
 		};
 		even_colors = { fg ='#162528',bg='#2d3144' };
 		odd_colors = {fg='#ffb86c',bg='#393549'};
