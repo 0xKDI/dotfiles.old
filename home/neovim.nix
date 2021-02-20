@@ -61,10 +61,6 @@
         config = builtins.readFile "${config.dots.confDir}/nvim/completion.vim";
       }
       {
-        plugin = fzf-checkout;
-        config = "nnoremap <silent> <leader>gb :GBranches<CR>";
-      }
-      {
         plugin = nvim-colorizer;
         config = "lua require'colorizer'.setup()";
       }
