@@ -8,7 +8,7 @@ in
   {
     home.packages = with pkgs; [
       tridactyl-native
-      buku
+      # buku
     ];
 
 
