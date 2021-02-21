@@ -51,8 +51,6 @@ in
       allowUnfree = true;
       packageOverrides = pkgs: {
         vimPlugins = pkgs.vimPlugins // pkgs.callPackage ../../pkgs/vimPlugins.nix {};
-        # https://nixos.wiki/wiki/Accelerated_Video_Playback
-        vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
       };
     };
   };

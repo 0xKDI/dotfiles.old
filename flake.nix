@@ -13,6 +13,10 @@
     overlays = [
       nur.overlay
       neovim-nightly-overlay.overlay
+      (self: super: {
+        # https://nixos.wiki/wiki/Accelerated_Video_Playback
+        vaapiIntel = super.vaapiIntel.override { enableHybridCodec = true; };
+      })
     ];
   in
   {
