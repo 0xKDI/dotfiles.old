@@ -14,6 +14,7 @@
     ./mpv.nix
     ./neovim.nix
     ./polybar.nix
+    ./python.nix
     ./starship.nix
     ./st.nix
     ./sxhkd.nix
@@ -52,11 +53,6 @@
     nmap
     openssl
     tcpdump
-
-
-    python38
-    python38Packages.ipython
-    python38Packages.pip
 
     syncthing-cli #stcli
 
@@ -152,7 +148,6 @@
     "nixpkgs/config.nix".text = ''
       { allowUnfree = true; }
     '';
-    "python/startup.py".source = "${config.dots.confDir}/python_startup";
   };
 
 

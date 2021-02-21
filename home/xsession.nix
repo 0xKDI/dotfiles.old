@@ -19,7 +19,7 @@ in
       TEXMFCONFIG = "${configHome}/texlive/texmf-config";
       DOCKER_CONFIG = "${configHome}/docker";
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
-      PYTHONSTARTUP = "${configHome}/python/startup.py";
+      PYTHONSTARTUP = "${configHome}/pythonrc.py";
       DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
 
       # z-lua
