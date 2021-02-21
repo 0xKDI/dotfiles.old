@@ -10,6 +10,7 @@
     ./firefox.nix
     ./fzf.nix
     ./git.nix
+    ./go.nix
     ./latex.nix
     ./mpv.nix
     ./neovim.nix
@@ -102,10 +103,6 @@
       settings = {
         PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
       };
-    };
-    go = {
-      enable = true;
-      goPath = ".local/share/go";
     };
     home-manager.enable = true;
     noti.enable = true;
