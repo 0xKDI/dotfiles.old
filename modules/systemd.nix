@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 
+let
+  bin = "${config.dots.dotDir}/bin";
+in
 {
   home.packages = with pkgs; [
     acpi
@@ -20,7 +23,7 @@
         ${pkgs.coreutils}/bin:
         ${pkgs.gnugrep}/bin "
       '';
-      ExecStart = "${config.dots.binDir}/check_battery";
+      ExecStart = "${bin}/check_battery";
     };
   };
 

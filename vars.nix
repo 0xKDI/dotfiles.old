@@ -23,11 +23,6 @@ with lib; {
         default =  builtins.toString ./.;
         type = types.path;
       };
-
-      binDir = mkOption {
-        default = "${config.dots.dotDir}/bin";
-        type = types.path;
-      };
     };
   };
 }
