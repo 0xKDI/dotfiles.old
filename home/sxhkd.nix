@@ -20,28 +20,29 @@ in
         "super + F6" = "${bin}/toggle_mute";
 
         # volume keys
-        "super + F3" = "${bin}/change_volume -i 5";
-        "super + F2" = "${bin}/change_volume -d 5";
-        "super + F1" = "${bin}/change_volume -t";
+        "super + F3"           = "${bin}/change_volume -i 5";
+        "super + F2"           = "${bin}/change_volume -d 5";
+        "super + F1"           = "${bin}/change_volume -t";
         "XF86AudioRaiseVolume" = "${bin}/change_volume -i 5";
         "XF86AudioLowerVolume" = "${bin}/change_volume -d 5";
-        "XF86AudioMute" = "${bin}/change_volume -t";
+        "XF86AudioMute"        = "${bin}/change_volume -t";
 
         # switch layout
         "super + a" = "${pkgs.xkb-switch}/bin/xkb-switch -n";
 
         # backlight
-        "super + F4" = "${bin}/change_brightness 5%-";
-        "super + F5" = "${bin}/change_brightness +5%";
-        "XF86MonBrightnessUp" = "${bin}/change_brightness 5%-";
+        "super + F4"            = "${bin}/change_brightness 5%-";
+        "super + F5"            = "${bin}/change_brightness +5%";
+        "XF86MonBrightnessUp"   = "${bin}/change_brightness 5%-";
         "XF86MonBrightnessDown" = "${bin}/change_brightness +5%";
 
         # terminal
-        "super + Return" = "${pkgs.xst}/bin/xst -e ${pkgs.tmux}/bin/tmux attach";
+        "super + Return"         = "${pkgs.xst}/bin/xst -e ${pkgs.tmux}/bin/tmux attach";
         "super + shift + Return" = "${pkgs.xst}/bin/xst";
 
         # program launcher
         "super + space" = "${pkgs.xst}/bin/xst -c fzfmenu -e ${bin}/fzfappmenu";
+        "XF86Favorites" = "${pkgs.xst}/bin/xst -c fzfmenu -e ${bin}/fzfappmenu";
         # browser bookmarks
         "super + e" = "${pkgs.xst}/bin/xst -c fzfmenu -e ${bin}/fzfbuku";
         # clipboard manager
@@ -49,6 +50,7 @@ in
 
         # windowmenu
         "super + w" = "${pkgs.xst}/bin/xst -c fzfmenu -e ${bin}/fzfwindowmenu";
+        "XF86Search" = "${pkgs.xst}/bin/xst -c fzfmenu -e ${bin}/fzfwindowmenu";
 
         # screenshot
         "super + F11" = ''
