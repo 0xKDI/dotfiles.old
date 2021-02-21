@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+let
+  confDir = config.dots.confDir;
+  home = config.home.homeDirectory;
+in
 {
   imports = [
     ../lib
@@ -101,7 +105,7 @@
     password-store = {
       enable = true;
       settings = {
-        PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
+        PASSWORD_STORE_DIR = "${home}/.password-store";
       };
     };
     home-manager.enable = true;
@@ -139,7 +143,7 @@
 
   xdg.configFile = {
     "sxiv" = {
-      source = "${config.dots.confDir}/sxiv";
+      source = "${confDir}/sxiv";
       recursive = true;
     };
     "nixpkgs/config.nix".text = ''
