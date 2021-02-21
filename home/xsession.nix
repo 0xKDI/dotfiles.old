@@ -1,60 +1,65 @@
 { config, pkgs, ... }:
 
-{
-  home.sessionPath = [
-    "${config.dots.binDir}"
-  ];
+let
+  binPath = config.dots.binDir;
+  dataHome = config.xdg.dataHome;
+  configHome = config.xdg.configHome;
+  cacheHome = config.xdg.cacheHome;
+in
+  {
+    home.sessionPath = [
+      "${binPath}"
+    ];
 
 
-  home.sessionVariables = {
-    DOTS = "/etc/nixos";
-    TEXMFHOME = "${config.xdg.dataHome}/texmf";
-    TEXMFVAR = "${config.xdg.cacheHome}/texlive/texmf-var";
-    TEXMFCONFIG = "${config.xdg.configHome}/texlive/texmf-config";
-    DOCKER_CONFIG = "${config.xdg.configHome}/docker";
-    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${config.xdg.configHome}/java";
-    PYTHONSTARTUP = "${config.xdg.configHome}/python/startup.py";
-    DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
+    home.sessionVariables = {
+      DOTS = "/etc/nixos";
+      TEXMFHOME = "${dataHome}/texmf";
+      TEXMFVAR = "${cacheHome}/texlive/texmf-var";
+      TEXMFCONFIG = "${configHome}/texlive/texmf-config";
+      DOCKER_CONFIG = "${configHome}/docker";
+      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
+      PYTHONSTARTUP = "${configHome}/python/startup.py";
+      DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
 
-    # z-lua
-    _ZL_CMD = "q";
-    _ZL_DATA = "${config.xdg.dataHome}/zlua";
+      # z-lua
+      _ZL_CMD = "q";
+      _ZL_DATA = "${dataHome}/zlua";
 
-    # clipmenu
-    CM_LAUNCHER = "fzf";
-    CM_HISTLENGTH = 150;
+      # clipmenu
+      CM_LAUNCHER = "fzf";
+      CM_HISTLENGTH = 150;
 
-    # editor
-    VISUAL = "nvim";
-    EDITOR = "nvim";
-    SUDO_EDITOR = "nvim";
+      # editor
+      VISUAL = "nvim";
+      EDITOR = "nvim";
+      SUDO_EDITOR = "nvim";
 
-    MANPAGER = "nvim +Man!";
-    MANWIDTH = 999;
+      MANPAGER = "nvim +Man!";
+      MANWIDTH = 999;
 
-    AWS_SHARED_CREDENTIALS_FILE = "${config.xdg.configHome}/aws/credentials";
-    AWS_CONFIG_FILE = "${config.xdg.configHome}/aws/config";
+      AWS_SHARED_CREDENTIALS_FILE = "${configHome}/aws/credentials";
+      AWS_CONFIG_FILE = "${configHome}/aws/config";
 
-    # NOTE: doesn't work, 
-    # move .compose_cache out of $HOME
-    XCOMPOSEFILE = "${config.xdg.configHome}/X11/xcompose";
-    XCOMPOSECACHE = "${config.xdg.cacheHome}/X11/xcompose";
-    # same with .xsession_errors
-    USERXSESSION = "${config.xdg.cacheHome}/X11/xsession";
-    USERXSESSIONRC = "${config.xdg.cacheHome}/X11/xsessionrc";
-    ALTUSERXSESSION = "${config.xdg.cacheHome}/X11/Xsession";
-    ERRFILE = "${config.xdg.cacheHome}/X11/xsession-errors";
+      # NOTE: doesn't work, 
+      # move .compose_cache out of $HOME
+      XCOMPOSEFILE = "${configHome}/X11/xcompose";
+      XCOMPOSECACHE = "${cacheHome}/X11/xcompose";
+      # same with .xsession_errors
+      USERXSESSION = "${cacheHome}/X11/xsession";
+      USERXSESSIONRC = "${cacheHome}/X11/xsessionrc";
+      ALTUSERXSESSION = "${cacheHome}/X11/Xsession";
+      ERRFILE = "${cacheHome}/X11/xsession-errors";
 
-    PARALLEL_HOME = "${config.xdg.configHome}/parallel";
-    CUDA_CACHE_PATH = "${config.xdg.cacheHome}/nv";
+      PARALLEL_HOME = "${configHome}/parallel";
+      CUDA_CACHE_PATH = "${cacheHome}/nv";
 
-    # Ruby
-    GEM_HOME = "${config.xdg.dataHome}/gem";
-    GEM_SPEC_CACHE = "${config.xdg.cacheHome}/gem";
+      # Ruby
+      GEM_HOME = "${dataHome}/gem";
+      GEM_SPEC_CACHE = "${cacheHome}/gem";
 
-    # Jupiter/IPython
-    IPYTHONDIR = "${config.xdg.configHome}/jupyter";
-    JUPYTER_CONFIG_DIR = "${config.xdg.configHome}/jupyter";
-  };
-}
-
+      # Jupiter/IPython
+      IPYTHONDIR = "${configHome}/jupyter";
+      JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
+    };
+  }

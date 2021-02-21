@@ -61,33 +61,33 @@ in
     };
 
 
-  # FIXME: Vbox doesn't care
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-  };
-
-
-  xdg = {
-    enable = true;
-    userDirs = {
+    # FIXME: Vbox doesn't care
+    qt = {
       enable = true;
-      desktop = "/dev/null";
-      publicShare = "/dev/null";
-      music = "/dev/null";
-      templates = "/dev/null";
-      download = "${downloadDir}";
-      pictures = "${picturesDir}";
-      videos = "${videosDir}";
-      documents = "${documentsDir}";
+      platformTheme = "gnome";
     };
-    mimeApps = {
+
+
+    xdg = {
       enable = true;
-      defaultApplications = {
-        "application/pdf" = "org.pwmt.zathura.desktop";
-        "image/jpeg" = "sxiv.desktop";
-        "image/png" = "sxiv.desktop";
+      userDirs = {
+        enable = true;
+        desktop = "/dev/null";
+        publicShare = "/dev/null";
+        music = "/dev/null";
+        templates = "/dev/null";
+        download = "${downloadDir}";
+        pictures = "${picturesDir}";
+        videos = "${videosDir}";
+        documents = "${documentsDir}";
+      };
+      mimeApps = {
+        enable = true;
+        defaultApplications = {
+          "application/pdf" = "org.pwmt.zathura.desktop";
+          "image/jpeg" = "sxiv.desktop";
+          "image/png" = "sxiv.desktop";
+        };
       };
     };
-  };
-}
+  }

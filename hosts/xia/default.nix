@@ -1,12 +1,19 @@
 { config, pkgs, ... }:
 
+let
+  user = config.dots.userName;
+  uid = config.dots.uid;
+  host = config.dots.hostName;
+  home = "/home/${user}";
+  stateVersion = "21.03";
+in
 {
   imports = [
     ./hardware-configuration.nix
   ];
 
 
-  system.stateVersion = "21.03";
+  system.stateVersion = stateVersion;
 
 
   systemd.services.NetworkManager-wait-online.enable = false; #this is only increases boot time
@@ -26,7 +33,7 @@
       experimental-features = nix-command flakes
     '';
     autoOptimiseStore = true;
-    trustedUsers = [ "root" "${config.dots.userName}" ];
+    trustedUsers = [ "root" "${user}" ];
     maxJobs = 8;
   };
 
@@ -43,8 +50,9 @@
   };
 
 
-  users.users.${config.dots.userName} = {
+  users.users.${user} = {
     isNormalUser = true;
+    uid = uid;
     extraGroups = [
       "wheel"
       "networkmanager"
@@ -61,11 +69,11 @@
   home-manager = {
     useUserPackages = true;
     useGlobalPkgs = true;
-    users.${config.dots.userName} = {
+    users.${user} = {
       home = {
-        stateVersion = "${config.system.stateVersion}";
-        username = "${config.dots.userName}";
-        homeDirectory = "/home/${config.dots.userName}";
+        stateVersion = stateVersion;
+        username = "${user}";
+        homeDirectory = "${home}";
       };
       imports = [ "${config.dots.dotDir}/home" ];
     };
@@ -74,7 +82,7 @@
 
   networking = {
     networkmanager.enable = true;
-    hostName = "${config.dots.hostName}";
+    hostName = "${host}";
     firewall = {
       allowedTCPPorts = [ 80 443 ];
       allowedUDPPorts = [ 80 443 ];
@@ -107,7 +115,7 @@
     displayManager = {
       autoLogin = {
         enable = true;
-        user = "${config.dots.userName}";
+        user = "${user}";
       };
       defaultSession = "none+home-manager";
       session = [{

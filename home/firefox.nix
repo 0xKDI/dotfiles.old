@@ -1,103 +1,108 @@
 { config, pkgs, ... }:
 
-{
-  home.packages = with pkgs; [
-    tridactyl-native
-    buku
-  ];
+let
+  user = config.dots.userName;
+  home = config.home.homeDirectory;
+  uid = builtins.toString config.dots.uid;
+in
+  {
+    home.packages = with pkgs; [
+      tridactyl-native
+      buku
+    ];
 
 
-  programs.firefox = {
-    enable = true;
-    package = pkgs.firefox-bin;
-  };
-
-
-  programs.firefox.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-    stylus
-    ublock-origin
-    tridactyl
-    browserpass
-  ];
-
-
-  programs.firefox.profiles.${config.dots.userName} = {
-    name = "${config.dots.userName}";
-    isDefault = true;
-    userContent = ''
-      :root{ scrollbar-width: none !important } 
-    '';
-    settings = {
-      "devtools.theme" = "dark";
-      "browser.download.dir" = "${config.home.homeDirectory}/dl";
-      # bad
-      "general.smoothScroll" = false;
-
-      # Enable userContent.css and userChrome.css
-      "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-
-      # annoying
-      "browser.tabs.warnOnClose" = false;
-      "browser.aboutConfig.showWarning" = false;
-      "browser.aboutwelcome.enabled" = false;
-
-      # search
-      "browser.search.region" = "US";
-      "browser.search.geoSpecificDefaults" = false;
-      "browser.urlbar.suggest.searches" = false;
-
-      # Hardware video acceleration
-      "media.ffmpeg.vaapi.enabled" = true;
-      "media.hardware-video-decoding.enabled" = true;
-      "media.hardware-video-decoding.force-enabled" = true;
-      # Enable OpenGL compositor
-      "layers.acceleration.force-enabled" = true;
-      # Enable WebRender compositor
-      "gfx.webrender.all" = true;
-
-      # Move disk cache to RAM
-      "browser.cache.disk.parent_directory" = "/run/user/1000/firefox";
-
-      # Disable pocket
-      "extensions.pocket.enabled" = false;
-
-      # tnx, no
-      "browser.newtabpage.activity-stream.feeds.telemetry" = false;
-      "browser.newtabpage.activity-stream.telemetry" = false;
-      "browser.newtabpage.activity-stream.telemetry.structuredIngestion.endpoint" = false;
-      "browser.ping-centre.telemetry" = false;
-      "dom.security.unexpected_system_load_telemetry_enabled" = false;
-      "security.app_menu.recordEventTelemetry" = false;
-      "security.certerrors.recordEventTelemetry" = false;
-      "security.identitypopup.recordEventTelemetry" = false;
-      "security.protectionspopup.recordEventTelemetry" = false;
-      "toolkit.telemetry.archive.enabled" = false;
-      "toolkit.telemetry.bhrPing.enabled" = false;
-      "toolkit.telemetry.firstShutdownPing.enabled" = false;
-      "full-screen-api.ignore-widgets"  = true;
+    programs.firefox = {
+      enable = true;
+      package = pkgs.firefox-bin;
     };
-  };
 
 
-  programs.browserpass = {
-    enable = true;
-    browsers = [ "firefox" ];
-  };
+    programs.firefox.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      stylus
+      ublock-origin
+      tridactyl
+      browserpass
+    ];
 
 
-  home.file = {
-    tridactylManifest = {
-      source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
-      target = ".mozilla/native-messaging-hosts/tridactyl.json";
+    programs.firefox.profiles.${user} = {
+      name = "${user}";
+      isDefault = true;
+      userContent = ''
+        :root{ scrollbar-width: none !important } 
+      '';
+      settings = {
+        "devtools.theme" = "dark";
+        "browser.download.dir" = "${home}/dl";
+        # bad
+        "general.smoothScroll" = false;
+
+        # Enable userContent.css and userChrome.css
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+
+        # annoying
+        "browser.tabs.warnOnClose" = false;
+        "browser.aboutConfig.showWarning" = false;
+        "browser.aboutwelcome.enabled" = false;
+
+        # search
+        "browser.search.region" = "US";
+        "browser.search.geoSpecificDefaults" = false;
+        "browser.urlbar.suggest.searches" = false;
+
+        # Hardware video acceleration
+        "media.ffmpeg.vaapi.enabled" = true;
+        "media.hardware-video-decoding.enabled" = true;
+        "media.hardware-video-decoding.force-enabled" = true;
+        # Enable OpenGL compositor
+        "layers.acceleration.force-enabled" = true;
+        # Enable WebRender compositor
+        "gfx.webrender.all" = true;
+
+        # Move disk cache to RAM
+        "browser.cache.disk.parent_directory" = "/run/user/${uid}/firefox";
+
+        # Disable pocket
+        "extensions.pocket.enabled" = false;
+
+        # tnx, no
+        "browser.newtabpage.activity-stream.feeds.telemetry" = false;
+        "browser.newtabpage.activity-stream.telemetry" = false;
+        "browser.newtabpage.activity-stream.telemetry.structuredIngestion.endpoint" = false;
+        "browser.ping-centre.telemetry" = false;
+        "dom.security.unexpected_system_load_telemetry_enabled" = false;
+        "security.app_menu.recordEventTelemetry" = false;
+        "security.certerrors.recordEventTelemetry" = false;
+        "security.identitypopup.recordEventTelemetry" = false;
+        "security.protectionspopup.recordEventTelemetry" = false;
+        "toolkit.telemetry.archive.enabled" = false;
+        "toolkit.telemetry.bhrPing.enabled" = false;
+        "toolkit.telemetry.firstShutdownPing.enabled" = false;
+        "full-screen-api.ignore-widgets"  = true;
+      };
     };
-    tridactylNative = {
-      source = "${pkgs.tridactyl-native}/share/tridactyl/native_main.py";
-      target = ".local/share/tridactyl/native_main.py";
+
+
+    programs.browserpass = {
+      enable = true;
+      browsers = [ "firefox" ];
     };
-  };
 
 
-  xdg.configFile."tridactyl/tridactylrc".text = ''
+    home.file = {
+      tridactylManifest = {
+        source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
+        target = ".mozilla/native-messaging-hosts/tridactyl.json";
+      };
+      tridactylNative = {
+        source = "${pkgs.tridactyl-native}/share/tridactyl/native_main.py";
+        target = ".local/share/tridactyl/native_main.py";
+      };
+    };
+
+
+    xdg.configFile."tridactyl/tridactylrc".text = ''
       colourscheme quakelight
       sanitise tridactyllocal tridactylsync
       bind j scrollline 4
@@ -119,5 +124,5 @@
       " Stupid workaround to let hint -; be used with composite which steals semi-colons
       command hint_focus hint -;
       bind ;C composite hint_focus; !s xdotool key Menu
-  '';
-}
+    '';
+  }
