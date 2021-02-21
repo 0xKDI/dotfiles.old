@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    python38
+    python3
     python38Packages.ipython
     python38Packages.pip
   ];
