@@ -1,7 +1,8 @@
 { config, pkgs, ... }:
 
 let 
-  nvimDir = "${config.dots.confDir}/nvim";
+  nvimDir = builtins.toString ./.;
+  vimPlugins = pkgs.vimPlugins // pkgs.callPackage ./vimPlugins.nix {};
 in
   {
     xdg.configFile."nvim/init.vim".text = "let g:polyglot_disabled = ['yaml']";
@@ -19,7 +20,7 @@ in
         gopls
       ];
       extraConfig = builtins.readFile "${nvimDir}/init.vim";
-      plugins = with pkgs.vimPlugins; [
+      plugins = with vimPlugins; [
         vim-gitgutter
         vim-sneak
         vim-surround
@@ -96,7 +97,7 @@ in
         {
           plugin = ultisnips;
           config = ''
-            let g:UltiSnipsSnippetDirectories=["${nvimDir}/UltiSnips"]
+            let g:UltiSnipsSnippetDirectories=["${nvimDir}/snippets"]
             let g:UltiSnipsExpandTrigger="<c-u>"
           '';
         }

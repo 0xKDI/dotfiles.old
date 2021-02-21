@@ -3,7 +3,6 @@
 with lib; {
   options = {
     dots = {
-
       userName = mkOption {
         default = "qq";
         type = types.str;
@@ -21,12 +20,7 @@ with lib; {
 
       # paths
       dotDir = mkOption {
-        default =  builtins.toString ./..;
-        type = types.path;
-      };
-
-      confDir = mkOption {
-        default = "${config.dots.dotDir}/config";
+        default =  builtins.toString ./.;
         type = types.path;
       };
 
@@ -34,18 +28,6 @@ with lib; {
         default = "${config.dots.dotDir}/bin";
         type = types.path;
       };
-
-      pkgs = mkOption {
-        default = "${config.dots.dotDir}/pkgs";
-        type = types.path;
-      };
-
-      wallpapers = mkOption {
-        default = "${config.dots.dotDir}/wallpapers";
-        type = types.path;
-      };
-
     };
   };
 }
-

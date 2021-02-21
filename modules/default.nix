@@ -1,8 +1,11 @@
 { config, pkgs, ... }:
 
+let
+  home = config.home.homeDirectory;
+in
 {
   imports = [
-    ../lib
+    ../vars.nix
     ./alacritty.nix
     ./bspwm.nix
     ./desktop.nix
@@ -10,15 +13,18 @@
     ./firefox.nix
     ./fzf.nix
     ./git.nix
+    ./go.nix
     ./latex.nix
     ./mpv.nix
-    ./neovim.nix
-    ./polybar.nix
+    ./neovim
+    ./polybar
+    ./python.nix
     ./starship.nix
     ./st.nix
     ./sxhkd.nix
+    ./sxiv
     ./systemd.nix
-    ./tmux.nix
+    ./tmux
     ./xsession.nix
     ./zathura.nix
     ./zsh.nix
@@ -29,9 +35,6 @@
     gh
     libqalculate
     wally-cli
-
-    terraform_0_14
-    terraform-ls
 
     minikube
     kubectl
@@ -52,11 +55,6 @@
     nmap
     openssl
     tcpdump
-
-
-    python38
-    python38Packages.ipython
-    python38Packages.pip
 
     syncthing-cli #stcli
 
@@ -104,12 +102,8 @@
     password-store = {
       enable = true;
       settings = {
-        PASSWORD_STORE_DIR = "${config.home.homeDirectory}/.password-store";
+        PASSWORD_STORE_DIR = "${home}/.password-store";
       };
-    };
-    go = {
-      enable = true;
-      goPath = ".local/share/go";
     };
     home-manager.enable = true;
     noti.enable = true;
@@ -142,21 +136,4 @@
     unclutter.enable = true; # hide cursor when it's not used
     clipmenu.enable = true;
   };
-
-
-  xdg.configFile = {
-    "sxiv" = {
-      source = "${config.dots.confDir}/sxiv";
-      recursive = true;
-    };
-    "nixpkgs/config.nix".text = ''
-      { allowUnfree = true; }
-    '';
-    "python/startup.py".source = "${config.dots.confDir}/python_startup";
-  };
-
-
-  home.file.".terraformrc".text = ''
-    plugin_cache_dir = "$HOME/.terraform.d/plugin-cache"
-  '';
 }
