@@ -1,53 +1,64 @@
 { config, pkgs, ... }:
 
-{
-  home.packages = with pkgs; [
-    discord
-    drawio
-    tdesktop
-    libreoffice-fresh
-    spotifywm
+let 
+  home = config.home.homeDirectory;
+  univercityDir = "${home}/uni";
+  projectDir = "${home}/prj";
+  booksDir = "${home}/bks";
+  syncDir = "${home}/snc";
+  downloadDir = "${home}/dl";
+  picturesDir = "${home}/pic";
+  videosDir = "${home}/vid";
+  documentsDir = "${home}/dcs";
+in
+  {
+    home.packages = with pkgs; [
+      discord
+      drawio
+      tdesktop
+      libreoffice-fresh
+      spotifywm
 
-    gimp
-    sxiv
+      gimp
+      sxiv
 
-    (nerdfonts.override {
-      fonts = [
-        "Iosevka"
-        "JetBrainsMono"
-        "FiraCode"
-        "FantasqueSansMono"
-      ];
-    })
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-  ];
-
-
-  fonts.fontconfig.enable = true;
-
-
-  xsession.pointerCursor = {
-    package = pkgs.capitaine-cursors;
-    size = 20;
-    name = "capitaine-cursors";
-  };
-
-
-  gtk = {
-    enable = true;
-    gtk3.bookmarks = [
-      "file:///home/${config.home.username}/uni"
-      "file:///home/${config.home.username}/prj"
-      "file:///home/${config.home.username}/bks"
-      "file:///home/${config.home.username}/snc"
+      (nerdfonts.override {
+        fonts = [
+          "Iosevka"
+          "JetBrainsMono"
+          "FiraCode"
+          "FantasqueSansMono"
+        ];
+      })
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
     ];
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
+
+
+    fonts.fontconfig.enable = true;
+
+
+    xsession.pointerCursor = {
+      package = pkgs.capitaine-cursors;
+      size = 20;
+      name = "capitaine-cursors";
     };
-  };
+
+
+    gtk = {
+      enable = true;
+      gtk3.bookmarks = [
+        "file://${univercityDir}"
+        "file://${projectDir}"
+        "file://${booksDir}"
+        "file://${syncDir}"
+      ];
+      theme = {
+        name = "Dracula";
+        package = pkgs.dracula-theme;
+      };
+    };
 
 
   # FIXME: Vbox doesn't care
@@ -65,10 +76,10 @@
       publicShare = "/dev/null";
       music = "/dev/null";
       templates = "/dev/null";
-      download = "$HOME/dl";
-      pictures = "$HOME/pic";
-      videos = "$HOME/vid";
-      documents = "$HOME/dcs";
+      download = "${downloadDir}";
+      pictures = "${picturesDir}";
+      videos = "${videosDir}";
+      documents = "${documentsDir}";
     };
     mimeApps = {
       enable = true;
