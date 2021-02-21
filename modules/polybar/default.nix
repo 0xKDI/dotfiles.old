@@ -8,6 +8,6 @@
       pulseSupport = true;
       nlSupport = true;
     };
-    config = "${config.dots.confDir}/polybar";
+    config = ./config;
   };
 }

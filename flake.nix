@@ -23,11 +23,15 @@
     nixosConfigurations.xia = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [ 
-        ./lib
+        ./vars.nix
         ./hosts/xia
+        ./hosts/nixos-common.nix
         home-manager.nixosModules.home-manager
         {
-          nixpkgs.overlays = overlays;
+          nixpkgs = {
+            overlays = overlays;
+            config.allowUnfree = true;
+          };
         }
       ];
     };

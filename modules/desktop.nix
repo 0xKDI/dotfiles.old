@@ -20,7 +20,6 @@ in
       spotifywm
 
       gimp
-      sxiv
 
       (nerdfonts.override {
         fonts = [

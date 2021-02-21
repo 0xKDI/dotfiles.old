@@ -1,12 +1,11 @@
 { config, pkgs, ... }:
 
 let
-  confDir = config.dots.confDir;
   home = config.home.homeDirectory;
 in
 {
   imports = [
-    ../lib
+    ../vars.nix
     ./alacritty.nix
     ./bspwm.nix
     ./desktop.nix
@@ -17,14 +16,15 @@ in
     ./go.nix
     ./latex.nix
     ./mpv.nix
-    ./neovim.nix
-    ./polybar.nix
+    ./neovim
+    ./polybar
     ./python.nix
     ./starship.nix
     ./st.nix
     ./sxhkd.nix
+    ./sxiv
     ./systemd.nix
-    ./tmux.nix
+    ./tmux
     ./xsession.nix
     ./zathura.nix
     ./zsh.nix
@@ -35,9 +35,6 @@ in
     gh
     libqalculate
     wally-cli
-
-    terraform_0_14
-    terraform-ls
 
     minikube
     kubectl
@@ -139,20 +136,4 @@ in
     unclutter.enable = true; # hide cursor when it's not used
     clipmenu.enable = true;
   };
-
-
-  xdg.configFile = {
-    "sxiv" = {
-      source = "${confDir}/sxiv";
-      recursive = true;
-    };
-    "nixpkgs/config.nix".text = ''
-      { allowUnfree = true; }
-    '';
-  };
-
-
-  home.file.".terraformrc".text = ''
-    plugin_cache_dir = "$HOME/.terraform.d/plugin-cache"
-  '';
 }

@@ -23,6 +23,6 @@
         '';
       }
     ];
-    extraConfig = builtins.readFile "${config.dots.confDir}/tmux.conf";
+    extraConfig = builtins.readFile ./tmux.conf;
   };
 }
