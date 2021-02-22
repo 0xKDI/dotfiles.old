@@ -2,9 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    python3
-    python38Packages.ipython
-    python38Packages.pip
+    python39
+    python39Packages.ipython
+    python39Packages.pip
   ];
 
 
