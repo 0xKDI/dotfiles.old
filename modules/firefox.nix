@@ -8,9 +8,7 @@ in
   {
     home.packages = with pkgs; [
       tridactyl-native
-      # w8 when https://github.com/NixOS/nixpkgs/pull/114027
-      # will be in unstable
-      # buku
+      buku
     ];
 
 
