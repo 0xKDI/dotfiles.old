@@ -5,6 +5,7 @@ let
   dataHome = config.xdg.dataHome;
   configHome = config.xdg.configHome;
   cacheHome = config.xdg.cacheHome;
+  dots = "/etc/nixos";
 in
   {
     home.sessionPath = [
@@ -13,7 +14,7 @@ in
 
 
     home.sessionVariables = {
-      DOTS = "/etc/nixos";
+      DOTS = "${dots}";
       TEXMFHOME = "${dataHome}/texmf";
       TEXMFVAR = "${cacheHome}/texlive/texmf-var";
       TEXMFCONFIG = "${configHome}/texlive/texmf-config";
