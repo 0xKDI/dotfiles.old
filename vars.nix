@@ -2,11 +2,9 @@
 
 with lib; {
   options = {
-    d = {
-      dir = mkOption {
-        default =  builtins.toString ./.;
-        type = types.path;
-      };
+    dir = mkOption {
+      default =  builtins.toString ./.;
+      type = types.path;
     };
   };
 }

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  wallpapers = "${config.d.dir}/wallpapers";
+  wallpapers = "${config.dir}/wallpapers";
 in
   {
     home.packages = with pkgs; [

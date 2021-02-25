@@ -34,7 +34,7 @@ in
       '';
       settings = {
         "devtools.theme" = "dark";
-        "browser.download.dir" = "${home}/dl";
+        "browser.downloadir" = "${home}/dl";
         # bad
         "general.smoothScroll" = false;
 

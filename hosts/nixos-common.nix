@@ -49,7 +49,7 @@ in
           username = "${user}";
           homeDirectory = "${home}";
         };
-        imports = [ "${config.d.dir}/configs" ];
+        imports = [ "${config.dir}/configs" ];
         xdg.configFile."nixpkgs/config.nix".text = ''
           { allowUnfree = true; }
         '';

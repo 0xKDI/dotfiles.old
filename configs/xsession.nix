@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 
 let
-  binPath = "${config.d.dir}/bin";
+  binPath = "${config.dir}/bin";
   dataHome = config.xdg.dataHome;
   configHome = config.xdg.configHome;
   cacheHome = config.xdg.cacheHome;
-  dotDir = config.d.dir;
+  dotDir = config.dir;
 in
   {
     home.sessionPath = [
