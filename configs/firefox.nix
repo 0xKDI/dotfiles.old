@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 let
-  user = config.dots.userName;
+  user = config.home.username;
   home = config.home.homeDirectory;
-  uid = builtins.toString config.dots.uid;
+  uid = 1000;
 in
   {
     home.packages = with pkgs; [

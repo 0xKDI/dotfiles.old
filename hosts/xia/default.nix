@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 let
-  user = config.dots.userName;
-  host = config.dots.hostName;
+  user = config.d.user;
+  host = baseNameOf ./.;
 in
 {
   imports = [

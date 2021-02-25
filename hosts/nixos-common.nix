@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 let
-  user = config.dots.userName;
-  uid = config.dots.uid;
-  host = config.dots.hostName;
+  user = config.d.user;
+  uid = config.d.uid;
+  host = config.d.hostName;
   home = "/home/${user}";
   stateVersion = "21.03";
 in
@@ -20,6 +20,9 @@ in
       trustedUsers = [ "root" "${user}" ];
       maxJobs = 8;
     };
+  
+
+    nixpkgs.config.allowUnfree = true;
 
 
     users.users.${user} = {
@@ -47,7 +50,7 @@ in
           username = "${user}";
           homeDirectory = "${home}";
         };
-        imports = [ "${config.dots.dotDir}/modules" ];
+        imports = [ "${config.d.dir}/configs" ];
         xdg.configFile."nixpkgs/config.nix".text = ''
           { allowUnfree = true; }
         '';

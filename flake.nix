@@ -27,10 +27,7 @@
         ./hosts/nixos-common.nix
         home-manager.nixosModules.home-manager
         {
-          nixpkgs = {
-            overlays = overlays;
-            config.allowUnfree = true;
-          };
+          nixpkgs.overlays = overlays;
         }
       ];
     };

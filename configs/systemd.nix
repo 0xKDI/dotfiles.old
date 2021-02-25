@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  bin = "${config.dots.dotDir}/bin";
+  bin = "${config.d.dir}/bin";
 in
 {
   home.packages = with pkgs; [

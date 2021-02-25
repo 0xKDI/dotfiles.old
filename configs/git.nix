@@ -2,7 +2,7 @@
 
 let
   email = "0qqw0qqw@gmail.com";
-  user = config.dots.userName;
+  user = config.home.username;
 in
   {
     programs.git = {

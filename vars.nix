@@ -2,8 +2,8 @@
 
 with lib; {
   options = {
-    dots = {
-      userName = mkOption {
+    d = {
+      user = mkOption {
         default = "qq";
         type = types.str;
       };
@@ -13,13 +13,7 @@ with lib; {
         type = types.int;
       };
 
-      hostName = mkOption {
-        default = "xia";
-        type = types.str; 
-      };
-
-      # paths
-      dotDir = mkOption {
+      dir = mkOption {
         default =  builtins.toString ./.;
         type = types.path;
       };

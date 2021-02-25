@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 
 let
-  binPath = "${config.dots.dotDir}/bin";
+  binPath = "${config.d.dir}/bin";
   dataHome = config.xdg.dataHome;
   configHome = config.xdg.configHome;
   cacheHome = config.xdg.cacheHome;
-  dots = "/etc/nixos";
+  dotDir = config.d.dir;
 in
   {
     home.sessionPath = [
@@ -14,7 +14,7 @@ in
 
 
     home.sessionVariables = {
-      DOTS = "${dots}";
+      DOTS = "${dotDir}";
       TEXMFHOME = "${dataHome}/texmf";
       TEXMFVAR = "${cacheHome}/texlive/texmf-var";
       TEXMFCONFIG = "${configHome}/texlive/texmf-config";
