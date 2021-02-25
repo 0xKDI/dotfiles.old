@@ -63,7 +63,14 @@
     # bumblebee.service will fall, reboot needed
     nvidiaOptimus.disable = true;
     keyboard.zsa.enable = true;
-    pulseaudio.enable = true;
+    pulseaudio = {
+      enable = true;
+      extraConfig = ''
+        unload-module module-suspend-on-idle
+        # prevents ~/.esd_auth
+        unload-module module-esound-protocol-unix
+      '';
+    };
     bluetooth.enable = true;
     opengl = {
       enable = true;
