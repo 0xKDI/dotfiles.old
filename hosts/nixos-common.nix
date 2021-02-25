@@ -8,7 +8,6 @@ let
   stateVersion = "21.03";
 in
   {
-
     system.stateVersion = stateVersion;
 
 

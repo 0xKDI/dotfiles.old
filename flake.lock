@@ -68,11 +68,11 @@
     "neovim-nightly": {
       "flake": false,
       "locked": {
-        "lastModified": 1614042794,
-        "narHash": "sha256-MdvfcdpQpcnl2UGqVOiZknu4zi+jcHZMoxKlPKaXnVs=",
+        "lastModified": 1614209844,
+        "narHash": "sha256-GbSPxXwr+QL3yWQmnVZUAO6BBzHtMp2YbeKysPX+/Cg=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "0450e155d48cb2d8a73358e193931d8966a9d2e0",
+        "rev": "e55ded00cfb8432a7bc8af40b477aaf0cba70405",
         "type": "github"
       },
       "original": {
