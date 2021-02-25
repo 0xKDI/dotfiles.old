@@ -70,6 +70,7 @@ in
     wget
 
     file
+    loc
     tree
     exa
     fd
