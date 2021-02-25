@@ -1,9 +1,8 @@
 { config, pkgs, ... }:
 
 let
-  user = config.d.user;
-  uid = config.d.uid;
-  host = config.d.hostName;
+  user = "qq";
+  uid = 1000;
   home = "/home/${user}";
   stateVersion = "21.03";
 in
