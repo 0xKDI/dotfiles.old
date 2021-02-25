@@ -13,10 +13,13 @@ endfunction
 let g:lightline = {
 			\ "colorscheme": "dracula",
 			\ "active": {
-			\   "left": [ [ "mode", "paste" ], [ "readonly","fugitive", "absolutepath", "modified" ] ]
+			\   "left": [ [ "mode", "paste" ], [ "readonly", "fugitive", "truncatepath", "modified" ] ]
 			\ },
 			\ "component_function": {
 			\   "readonly": "LightlineReadonly",
 			\   "fugitive": "LightlineFugitive"
 			\ },
+			\ "component" : {
+			\   "truncatepath": "%<%F"
+			\ }
 			\ }
