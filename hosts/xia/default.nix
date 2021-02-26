@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  user = config.d.user;
+  user = "qq";
   host = baseNameOf ./.;
 in
 {

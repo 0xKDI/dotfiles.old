@@ -3,7 +3,7 @@
 let
   user = config.home.username;
   home = config.home.homeDirectory;
-  uid = 1000;
+  uid = "1000";
 in
   {
     home.packages = with pkgs; [

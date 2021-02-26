@@ -5,7 +5,7 @@ let
   dataHome = config.xdg.dataHome;
   configHome = config.xdg.configHome;
   cacheHome = config.xdg.cacheHome;
-  dotDir = config.dir;
+  dotDir = "/etc/nixos";
 in
   {
     home.sessionPath = [
