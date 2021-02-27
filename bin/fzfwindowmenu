@@ -2,14 +2,21 @@
 # choose X-client and focus to one
 # TODO: rewrite
 
+declare -a WM_CLASS_EXCLUDE=(
+"WM_CLASS"
+"fzfmenu"
+)
 declare -a window_ids
 declare -A windows
 
 function get_xclients() {
 	for id in $window_ids; do
-		WM_CLASS=$(xprop -id $id WM_CLASS | sed "s/.* //g" | tr -d '"')
-		WM_NAME=$(xprop -id $id WM_NAME | cut -d = -f 2 | tr -d '"')
-		windows[$id]="${WM_CLASS} -${WM_NAME}"
+		WM_CLASS=$(xprop -id $id WM_CLASS 2>/dev/null| sed "s/.* //g" | tr -d '"')
+		WM_NAME=$(xprop -id $id WM_NAME 2>/dev/null| cut -d = -f 2 | tr -d '"')
+		for item in "${WM_CLASS_EXCLUDE[@]}"; do
+			[ "${WM_CLASS}" == "$item" ] && break
+			windows[$id]="${WM_CLASS} -${WM_NAME}"
+		done
 	done
 }
 
