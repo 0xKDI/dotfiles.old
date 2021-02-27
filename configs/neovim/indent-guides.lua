@@ -12,7 +12,8 @@ require('indent_guides').setup({
 			'NvimTree',
 			'vista',
 			'sagahover',
-			'fzf'
+			'fzf',
+			'man'
 		};
 		even_colors = { fg ='#162528',bg='#2d3144' };
 		odd_colors = {fg='#ffb86c',bg='#393549'};
