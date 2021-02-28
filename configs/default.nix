@@ -24,6 +24,7 @@ in
     ./sxhkd.nix
     ./sxiv
     ./systemd.nix
+    ./terraform.nix
     ./tmux
     ./xsession.nix
     ./zathura.nix
