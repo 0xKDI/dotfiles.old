@@ -9,25 +9,25 @@
   };
 
   outputs = { self, nixpkgs, home-manager, nur, neovim-nightly-overlay }:
-  let
-    overlays = [
-      nur.overlay
-      neovim-nightly-overlay.overlay
-      (import ./overlays)
-    ];
-  in
-  {
-    nixosConfigurations.xia = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [ 
-        ./vars.nix
-        ./hosts/xia
-        ./hosts/nixos-common.nix
-        home-manager.nixosModules.home-manager
-        {
-          nixpkgs.overlays = overlays;
-        }
+    let
+      overlays = [
+        nur.overlay
+        neovim-nightly-overlay.overlay
+        (import ./overlays)
       ];
+    in
+    {
+      nixosConfigurations.xia = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./vars.nix
+          ./hosts/xia
+          ./hosts/nixos-common.nix
+          home-manager.nixosModules.home-manager
+          {
+            nixpkgs.overlays = overlays;
+          }
+        ];
+      };
     };
-  };
 }

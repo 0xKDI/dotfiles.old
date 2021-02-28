@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 
-let 
+let
   home = config.home.homeDirectory;
   univercityDir = "${home}/uni";
   projectDir = "${home}/prj";
@@ -11,82 +11,82 @@ let
   videosDir = "${home}/vid";
   documentsDir = "${home}/dcs";
 in
-  {
-    home.packages = with pkgs; [
-      discord
-      drawio
-      tdesktop
-      libreoffice-fresh
-      spotifywm
+{
+  home.packages = with pkgs; [
+    discord
+    drawio
+    tdesktop
+    libreoffice-fresh
+    spotifywm
 
-      gimp
+    gimp
 
-      (nerdfonts.override {
-        fonts = [
-          "Iosevka"
-          "JetBrainsMono"
-          "FiraCode"
-          "FantasqueSansMono"
-        ];
-      })
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-    ];
-
-
-    fonts.fontconfig.enable = true;
-
-
-    xsession.pointerCursor = {
-      package = pkgs.capitaine-cursors;
-      size = 20;
-      name = "capitaine-cursors";
-    };
-
-
-    gtk = {
-      enable = true;
-      gtk3.bookmarks = [
-        "file://${univercityDir}"
-        "file://${projectDir}"
-        "file://${booksDir}"
-        "file://${syncDir}"
+    (nerdfonts.override {
+      fonts = [
+        "Iosevka"
+        "JetBrainsMono"
+        "FiraCode"
+        "FantasqueSansMono"
       ];
-      theme = {
-        name = "Dracula";
-        package = pkgs.dracula-theme;
-      };
+    })
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+  ];
+
+
+  fonts.fontconfig.enable = true;
+
+
+  xsession.pointerCursor = {
+    package = pkgs.capitaine-cursors;
+    size = 20;
+    name = "capitaine-cursors";
+  };
+
+
+  gtk = {
+    enable = true;
+    gtk3.bookmarks = [
+      "file://${univercityDir}"
+      "file://${projectDir}"
+      "file://${booksDir}"
+      "file://${syncDir}"
+    ];
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
     };
+  };
 
 
-    # FIXME: Vbox doesn't care
-    qt = {
+  # FIXME: Vbox doesn't care
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+  };
+
+
+  xdg = {
+    enable = true;
+    userDirs = {
       enable = true;
-      platformTheme = "gnome";
+      desktop = "/dev/null";
+      publicShare = "/dev/null";
+      music = "/dev/null";
+      templates = "/dev/null";
+      download = "${downloadDir}";
+      pictures = "${picturesDir}";
+      videos = "${videosDir}";
+      documents = "${documentsDir}";
     };
-
-
-    xdg = {
+    mimeApps = {
       enable = true;
-      userDirs = {
-        enable = true;
-        desktop = "/dev/null";
-        publicShare = "/dev/null";
-        music = "/dev/null";
-        templates = "/dev/null";
-        download = "${downloadDir}";
-        pictures = "${picturesDir}";
-        videos = "${videosDir}";
-        documents = "${documentsDir}";
-      };
-      mimeApps = {
-        enable = true;
-        defaultApplications = {
-          "application/pdf" = "org.pwmt.zathura.desktop";
-          "image/jpeg" = "sxiv.desktop";
-          "image/png" = "sxiv.desktop";
-        };
+      defaultApplications = {
+        "application/pdf" = "org.pwmt.zathura.desktop";
+        "image/jpeg" = "sxiv.desktop";
+        "image/png" = "sxiv.desktop";
       };
     };
-  }
+  };
+}

@@ -3,7 +3,7 @@
 with lib; {
   options = {
     dir = mkOption {
-      default =  builtins.toString ./.;
+      default = builtins.toString ./.;
       type = types.path;
     };
   };
