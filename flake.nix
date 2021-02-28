@@ -13,9 +13,7 @@
     overlays = [
       nur.overlay
       neovim-nightly-overlay.overlay
-      (self: super: {
-        vaapiIntel = super.vaapiIntel.override { enableHybridCodec = true; };
-      })
+      (import ./overlays)
     ];
   in
   {

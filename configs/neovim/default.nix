@@ -2,7 +2,7 @@
 
 let 
   nvimDir = builtins.toString ./.;
-  vimPlugins = pkgs.vimPlugins // pkgs.callPackage ./vimPlugins.nix {};
+  vimPlugins = pkgs.vimPlugins;
 in
   {
     xdg.configFile."nvim/init.vim".text = "let g:polyglot_disabled = ['yaml']";
