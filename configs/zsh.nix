@@ -12,6 +12,9 @@
       bindkey '^ ' edit-command-line
       bindkey '\eq' fzf-cd-widget
       bindkey '\er' fzf-history-widget
+
+      autoload -U +X bashcompinit && bashcompinit
+      complete -o nospace -C ${pkgs.terraform_0_14}/bin/terraform terraform
     '';
     shellAliases = {
       vim = "nvim";
