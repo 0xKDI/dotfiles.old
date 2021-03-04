@@ -71,7 +71,7 @@ in
     wget
 
     file
-    loc
+    scc
     tree
     exa
     fd
