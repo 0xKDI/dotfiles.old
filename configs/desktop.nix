@@ -60,13 +60,6 @@ in
   };
 
 
-  # FIXME: Vbox doesn't care
-  qt = {
-    enable = true;
-    platformTheme = "gnome";
-  };
-
-
   xdg = {
     enable = true;
     userDirs = {
