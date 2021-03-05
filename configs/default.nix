@@ -9,6 +9,7 @@ in
     ./alacritty.nix
     ./bspwm.nix
     ./desktop.nix
+    ./direnv.nix
     ./dunst.nix
     ./firefox.nix
     ./fzf.nix
@@ -95,11 +96,6 @@ in
       config = {
         theme = "Dracula";
       };
-    };
-    direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      enableNixDirenvIntegration = true;
     };
     password-store = {
       enable = true;
