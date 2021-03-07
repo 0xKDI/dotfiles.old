@@ -24,6 +24,5 @@ in
 
   user = {
     shell = "${pkgs.zsh}/bin/zsh";
-    userName = "qq";
   };
 }
