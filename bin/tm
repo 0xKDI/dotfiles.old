@@ -4,8 +4,26 @@
 # `tm` will allow you to select your tmux session via fzf.
 # `tm irc` will attach to the irc session (if it exists), else it will create it.
 
-[[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
+LAST_SESSION_PATH="/tmp/tm-last"
+
+[[ -n "$TMUX" ]] && CHANGE="switch-client" || CHANGE="attach-session"
+
 if [ $1 ]; then
-  tmux $change -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $change -t "$1"); return
+  tmux $CHANGE -t "$1" 2>/dev/null || (tmux new-session -d -s $1 && tmux $CHANGE -t "$1"); return
 fi
-session=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf --exit-0) &&  tmux $change -t "$session" || echo "No sessions found."
+
+if [[ -e "$LAST_SESSION_PATH" ]]; then
+	LAST_SESSION=$(cat $LAST_SESSION_PATH)
+	FZF_ARGS="-q $LAST_SESSION --exit-0"
+else
+	FZF_ARGS="--exit-0"
+fi
+
+CHOSEN_SESSION=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | fzf $FZF_ARGS)
+CURRENT_SESSION=$(tmux display-message -p '#S' )
+
+if [[ $CHOSEN_SESSION != $CURRENT_SESSION ]]; then
+	echo $CURRENT_SESSION | tee /tmp/tm-last
+fi
+
+tmux $CHANGE -t "$CHOSEN_SESSION"
