@@ -4,9 +4,6 @@ let
   stateVersion = "20.09";
 in
 {
-  system.stateVersion = stateVersion;
-
-
   home-manager.config = { pkgs, ... }:
   {
     imports = [
@@ -14,5 +11,14 @@ in
       ../../configs/zsh.nix
     ];
     home.stateVersion = stateVersion;
+  };
+
+
+  system.stateVersion = stateVersion;
+
+
+  user = {
+    shell = "${pkgs.zsh}/bin/zsh";
+    username = "qq";
   };
 }

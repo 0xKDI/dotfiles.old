@@ -12,6 +12,13 @@ let
   documentsDir = "${home}/dcs";
 in
 {
+  imports = [
+    ./bspwm.nix
+    ./dunst.nix
+    ./polybar
+    ./sxhkd.nix
+    ./xsession.nix
+  ];
   home.packages = with pkgs; [
     discord
     drawio
@@ -33,6 +40,24 @@ in
     noto-fonts-cjk
     noto-fonts-emoji
   ];
+  
+
+  services = {
+    udiskie = {
+      enable = true;
+      automount = true;
+      notify = true;
+      tray = "never";
+    };
+    screen-locker = {
+      enable = true;
+      inactiveInterval = 10;
+      lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
+    };
+    syncthing.enable = true;
+    unclutter.enable = true; # hide cursor when it's not used
+    clipmenu.enable = true;
+  };
 
 
   fonts.fontconfig.enable = true;

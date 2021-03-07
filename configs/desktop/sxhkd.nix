@@ -11,6 +11,8 @@ in
     maim
 
     dunst # required for dunstify
+    qrencode # for QR-code
+
   ];
 
 
