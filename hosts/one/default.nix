@@ -9,6 +9,10 @@ in
     imports = [
       ../../configs/nix.nix
       ../../configs/zsh.nix
+      ../../configs/cli/min.nix
+      ../../configs/cli/starship.nix
+      ../../configs/cli/fzf.nix
+      ../../configs/cli/direnv.nix
     ];
     home.stateVersion = stateVersion;
   };
