@@ -31,7 +31,7 @@
         ];
       };
 
-      nix-on-droid = (nix-on-droid.lib.aarch64-linux.nix-on-droid {
+      nix-on-droid = (inputs.nix-on-droid.lib.aarch64-linux.nix-on-droid {
         config = { pkgs, ... }: {
           environment.packages = [ pkgs.vim ];
           system.stateVersion = "20.09";
