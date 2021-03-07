@@ -6,6 +6,7 @@
     home-manager.url = "github:rycee/home-manager";
     nur.url = "github:nix-community/NUR";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    nix-on-droid.url = "github:t184256/nix-on-droid/master";
   };
 
   outputs = { self, ... }@inputs:
@@ -29,5 +30,12 @@
           }
         ];
       };
+
+      nix-on-droid = (nix-on-droid.lib.aarch64-linux.nix-on-droid {
+        config = { pkgs, ... }: {
+          environment.packages = [ pkgs.vim ];
+          system.stateVersion = "20.09";
+        };
+      }).activationPackage;
     };
 }
