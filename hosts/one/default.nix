@@ -13,6 +13,7 @@ in
       ../../configs/cli/starship.nix
       ../../configs/cli/fzf.nix
       ../../configs/cli/direnv.nix
+      ../../configs/git.nix
     ];
     home.stateVersion = stateVersion;
   };
