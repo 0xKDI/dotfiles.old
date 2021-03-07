@@ -4,9 +4,9 @@ let g:fzf_layout = { "window": { "width": 0.8, "height": 0.6 } }
 autocmd! FileType fzf set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 
-nnoremap <silent> <leader>q :Files!<CR>
-nnoremap <silent> <leader>fh :History<CR>
-nnoremap <silent> <leader><leader>; :History:<CR>
+nnoremap <silent> <leader>ff :Files!<CR>
+nnoremap <silent> <leader>fh :History!<CR>
+nnoremap <silent> <leader><leader>; :History:!<CR>
 
 nnoremap <silent> <leader>, :Windows!<CR>
 nnoremap <silent> <leader>w :Buffers!<CR>
@@ -21,4 +21,4 @@ nnoremap <silent> <leader><CR> :Marks!<CR>
 nnoremap <leader>r :Rg!
 nnoremap <leader>gf :GFiles!<CR>
 nnoremap <leader>gc :Commits!<CR>
-" nnoremap <leader>gC :BCommits<CR>
+nnoremap <leader>gbc :BCommits!<CR>
