@@ -23,9 +23,7 @@
         modules = [
           ./hosts/xia
           inputs.home-manager.nixosModules.home-manager
-          {
-            nixpkgs.overlays = overlays;
-          }
+          { nixpkgs.overlays = overlays; }
         ];
       };
 

@@ -11,6 +11,7 @@ in
   {
     imports = [
       ../../configs/nix.nix
+      ../../configs/zsh.nix
     ];
     home.stateVersion = stateVersion;
   };
