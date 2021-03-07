@@ -15,7 +15,6 @@
     changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ];
     defaultCommand = "fd --type f --hidden --follow --exclude .git";
     defaultOptions = [
-      "--select-1"
       "--reverse"
       "--multi"
       "--info=inline"
