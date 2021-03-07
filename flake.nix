@@ -21,9 +21,7 @@
       nixosConfigurations.xia = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./vars.nix
           ./hosts/xia
-          ./hosts/nixos-common.nix
           inputs.home-manager.nixosModules.home-manager
           {
             nixpkgs.overlays = overlays;
@@ -31,11 +29,8 @@
         ];
       };
 
-      nix-on-droid = (inputs.nix-on-droid.lib.aarch64-linux.nix-on-droid {
-        config = { pkgs, ... }: {
-          environment.packages = [ pkgs.vim ];
-          system.stateVersion = "20.09";
-        };
+      one = (inputs.nix-on-droid.lib.aarch64-linux.nix-on-droid {
+        config = import ./hosts/one;
       }).activationPackage;
     };
 }

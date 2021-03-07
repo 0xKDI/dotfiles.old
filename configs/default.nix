@@ -5,7 +5,6 @@ let
 in
 {
   imports = [
-    ../vars.nix
     ./alacritty.nix
     ./bspwm.nix
     ./desktop.nix

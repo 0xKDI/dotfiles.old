@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  binPath = "${config.dir}/bin";
+  binPath = "../bin";
   dataHome = config.xdg.dataHome;
   configHome = config.xdg.configHome;
   cacheHome = config.xdg.cacheHome;
