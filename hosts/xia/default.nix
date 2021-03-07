@@ -23,9 +23,6 @@ in
         username = "${user}";
         homeDirectory = "${home}";
       };
-      xdg.configFile."nixpkgs/config.nix".text = ''
-        { allowUnfree = true; }
-      '';
     };
     useUserPackages = true;
     useGlobalPkgs = true;

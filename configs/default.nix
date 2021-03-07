@@ -17,6 +17,7 @@ in
     ./latex.nix
     ./mpv.nix
     ./neovim
+    ./nix.nix
     ./polybar
     ./python.nix
     ./starship.nix
