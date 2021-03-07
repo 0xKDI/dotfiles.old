@@ -36,8 +36,9 @@ in
       {
         plugin = vim-fugitive;
         config = ''
-          nnoremap <leader>gg :G<CR>
-          nnoremap <leader>gl :Gllog<CR>
+          nnoremap <leader>gg :tab G<CR>
+          nnoremap <leader>gl :tab Gllog<CR>
+          nnoremap <leader>grb :tab G rebase -i<CR>
         '';
       }
       vim-sneak
