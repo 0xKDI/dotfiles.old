@@ -21,7 +21,25 @@ in
     ];
     extraConfig = builtins.readFile "${nvimDir}/init.vim";
     plugins = with vimPlugins; [
-      vim-gitgutter
+      {
+        plugin = vim-gitgutter;
+        config = ''
+          " Update sign column every 1/4 second
+          set updatetime=250
+          nmap <Leader>gn <Plug>(GitGutterNextHunk)
+          nmap <Leader>gp <Plug>(GitGutterPrevHunk)
+
+          nmap <Leader>ga <Plug>(GitGutterStageHunk)
+          nmap <Leader>gu <Plug>(GitGutterUndoHunk)
+        '';
+      }
+      {
+        plugin = vim-fugitive;
+        config = ''
+          nnoremap <leader>gg :G<CR>
+          nnoremap <leader>gl :Gllog<CR>
+        '';
+      }
       vim-sneak
       vim-surround
       vim-commentary
@@ -71,13 +89,6 @@ in
       {
         plugin = fzf-vim;
         config = builtins.readFile "${nvimDir}/fzf-vim.vim";
-      }
-      {
-        plugin = vim-fugitive;
-        config = ''
-          nnoremap <leader>gg :G<CR>
-          nnoremap <leader>gl :Gllog<CR>
-        '';
       }
       {
         plugin = indent-guides-nvim;
