@@ -23,9 +23,72 @@ in
         username = "${user}";
         homeDirectory = "${home}";
       };
+      programs = {
+        home-manager.enable = true;
+        jq.enable = true;
+        htop.enable = true;
+        ssh.enable = true;
+        gpg.enable = true;
+        noti.enable = true;
+        go.enable = true;
+        bat.enable = true;
+        z-lua.enable = true;
+        fzf.enable = true;
+        direnv.enable = true;
+        starship.enable = true;
+        alacritty.enable = true;
+        neovim.enable = true;
+        tmux.enable = true;
+        firefox.enable = true;
+        browserpass.enable = true;
+        git.enable = true;
+        mpv.enable = true;
+        password-store.enable = true;
+        zathura.enable = true;
+        zsh.enable = true;
+      };
+      services = {
+        gpg-agent.enable = true;
+        udiskie.enable = true;
+        screen-locker.enable = true;
+        syncthing.enable = true;
+        unclutter.enable = true;
+        clipmenu.enable = true;
+        dunst.enable = true;
+        polybar.enable = true;
+        sxhkd.enable = true;
+      };
+      gtk.enable = true;
+      xdg = {
+        enable = true;
+        userDirs.enable = true;
+        mimeApps.enable = true;
+      };
+      fonts.fontconfig.enable = true;
+      xsession = {
+        enable = true;
+        windowManager.bspwm.enable = true;
+      };
+      systemd.user.startServices = "legacy";
     };
     useUserPackages = true;
     useGlobalPkgs = true;
+  };
+
+
+  users.users.${user} = {
+    isNormalUser = true;
+    uid = uid;
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "audio"
+      "vboxusers"
+      "docker"
+      "plugdev"
+    ];
+    shell = pkgs.zsh;
+    initialPassword = "nix";
   };
 
 
@@ -44,22 +107,6 @@ in
 
 
   nixpkgs.config.allowUnfree = true;
-
-
-  users.users.${user} = {
-    isNormalUser = true;
-    uid = uid;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "audio"
-      "vboxusers"
-      "docker"
-      "plugdev"
-    ];
-    shell = pkgs.zsh;
-    initialPassword = "nix";
-  };
 
 
   # this is only increases boot time
@@ -151,6 +198,8 @@ in
 
 
   i18n.defaultLocale = "en_US.UTF-8";
+
+
   console = {
     font = "Lat2-Terminus16";
     keyMap = "us";
