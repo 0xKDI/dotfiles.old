@@ -16,8 +16,15 @@ in
       ../../configs/git.nix
 
     ];
+
+
     home.stateVersion = stateVersion;
 
+
+    fonts.fontconfig.enable = true;
+
+
+    # NOTE: doesn't work
     home.file.".termux/colors.properties".text = ''
       background:     #282A36
       foreground:     #F8F8F2

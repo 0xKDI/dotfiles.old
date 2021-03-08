@@ -2,7 +2,7 @@
 
 {
   xdg.configFile."nixpkgs/config.nix".text = ''
-        { allowunfree = true; }
+    { allowunfree = true; }
   '';
 
 
