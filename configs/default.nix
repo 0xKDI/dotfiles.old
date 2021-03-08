@@ -26,7 +26,7 @@ let
   cacheHome = config.xdg.cacheHome;
 
   homePkgs = config.home.packages;
-  hasLatex = (any (_: (_ == pkgs.python38Packages.pygments)) homePkgs);
+  hasLatex = (any (_: (_ == pkgs.latex)) homePkgs);
   hasAWS = (any (_: (_ == pkgs.awscli2)) homePkgs);
   hasPython = (any (_: (_ == pkgs.python39)) homePkgs);
   hasTf = (any (_: (_ == pkgs.terraform_0_14)) homePkgs);
