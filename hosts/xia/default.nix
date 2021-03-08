@@ -22,6 +22,113 @@ in
         stateVersion = stateVersion;
         username = "${user}";
         homeDirectory = "${home}";
+        packages = with pkgs; [
+          xst
+          discord
+          drawio
+          tdesktop
+          libreoffice-fresh
+          spotifywm
+          mpvc # a mpc-like control interface for mpv
+          gimp
+          graphviz
+          docker-credential-helpers
+          wally-cli
+
+          gh
+          libqalculate
+
+          transmission
+
+          du-dust # du + rust
+          ddgr # DuckDuckGo-cli
+          googler
+
+          lsof
+          nmap
+          openssl
+          tcpdump
+          acpi
+
+          syncthing-cli #stcli
+          gnumake
+          gcc
+          gdb
+
+          scc
+          tealdeer # faster tldr
+          manix
+          youtube-dl
+          imagemagick
+
+          unrar
+          p7zip
+
+          minikube
+          kubectl
+          kubernetes-helm
+
+          awscli2
+          doctl
+
+          python39
+          python39Packages.ipython
+          python39Packages.pip
+
+          terraform_0_14
+          terraform-ls
+
+          sxiv
+          qrencode # for QR-code
+
+          python38Packages.pygments
+          (texlive.combine {
+            inherit (texlive)
+            scheme-small
+            latexmk
+            polyglossia
+            geometry
+            fancyhdr
+            titlesec
+            bigfoot
+            setspace
+            hyphenat
+            blindtext
+            xurl
+            hyperref
+            footmisc
+            enumitem
+            graphics
+            float
+            pgf
+            pdfpages
+            caption
+            subfig
+            tabulary
+            booktabs
+            diagbox
+            multirow
+            xltabular
+            makecell
+            floatrow
+            minted
+            etoolbox
+            lastpage
+            cite
+            csquotes
+            chngcntr
+            was
+            pict2e
+            ltablex
+            fvextra
+            catchfile
+            xstring
+            framed
+            upquote
+            totcount;
+          })
+          corefonts # Microsoft fonts
+        ];
       };
       programs = {
         home-manager.enable = true;

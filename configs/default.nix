@@ -34,17 +34,35 @@ in
 {
   home = {
     packages = with pkgs; [
-      xst
-
-      discord
-      drawio
-      tdesktop
-      libreoffice-fresh
-      spotifywm
-      mpvc # a mpc-like control interface for mpv
-
-      gimp
-
+      coreutils
+      file
+      killall
+      curl
+      wget
+      exa
+      fd
+      ripgrep
+      progress
+      tree
+      cachix
+    ] ++ optionals config.services.sxhkd.enable [
+      brightnessctl
+      xkb-switch
+      pamixer
+      maim
+      dunst # required for dunstify
+    ] ++ optionals config.programs.firefox.enable [
+      tridactyl-native
+      buku
+    ] ++ optionals config.programs.go.enable [
+      gopls
+    ] ++ optionals config.xsession.enable [
+      xorg.xev
+      xdo
+      xsecurelock
+      xclip
+      xwallpaper # set wallpaper
+    ] ++ optionals config.fonts.fontconfig.enable [
       (nerdfonts.override {
         fonts = [
           "Iosevka"
@@ -56,137 +74,6 @@ in
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-
-      xorg.xev
-      xdo
-      xsecurelock
-      xclip
-      xwallpaper # set wallpaper
-
-      brightnessctl
-      xkb-switch
-      pamixer
-      maim
-
-      dunst # required for dunstify
-
-      coreutils
-      file
-      killall
-      curl
-      wget
-      exa
-      fd
-      ripgrep
-      progress
-      tree
-      acpi
-
-      gh
-      libqalculate
-      wally-cli
-
-      docker-credential-helpers
-
-      graphviz
-      transmission
-
-      du-dust # du + rust
-      ddgr # DuckDuckGo-cli
-      googler
-      cachix
-
-      lsof
-      nmap
-      openssl
-      tcpdump
-
-      syncthing-cli #stcli
-
-      # essential
-      gnumake
-      gcc
-      gdb
-
-      scc
-      tealdeer # faster tldr
-      manix
-      youtube-dl
-      imagemagick
-
-      # archive
-      unrar
-      p7zip
-
-      gopls
-
-      minikube
-      kubectl
-      kubernetes-helm
-
-      awscli2
-      doctl
-
-      python39
-      python39Packages.ipython
-      python39Packages.pip
-
-      terraform_0_14
-      terraform-ls
-
-      sxiv
-      qrencode # for QR-code
-
-      tridactyl-native
-      buku
-
-      python38Packages.pygments
-      (texlive.combine {
-        inherit (texlive)
-          scheme-small
-          latexmk
-          polyglossia
-          geometry
-          fancyhdr
-          titlesec
-          bigfoot
-          setspace
-          hyphenat
-          blindtext
-          xurl
-          hyperref
-          footmisc
-          enumitem
-          graphics
-          float
-          pgf
-          pdfpages
-          caption
-          subfig
-          tabulary
-          booktabs
-          diagbox
-          multirow
-          xltabular
-          makecell
-          floatrow
-          minted
-          etoolbox
-          lastpage
-          cite
-          csquotes
-          chngcntr
-          was
-          pict2e
-          ltablex
-          fvextra
-          catchfile
-          xstring
-          framed
-          upquote
-          totcount;
-      })
-      corefonts # Microsoft fonts
     ];
     file = {
       ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
