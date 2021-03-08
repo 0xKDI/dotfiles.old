@@ -23,6 +23,9 @@ in
       sw = "switch";
       rb = "rebase -i";
     };
+    extraConfig = {
+      pull.ff = "only";
+    };
     delta = {
       enable = true;
       options = {
