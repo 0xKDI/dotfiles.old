@@ -8,6 +8,25 @@ in
   xdg.configFile."nvim/init.vim".text = "let g:polyglot_disabled = ['yaml']";
 
 
+  programs.zsh.shellAliases = {
+    vim = "nvim";
+    vi = "nvim";
+    v = "nvim";
+    fs = "f -S";
+  };
+
+
+  home.sessionVariables = {
+    # editor
+    VISUAL = "nvim";
+    EDITOR = "nvim";
+    SUDO_EDITOR = "nvim";
+
+    MANPAGER = "nvim +Man!";
+    MANWIDTH = 999;
+  };
+
+
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;

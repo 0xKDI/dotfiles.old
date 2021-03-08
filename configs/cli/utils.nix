@@ -6,11 +6,6 @@
     libqalculate
     wally-cli
 
-    minikube
-    kubectl
-    kubernetes-helm
-    awscli2
-    doctl
     docker-credential-helpers
 
     graphviz
@@ -33,7 +28,6 @@
     gcc
     gdb
 
-    file
     scc
     tealdeer # faster tldr
     manix
@@ -44,4 +38,11 @@
     unrar
     p7zip
   ];
+
+
+  programs.zsh.shellAliases = {
+    dst = "dust -r";
+    s = "ddgr";
+    trr = "transmission-remote";
+  };
 }

@@ -12,6 +12,11 @@ in
   ];
 
 
+  programs.zsh.shellAliases = {
+      b = "buku --suggest";
+  };
+
+
   programs.firefox = {
     enable = true;
     package = pkgs.firefox-bin;

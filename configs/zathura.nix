@@ -46,4 +46,9 @@
       show-hidden = "true";
     };
   };
+
+
+  programs.zsh.shellAliases = {
+    zt = "devour zathura";
+  };
 }

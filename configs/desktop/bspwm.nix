@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  wallpapers = "../wallpapers";
+  wallpapers = "./wallpapers";
 in
 {
   home.packages = with pkgs; [
@@ -12,6 +12,25 @@ in
     xsecurelock
     xclip
   ];
+
+
+  programs.zsh = {
+    shellAliases = {
+      y = "xclip -selection c";
+      p = "xclip -selection c -o";
+      n = "noti";
+    };
+    plugins = with pkgs; [
+      {
+        name = "zsh-system-clipboard";
+        src = "${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard";
+        file = "zsh-system-clipboard.zsh";
+      }
+    ];
+  };
+
+
+  programs.noti.enable = true;
 
 
   xsession = {

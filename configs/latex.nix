@@ -1,5 +1,10 @@
 { config, pkgs, ... }:
 
+let
+  dataHome = config.xdg.dataHome;
+  configHome = config.xdg.configHome;
+  cacheHome = config.xdg.cacheHome;
+in
 {
   xdg.configFile."latexmk/latexmkrc".text = ''
     $xelatex = "xelatex --shell-escape %O %S";
@@ -9,6 +14,12 @@
     $pdf_previewer = "zathura %S";
     $clean_ext = "_minted-%R/* _minted-%R";
   '';
+
+  home.sessionVariables = {
+    TEXMFHOME = "${dataHome}/texmf";
+    TEXMFVAR = "${cacheHome}/texlive/texmf-var";
+    TEXMFCONFIG = "${configHome}/texlive/texmf-config";
+  };
 
 
   home.packages = with pkgs; [

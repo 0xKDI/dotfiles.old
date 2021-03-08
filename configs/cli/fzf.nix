@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
-{
+let
+  dataHome = config.xdg.dataHome;
+in
+  {
   programs.z-lua = {
     enable = true;
     enableZshIntegration = true;
@@ -28,5 +31,21 @@
       "--style=numbers"
       "--color=always {}"
     ];
+  };
+
+
+  programs.zsh.initExtra = ''
+      bindkey '\eq' fzf-cd-widget
+      bindkey '\er' fzf-history-widget
+  '';
+
+  home.sessionVariables = {
+    # z-lua
+    _ZL_CMD = "q";
+    _ZL_DATA = "${dataHome}/zlua";
+
+    # clipmenu
+    CM_LAUNCHER = "fzf";
+    CM_HISTLENGTH = 150;
   };
 }

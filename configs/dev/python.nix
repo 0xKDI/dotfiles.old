@@ -1,11 +1,30 @@
 { config, pkgs, ... }:
 
+let
+  configHome = config.xdg.configHome;
+in
 {
   home.packages = with pkgs; [
     python39
     python39Packages.ipython
     python39Packages.pip
   ];
+
+
+  programs.zsh.shellAliases = {
+    py3 = "python3";
+    py2 = "python2";
+    py = "python3";
+  };
+
+
+  home.sessionVariables = {
+    PYTHONSTARTUP = "${configHome}/pythonrc";
+
+    # Jupiter/IPython
+    IPYTHONDIR = "${configHome}/jupyter";
+    JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
+  };
 
 
   xdg.configFile."pythonrc.py".text = ''

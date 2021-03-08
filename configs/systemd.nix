@@ -40,4 +40,25 @@ in
       WantedBy = [ "timers.target" ];
     };
   };
+
+
+  programs.zsh.shellAliases = {
+    se = "sudoedit";
+
+    # systemlevel
+    start = "sudo systemctl start";
+    stop = "sudo systemctl stop";
+    restart = "sudo systemctl restart";
+    status = "sudo systemctl status";
+    enable = "sudo systemctl enable";
+    disable = "sudo systemctl disable";
+
+    # userlevel
+    ustart = "systemctl --user start";
+    ustop = "systemctl --user stop";
+    urestart = "systemctl --user restart";
+    ustatus = "systemctl --user status";
+    uenable = "systemctl --user enable";
+    udisable = "systemctl --user disable";
+  };
 }
