@@ -26,9 +26,6 @@ let
   cacheHome = config.xdg.cacheHome;
 
   homePkgs = config.home.packages;
-  hasLatex = (any (_: (_ == pkgs.latex)) homePkgs);
-  hasAWS = (any (_: (_ == pkgs.awscli2)) homePkgs);
-  hasPython = (any (_: (_ == pkgs.python39)) homePkgs);
   hasTf = (any (_: (_ == pkgs.terraform_0_14)) homePkgs);
 in
 {
@@ -111,7 +108,7 @@ in
     }).content // (mkIf config.programs.fzf.enable {
       CM_LAUNCHER = "fzf";
       CM_HISTLENGTH = 150;
-    }).content // (mkIf hasLatex {
+    }).content // (mkIf (any (_: (_ == pkgs.latex)) homePkgs) {
       TEXMFHOME = "${dataHome}/texmf";
       TEXMFVAR = "${cacheHome}/texlive/texmf-var";
       TEXMFCONFIG = "${configHome}/texlive/texmf-config";
@@ -121,10 +118,10 @@ in
       SUDO_EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
       MANWIDTH = 999;
-    }).content // (mkIf hasAWS {
+    }).content // (mkIf (any (_: (_ == pkgs.awscli2)) homePkgs) {
       AWS_SHARED_CREDENTIALS_FILE = "${configHome}/aws/credentials";
       AWS_CONFIG_FILE = "${configHome}/aws/config";
-    }).content // (mkIf hasPython {
+    }).content // (mkIf (any (_: (_ == pkgs.python39)) homePkgs) {
       PYTHONSTARTUP = "${configHome}/pythonrc";
       IPYTHONDIR = "${configHome}/jupyter";
       JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
