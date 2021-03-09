@@ -356,10 +356,10 @@ in
             nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
           '';
         }
-        {
-          plugin = nvim-treesitter;
-          config = "luafile ${nvimDir}/tree-sitter.lua";
-        }
+        # {
+        #   plugin = nvim-treesitter;
+        #   config = "luafile ${nvimDir}/tree-sitter.lua";
+        # }
         {
           plugin = nvim-lspconfig;
           config = "luafile ${nvimDir}/lspconfig.lua";
