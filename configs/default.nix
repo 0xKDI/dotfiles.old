@@ -102,23 +102,23 @@ in
       # Ruby
       GEM_HOME = "${dataHome}/gem";
       GEM_SPEC_CACHE = "${cacheHome}/gem";
-    } // (mkIf config.programs.z-lua.enable {
+    } // (optionals config.programs.z-lua.enable {
       _ZL_CMD = "q";
       _ZL_DATA = "${dataHome}/zlua";
-    }).content // (mkIf config.programs.fzf.enable {
+    }) // (optionals config.programs.fzf.enable {
       CM_LAUNCHER = "fzf";
       CM_HISTLENGTH = 150;
-    }).content // (mkIf (any (_: (_ == pkgs.latex)) homePkgs) {
+    }) // (mkIf (any (_: (_ == pkgs.latex)) homePkgs) {
       TEXMFHOME = "${dataHome}/texmf";
       TEXMFVAR = "${cacheHome}/texlive/texmf-var";
       TEXMFCONFIG = "${configHome}/texlive/texmf-config";
-    }).content // (mkIf config.programs.neovim.enable {
+    }).content // (optionals config.programs.neovim.enable {
       VISUAL = "nvim";
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
       MANWIDTH = 999;
-    }).content // (mkIf (any (_: (_ == pkgs.awscli2)) homePkgs) {
+    }) // (mkIf (any (_: (_ == pkgs.awscli2)) homePkgs) {
       AWS_SHARED_CREDENTIALS_FILE = "${configHome}/aws/credentials";
       AWS_CONFIG_FILE = "${configHome}/aws/config";
     }).content // (mkIf (any (_: (_ == pkgs.python39)) homePkgs) {
@@ -127,9 +127,6 @@ in
       JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
     }).content;
   };
-
-
-
 
 
   programs = {
@@ -596,13 +593,13 @@ in
       initExtra = ''
         autoload -Uz edit-command-line; zle -N edit-command-line
         bindkey '^ ' edit-command-line
-      '' + (mkIf config.programs.fzf.enable ''
+      '' + (optionals config.programs.fzf.enable ''
         bindkey '\eq' fzf-cd-widget
         bindkey '\er' fzf-history-widget
-      '').content + (mkIf hasTf ''
+      '') + (optionals hasTf ''
         autoload -U +X bashcompinit && bashcompinit
         complete -o nospace -C ${pkgs.terraform_0_14}/bin/terraform terraform
-      '').content;
+      '');
       shellAliases = {
         dkr = "docker";
 
@@ -611,23 +608,23 @@ in
         "..." = "cd ../..";
         "...." = "cd ../../..";
         Q = "cd ~ ; clear";
-      } // (mkIf config.xsession.enable {
+      } // (optionals config.xsession.enable {
         y = "xclip -selection c";
         p = "xclip -selection c -o";
-      }).content // (mkIf config.programs.noti.enable {
+      }) // (optionals config.programs.noti.enable {
         n = "noti";
-      }).content // (mkIf hasTf {
+      }) // (optionals hasTf {
         tf = "terraform";
-      }).content // (mkIf config.programs.neovim.enable {
+      }) // (optionals config.programs.neovim.enable {
         vim = "nvim";
         vi = "nvim";
         v = "nvim";
         fs = "f -S";
-      }).content // (mkIf (any (_: (_ == pkgs.python39)) homePkgs) {
+      }) // (optionals (any (_: (_ == pkgs.python39)) homePkgs) {
         py3 = "python3";
         py2 = "python2";
         py = "python3";
-      }).content // (mkIf (config.systemd.user.startServices == "legacy") {
+      }) // (optionals (config.systemd.user.startServices == "legacy") {
         se = "sudoedit";
 
         start = "sudo systemctl start";
@@ -643,45 +640,45 @@ in
         ustatus = "systemctl --user status";
         uenable = "systemctl --user enable";
         udisable = "systemctl --user disable";
-      }).content // (mkIf programs.firefox.enable {
+      }) // (optionals config.programs.firefox.enable {
         b = "buku --suggest";
-      }).content // (mkIf (any (_: (_ == pkgs.sxiv)) homePkgs) {
+      }) // (optionals (any (_: (_ == pkgs.sxiv)) homePkgs) {
         sxiv = "sxiv -b";
         qr = ''
           xclip -selection c -o |
           qrencode -o /tmp/grencode.png;
           devour sxiv -b /tmp/grencode.png
         '';
-      }).content // (mkIf config.programs.git.enable {
+      }) // (optionals config.programs.git.enable {
         g = "git";
         gs = "git status";
-      }).content // (mkIf config.programs.zathura.enable {
+      }) // (optionals config.programs.zathura.enable {
         zt = "devour zathura";
-      }).content // (mkIf (any (_: (_ == pkgs.kubectl)) homePkgs) {
+      }) // (optionals (any (_: (_ == pkgs.kubectl)) homePkgs) {
         k = "kubectl";
         ka = "kubectl apply";
         kg = "kubectl get";
         kd = "kubectl describe";
         ke = "kubectl explain";
         kdel = "kubectl delete";
-      }).content // (mkIf (any (_: (_ == pkgs.dust)) homePkgs) {
+      }) // (optionals (any (_: (_ == pkgs.du-dust)) homePkgs) {
         dst = "dust -r";
-      }).content // (mkIf (any (_: (_ == pkgs.dust)) homePkgs) {
+      }) // (optionals (any (_: (_ == pkgs.ddgr)) homePkgs) {
         s = "ddgr";
-      }).content // (mkIf (any (_: (_ == pkgs.transmission)) homePkgs) {
+      }) // (optionals (any (_: (_ == pkgs.transmission)) homePkgs) {
         trr = "transmission-remote";
-      }).content // (mkIf (any (_: (_ == pkgs.exa)) homePkgs) {
+      }) // (optionals (any (_: (_ == pkgs.exa)) homePkgs) {
         l = "exa -al --group-directories-first";
         ll = "exa -a --group-directories-first";
         lt = "exa -a --tree --group-directories-first";
         L = "exa -l --group-directories-first";
-      }).content;
+      });
       plugins = with pkgs; [
         {
           name = "fast-syntax-highlighting";
           src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
         }
-        (mkIf config.programs.fzf.enable {
+        (optionals config.programs.fzf.enable {
           name = "fzf-tab";
           src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
         })
@@ -690,7 +687,7 @@ in
           src = "${pkgs.zsh-autopair}/share/zsh/zsh-autopair";
           file = "autopair.zsh";
         }
-        (mkIf config.xsession.enable {
+        (optionals config.xsession.enable {
           name = "zsh-system-clipboard";
           src = "${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard";
           file = "zsh-system-clipboard.zsh";
