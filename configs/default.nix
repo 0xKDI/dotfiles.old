@@ -26,6 +26,7 @@ let
   cacheHome = config.xdg.cacheHome;
 
   homePkgs = config.home.packages;
+  # TODO: doesn't work properly, rewrite
   hasTf = (any (_: (_ == pkgs.terraform_0_14)) homePkgs);
 in
 {
@@ -1181,7 +1182,7 @@ in
         $clean_ext = "_minted-%R/* _minted-%R";
       '';
       "nixpkgs/config.nix".text = ''
-        { allowunfree = true; }
+        { allowUnfree = true; }
       '';
       "nix/nix.conf".text = ''
         experimental-features = nix-command flakes ca-references
