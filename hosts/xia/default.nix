@@ -85,6 +85,7 @@ in
           python38Packages.pygments
           corefonts # Microsoft fonts
           pandoc
+          nixpkgs-fmt
         ];
       };
       programs = {
