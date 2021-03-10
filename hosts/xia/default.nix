@@ -49,6 +49,7 @@ in
           openssl
           tcpdump
           acpi
+          inotify-tools
 
           syncthing-cli #stcli
           gnumake
