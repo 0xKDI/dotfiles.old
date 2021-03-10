@@ -84,6 +84,7 @@ in
           latex
           python38Packages.pygments
           corefonts # Microsoft fonts
+          pandoc
         ];
       };
       programs = {
