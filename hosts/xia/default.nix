@@ -5,7 +5,7 @@ let
   host = baseNameOf ./.;
   uid = 1000;
   home = "/home/${user}";
-  stateVersion = "20.09";
+  stateVersion = "21.05";
 in
 {
   imports = [
