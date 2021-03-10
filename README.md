@@ -1,4 +1,8 @@
-# Installation
+# My dotfiles
+<img src="screenshots/default.png" width="100%" />
+
+Always messy, always WIP.
+## Installation
 
 Configure the wifi
 ```sh
@@ -21,3 +25,6 @@ Install nixos
 mv dotfiles /mnt/etc/nixos
 nixos-install --root /mnt --flake /mnt/etc/nixos#xia
 ```
+## Inspiration
+- https://github.com/hlissner/dotfiles
+- https://github.com/mjlbach/nix-dotfiles
