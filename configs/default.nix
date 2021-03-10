@@ -599,6 +599,7 @@ in
         bindkey '\er' fzf-history-widget
       '') + (optionals hasTf ''
         autoload -U +X bashcompinit && bashcompinit
+        eval "$(pandoc --bash-completion)"
         complete -o nospace -C ${pkgs.terraform_0_14}/bin/terraform terraform
       '');
       shellAliases = {
