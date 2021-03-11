@@ -26,8 +26,8 @@ let
   cacheHome = config.xdg.cacheHome;
 
   homePkgs = config.home.packages;
-  # TODO: doesn't work properly, rewrite
-  hasTf = (any (_: (_ == pkgs.terraform_0_14)) homePkgs);
+  hasTf = (any (_: _ == pkgs.terraform_0_14) homePkgs);
+  hasPython = (any (_: _ == pkgs.python39) homePkgs);
 in
 {
   home = {
@@ -73,9 +73,10 @@ in
       noto-fonts-cjk
       noto-fonts-emoji
     ];
-    file = {
+    file = optionalAttrs config.programs.firefox.enable {
       ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
       ".local/share/tridactyl/native_main.py".source = "${pkgs.tridactyl-native}/share/tridactyl/native_main.py";
+    } // optionalAttrs hasTf {
       ".terraformrc".text = ''
         plugin_cache_dir = "$HOME/.terraform.d/plugin-cache"
       '';
@@ -85,7 +86,6 @@ in
       DOCKER_CONFIG = "${configHome}/docker";
 
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
-      DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
 
       # NOTE: doesn't work, 
       # move .compose_cache out of $HOME
@@ -103,30 +103,37 @@ in
       # Ruby
       GEM_HOME = "${dataHome}/gem";
       GEM_SPEC_CACHE = "${cacheHome}/gem";
-    } // (optionals config.programs.z-lua.enable {
+    } // optionalAttrs config.programs.z-lua.enable {
       _ZL_CMD = "q";
       _ZL_DATA = "${dataHome}/zlua";
-    }) // (optionals config.programs.fzf.enable {
+    } // optionalAttrs config.programs.fzf.enable {
       CM_LAUNCHER = "fzf";
       CM_HISTLENGTH = 150;
-    }) // (mkIf (any (_: (_ == pkgs.latex)) homePkgs) {
-      TEXMFHOME = "${dataHome}/texmf";
-      TEXMFVAR = "${cacheHome}/texlive/texmf-var";
-      TEXMFCONFIG = "${configHome}/texlive/texmf-config";
-    }).content // (optionals config.programs.neovim.enable {
+    } // optionalAttrs config.programs.neovim.enable {
       VISUAL = "nvim";
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
       MANPAGER = "nvim +Man!";
       MANWIDTH = 999;
-    }) // (mkIf (any (_: (_ == pkgs.awscli2)) homePkgs) {
+    } // optionalAttrs true {
+      DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
+    } // optionalAttrs true {
+      # FIXME: for some reason it doesn't work with sessionVariables
+      # when checking against a pkg
+      # optionalAttrs (any (_: _ == pkgs.latex) homePkgs)
+      TEXMFHOME = "${dataHome}/texmf";
+      TEXMFVAR = "${cacheHome}/texlive/texmf-var";
+      TEXMFCONFIG = "${configHome}/texlive/texmf-config";
+    } // optionalAttrs true {
+      # optionalAttrs (any (_: _ == pkgs.awscli2) homePkgs)
       AWS_SHARED_CREDENTIALS_FILE = "${configHome}/aws/credentials";
       AWS_CONFIG_FILE = "${configHome}/aws/config";
-    }).content // (mkIf (any (_: (_ == pkgs.python39)) homePkgs) {
-      PYTHONSTARTUP = "${configHome}/pythonrc";
+    } // optionalAttrs true {
+      # optionalAttrs hasPython
       IPYTHONDIR = "${configHome}/jupyter";
+      PYTHONSTARTUP = "${configHome}/pythonrc";
       JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
-    }).content;
+    };
   };
 
 
@@ -303,8 +310,7 @@ in
         nodePackages.yaml-language-server
         texlab
         terraform-ls
-        gopls
-      ];
+      ] ++ optionals config.programs.go.enable [ gopls ];
       extraConfig = builtins.readFile "${nvimDir}/init.vim";
       plugins = with pkgs.vimPlugins; [
         {
@@ -594,14 +600,15 @@ in
       initExtra = ''
         autoload -Uz edit-command-line; zle -N edit-command-line
         bindkey '^ ' edit-command-line
-      '' + (optionals config.programs.fzf.enable ''
+      '' + optionalString config.programs.fzf.enable ''
         bindkey '\eq' fzf-cd-widget
         bindkey '\er' fzf-history-widget
-      '') + (optionals hasTf ''
+      '' + optionalString hasTf ''
         autoload -U +X bashcompinit && bashcompinit
-        eval "$(pandoc --bash-completion)"
         complete -o nospace -C ${pkgs.terraform_0_14}/bin/terraform terraform
-      '');
+      '' + optionalString (any ( _ : _ == pkgs.pandoc ) homePkgs) ''
+        eval "$(pandoc --bash-completion)"
+        '';
       shellAliases = {
         dkr = "docker";
 
@@ -610,23 +617,23 @@ in
         "..." = "cd ../..";
         "...." = "cd ../../..";
         Q = "cd ~ ; clear";
-      } // (optionals config.xsession.enable {
+      } // optionalAttrs config.xsession.enable {
         y = "xclip -selection c";
         p = "xclip -selection c -o";
-      }) // (optionals config.programs.noti.enable {
+      } // optionalAttrs config.programs.noti.enable {
         n = "noti";
-      }) // (optionals hasTf {
+      } // optionalAttrs hasTf {
         tf = "terraform";
-      }) // (optionals config.programs.neovim.enable {
+      } // optionalAttrs config.programs.neovim.enable {
         vim = "nvim";
         vi = "nvim";
         v = "nvim";
         fs = "f -S";
-      }) // (optionals (any (_: (_ == pkgs.python39)) homePkgs) {
+      } // optionalAttrs hasPython {
         py3 = "python3";
         py2 = "python2";
         py = "python3";
-      }) // (optionals (config.systemd.user.startServices == "legacy") {
+      } // optionalAttrs (config.systemd.user.startServices == "legacy") {
         se = "sudoedit";
 
         start = "sudo systemctl start";
@@ -642,39 +649,39 @@ in
         ustatus = "systemctl --user status";
         uenable = "systemctl --user enable";
         udisable = "systemctl --user disable";
-      }) // (optionals config.programs.firefox.enable {
+      } // optionalAttrs config.programs.firefox.enable {
         b = "buku --suggest";
-      }) // (optionals (any (_: (_ == pkgs.sxiv)) homePkgs) {
+      } // optionalAttrs (any (_ : _ == pkgs.sxiv) homePkgs) {
         sxiv = "sxiv -b";
         qr = ''
           xclip -selection c -o |
           qrencode -o /tmp/grencode.png;
           devour sxiv -b /tmp/grencode.png
         '';
-      }) // (optionals config.programs.git.enable {
+      } // optionalAttrs config.programs.git.enable {
         g = "git";
         gs = "git status";
-      }) // (optionals config.programs.zathura.enable {
+      } // optionalAttrs config.programs.zathura.enable {
         zt = "devour zathura";
-      }) // (optionals (any (_: (_ == pkgs.kubectl)) homePkgs) {
+      } // optionalAttrs (any (_: _ == pkgs.kubectl) homePkgs) {
         k = "kubectl";
         ka = "kubectl apply";
         kg = "kubectl get";
         kd = "kubectl describe";
         ke = "kubectl explain";
         kdel = "kubectl delete";
-      }) // (optionals (any (_: (_ == pkgs.du-dust)) homePkgs) {
+      } // optionalAttrs (any (_: _ == pkgs.du-dust) homePkgs) {
         dst = "dust -r";
-      }) // (optionals (any (_: (_ == pkgs.ddgr)) homePkgs) {
+      } // optionalAttrs (any (_: _ == pkgs.ddgr) homePkgs) {
         s = "ddgr";
-      }) // (optionals (any (_: (_ == pkgs.transmission)) homePkgs) {
+      } // optionalAttrs (any (_: _ == pkgs.transmission) homePkgs) {
         trr = "transmission-remote";
-      }) // (optionals (any (_: (_ == pkgs.exa)) homePkgs) {
+      } // optionalAttrs (any (_: _ == pkgs.exa) homePkgs) {
         l = "exa -al --group-directories-first";
         ll = "exa -a --group-directories-first";
         lt = "exa -a --tree --group-directories-first";
         L = "exa -l --group-directories-first";
-      });
+      };
       plugins = with pkgs; [
         {
           name = "fast-syntax-highlighting";
