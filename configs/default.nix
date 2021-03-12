@@ -39,6 +39,7 @@ in
       wget
       exa
       fd
+      sd
       ripgrep
       progress
       tree
