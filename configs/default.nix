@@ -118,18 +118,18 @@ in
       MANWIDTH = 999;
     } // optionalAttrs true {
       DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
-    } // optionalAttrs true {
+    } // {
       # FIXME: for some reason it doesn't work with sessionVariables
       # when checking against a pkg
       # optionalAttrs (any (_: _ == pkgs.latex) homePkgs)
       TEXMFHOME = "${dataHome}/texmf";
       TEXMFVAR = "${cacheHome}/texlive/texmf-var";
       TEXMFCONFIG = "${configHome}/texlive/texmf-config";
-    } // optionalAttrs true {
+    } // {
       # optionalAttrs (any (_: _ == pkgs.awscli2) homePkgs)
       AWS_SHARED_CREDENTIALS_FILE = "${configHome}/aws/credentials";
       AWS_CONFIG_FILE = "${configHome}/aws/config";
-    } // optionalAttrs true {
+    } // {
       # optionalAttrs hasPython
       IPYTHONDIR = "${configHome}/jupyter";
       PYTHONSTARTUP = "${configHome}/pythonrc";
