@@ -615,8 +615,10 @@ in
 
         mkdir = "mkdir -p";
 
-        "..." = "cd ../..";
-        "...." = "cd ../../..";
+        "2." = "cd ../..";
+        "3." = "cd ../../..";
+        "4." = "cd ../../../..";
+        "5." = "cd ../../../../..";
         Q = "cd ~ ; clear";
       } // optionalAttrs config.xsession.enable {
         y = "xclip -selection c";
