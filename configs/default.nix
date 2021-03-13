@@ -1174,7 +1174,7 @@ in
         set scrollduration 20
         set allowautofocus false
         set keytranslatemap {"о":"j", "л":"k"}
-        set editorcmd ${pkgs.xst}/bin/xst -c nvimedit -e ${pkgs.neovim}/bin/nvim %f "+normal!%lGzv%c|"
+        set editorcmd ${pkgs.xst}/bin/xst -c nvimedit -e ${pkgs.neovim-nightly}/bin/nvim %f "+normal!%lGzv%c|"
 
         " C-c C-p
         " make d take you to the tab you were just on (I find it much less confusing)
