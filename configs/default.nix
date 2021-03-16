@@ -696,6 +696,10 @@ in
           name = "fast-syntax-highlighting";
           src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
         }
+        {
+          name = "zsh-completions";
+          src = "${pkgs.zsh-completions}/share/zsh/site-functions";
+        }
         (optionals config.programs.fzf.enable {
           name = "fzf-tab";
           src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
