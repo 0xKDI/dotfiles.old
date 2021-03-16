@@ -82,7 +82,13 @@ in
         plugin_cache_dir = "$HOME/.terraform.d/plugin-cache"
       '';
     };
-    sessionPath = [ "${bin}" ];
+    sessionPath =
+      let
+        go = config.programs.go;
+      in
+      [ "${bin}" ] ++ optionals go.enable [
+        "${home}/${go.goPath}/bin" 
+      ];
     sessionVariables = {
       DOCKER_CONFIG = "${configHome}/docker";
 
