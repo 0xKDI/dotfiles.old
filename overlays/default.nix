@@ -51,5 +51,4 @@ self: super:
     upquote
     totcount;
   };
-
 }
