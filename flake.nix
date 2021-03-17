@@ -3,7 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:rycee/home-manager";
+    home-manager = {
+      url = "github:rycee/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nur.url = "github:nix-community/NUR";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-on-droid.url = "github:t184256/nix-on-droid/master";
