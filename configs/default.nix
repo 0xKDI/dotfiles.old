@@ -74,10 +74,11 @@ in
       noto-fonts-cjk
       noto-fonts-emoji
     ];
-    file = optionalAttrs config.programs.firefox.enable {
-      ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
-      ".local/share/tridactyl/native_main.py".source = "${pkgs.tridactyl-native}/share/tridactyl/native_main.py";
-    } // optionalAttrs hasTf {
+    file = optionalAttrs config.programs.firefox.enable
+      {
+        ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
+        ".local/share/tridactyl/native_main.py".source = "${pkgs.tridactyl-native}/share/tridactyl/native_main.py";
+      } // optionalAttrs hasTf {
       ".terraformrc".text = ''
         plugin_cache_dir = "$HOME/.terraform.d/plugin-cache"
       '';
@@ -87,7 +88,7 @@ in
         go = config.programs.go;
       in
       [ "${bin}" ] ++ optionals go.enable [
-        "${home}/${go.goPath}/bin" 
+        "${home}/${go.goPath}/bin"
       ];
     sessionVariables = {
       DOCKER_CONFIG = "${configHome}/docker";
@@ -613,9 +614,9 @@ in
       '' + optionalString hasTf ''
         autoload -U +X bashcompinit && bashcompinit
         complete -o nospace -C ${pkgs.terraform_0_14}/bin/terraform terraform
-      '' + optionalString (any ( _ : _ == pkgs.pandoc ) homePkgs) ''
+      '' + optionalString (any (_: _ == pkgs.pandoc) homePkgs) ''
         eval "$(pandoc --bash-completion)"
-        '';
+      '';
       shellAliases = {
         dkr = "docker";
 
@@ -660,7 +661,7 @@ in
         udisable = "systemctl --user disable";
       } // optionalAttrs config.programs.firefox.enable {
         b = "buku --suggest";
-      } // optionalAttrs (any (_ : _ == pkgs.sxiv) homePkgs) {
+      } // optionalAttrs (any (_: _ == pkgs.sxiv) homePkgs) {
         sxiv = "sxiv -b";
         qr = ''
           xclip -selection c -o |
