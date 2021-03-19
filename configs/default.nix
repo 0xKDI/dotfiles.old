@@ -701,21 +701,19 @@ in
           name = "zsh-completions";
           src = "${pkgs.zsh-completions}/share/zsh/site-functions";
         }
-        (optionals config.programs.fzf.enable {
-          name = "fzf-tab";
-          src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
-        })
         {
           name = "zsh-autopair";
           src = "${pkgs.zsh-autopair}/share/zsh/zsh-autopair";
           file = "autopair.zsh";
         }
-        (optionals config.xsession.enable {
-          name = "zsh-system-clipboard";
-          src = "${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard";
-          file = "zsh-system-clipboard.zsh";
-        })
-      ];
+      ] ++ optionals config.programs.fzf.enable [{
+        name = "fzf-tab";
+        src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+      }] ++ optionals config.xsession.enable [{
+        name = "zsh-system-clipboard";
+        src = "${pkgs.zsh-system-clipboard}/share/zsh/zsh-system-clipboard";
+        file = "zsh-system-clipboard.zsh";
+      }];
     };
   };
 
