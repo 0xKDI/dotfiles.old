@@ -1151,25 +1151,15 @@ in
       };
     };
     configFile = {
-      "pythonrc.py".text = ''
-        #!/usr/bin/env python3
-
-          import atexit
-          import os
-          import readline
-
-          histfile = os.path.join(os.path.expanduser("~"), ".local/share/python_history")
-          try:
-            readline.read_history_file(histfile)
-            readline.set_history_length(1000)
-          except FileNotFoundError:
-            pass
-
-          atexit.register(readline.write_history_file, histfile)
+      "nixpkgs/config.nix".text = ''
+        { allowUnfree = true; }
       '';
-      "nvim/init.vim".text = "let g:polyglot_disabled = ['yaml']";
-      "sxiv/exec/key-handler".source = ./sxiv/key-handler;
-      "sxiv/exec/image-info".source = ./sxiv/image-info;
+      "nix/nix.conf".text = ''
+        experimental-features = nix-command flakes ca-references
+        substituters = https://cache.nixos.org https://nix-community.cachix.org
+        trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+      '';
+    } // optionalAttrs config.programs.firefox.enable {
       "tridactyl/tridactylrc".text = ''
         colourscheme quakelight
         sanitise tridactyllocal tridactylsync
@@ -1193,6 +1183,24 @@ in
         command hint_focus hint -;
         bind ;C composite hint_focus; !s xdotool key Menu
       '';
+    } // optionalAttrs hasPython {
+      "pythonrc.py".text = ''
+        #!/usr/bin/env python3
+
+          import atexit
+          import os
+          import readline
+
+          histfile = os.path.join(os.path.expanduser("~"), ".local/share/python_history")
+          try:
+            readline.read_history_file(histfile)
+            readline.set_history_length(1000)
+          except FileNotFoundError:
+            pass
+
+          atexit.register(readline.write_history_file, histfile)
+      '';
+    } // optionalAttrs (any (_: _ == pkgs.latex) homePkgs) {
       "latexmk/latexmkrc".text = ''
         $xelatex = "xelatex --shell-escape %O %S";
         $pdf_mode = 5;
@@ -1201,14 +1209,11 @@ in
         $pdf_previewer = "zathura %S";
         $clean_ext = "_minted-%R/* _minted-%R";
       '';
-      "nixpkgs/config.nix".text = ''
-        { allowUnfree = true; }
-      '';
-      "nix/nix.conf".text = ''
-        experimental-features = nix-command flakes ca-references
-        substituters = https://cache.nixos.org https://nix-community.cachix.org
-        trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-      '';
+    } // optionalAttrs (any (_: _ == pkgs.sxiv) homePkgs) {
+      "sxiv/exec/key-handler".source = ./sxiv/key-handler;
+      "sxiv/exec/image-info".source = ./sxiv/image-info;
+    } // optionalAttrs config.programs.neovim.enable {
+      "nvim/init.vim".text = "let g:polyglot_disabled = ['yaml']";
     };
   };
 
