@@ -255,7 +255,10 @@ in
 
 
   virtualisation = {
-    virtualbox.host.enable = true;
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
     docker = {
       enable = true;
       enableOnBoot = false;
