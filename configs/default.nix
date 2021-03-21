@@ -25,9 +25,9 @@ let
   configHome = config.xdg.configHome;
   cacheHome = config.xdg.cacheHome;
 
-  homePkgs = config.home.packages;
-  hasTf = (any (_: _ == pkgs.terraform_0_14) homePkgs);
-  hasPython = (any (_: _ == pkgs.python39) homePkgs);
+  has = pkg: (any (_: _ == pkg) config.home.packages);
+  hasTf = has pkgs.terraform_0_14;
+  hasPython = has pkgs.python39;
 in
 {
   home = {
@@ -614,9 +614,9 @@ in
       '' + optionalString hasTf ''
         autoload -U +X bashcompinit && bashcompinit
         complete -o nospace -C ${pkgs.terraform_0_14}/bin/terraform terraform
-      '' + optionalString (any (_: _ == pkgs.pandoc) homePkgs) ''
+      '' + optionalString (has pkgs.pandoc) ''
         eval "$(pandoc --bash-completion)"
-      '' + optionalString (any (_: _ == pkgs.minikube) homePkgs) ''
+      '' + optionalString (has pkgs.minikube) ''
         eval $(minikube completion zsh)
       '';
       shellAliases = {
@@ -663,7 +663,7 @@ in
         udisable = "systemctl --user disable";
       } // optionalAttrs config.programs.firefox.enable {
         b = "buku --suggest";
-      } // optionalAttrs (any (_: _ == pkgs.sxiv) homePkgs) {
+      } // optionalAttrs (has pkgs.sxiv) {
         sxiv = "sxiv -b";
         qr = ''
           xclip -selection c -o |
@@ -675,20 +675,20 @@ in
         gs = "git status";
       } // optionalAttrs config.programs.zathura.enable {
         zt = "devour zathura";
-      } // optionalAttrs (any (_: _ == pkgs.kubectl) homePkgs) {
+      } // optionalAttrs (has pkgs.kubectl) {
         k = "kubectl";
         ka = "kubectl apply";
         kg = "kubectl get";
         kd = "kubectl describe";
         ke = "kubectl explain";
         kdel = "kubectl delete";
-      } // optionalAttrs (any (_: _ == pkgs.du-dust) homePkgs) {
+      } // optionalAttrs (has pkgs.du-dust) {
         dst = "dust -r";
-      } // optionalAttrs (any (_: _ == pkgs.ddgr) homePkgs) {
+      } // optionalAttrs (has pkgs.ddgr) {
         s = "ddgr";
-      } // optionalAttrs (any (_: _ == pkgs.transmission) homePkgs) {
+      } // optionalAttrs (has pkgs.transmission) {
         trr = "transmission-remote";
-      } // optionalAttrs (any (_: _ == pkgs.exa) homePkgs) {
+      } // optionalAttrs (has pkgs.exa) {
         l = "exa -al --group-directories-first";
         ll = "exa -a --group-directories-first";
         lt = "exa -a --tree --group-directories-first";
@@ -1202,7 +1202,7 @@ in
 
           atexit.register(readline.write_history_file, histfile)
       '';
-    } // optionalAttrs (any (_: _ == pkgs.latex) homePkgs) {
+    } // optionalAttrs (has pkgs.latex) {
       "latexmk/latexmkrc".text = ''
         $xelatex = "xelatex --shell-escape %O %S";
         $pdf_mode = 5;
@@ -1211,7 +1211,7 @@ in
         $pdf_previewer = "zathura %S";
         $clean_ext = "_minted-%R/* _minted-%R";
       '';
-    } // optionalAttrs (any (_: _ == pkgs.sxiv) homePkgs) {
+    } // optionalAttrs (has pkgs.sxiv) {
       "sxiv/exec/key-handler".source = ./sxiv/key-handler;
       "sxiv/exec/image-info".source = ./sxiv/image-info;
     } // optionalAttrs config.programs.neovim.enable {
