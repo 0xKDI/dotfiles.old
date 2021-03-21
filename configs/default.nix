@@ -616,6 +616,8 @@ in
         complete -o nospace -C ${pkgs.terraform_0_14}/bin/terraform terraform
       '' + optionalString (any (_: _ == pkgs.pandoc) homePkgs) ''
         eval "$(pandoc --bash-completion)"
+      '' + optionalString (any (_: _ == pkgs.minikube) homePkgs) ''
+        eval $(minikube completion zsh)
       '';
       shellAliases = {
         dkr = "docker";
