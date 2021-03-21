@@ -18,6 +18,8 @@ endif
 set updatetime=300
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 
+set lazyredraw " fix slow scrolling
+
 " tabs
 set tabstop=4
 set softtabstop=4
