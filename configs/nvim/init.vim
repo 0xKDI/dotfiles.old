@@ -31,7 +31,7 @@ autocmd FileType help wincmd L
 autocmd BufNewFile,BufRead buku-edit-* set filetype=conf
 autocmd BufNewFile,BufRead .envrc set filetype=sh
 
-" set expandtab
+set expandtab
 " set smartindent
 set splitbelow
 set splitright
