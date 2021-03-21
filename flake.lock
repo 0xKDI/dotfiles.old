@@ -124,7 +124,9 @@
         "flake-utils": "flake-utils",
         "gitignore": "gitignore",
         "neovim-nightly": "neovim-nightly",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
         "pre-commit-hooks": "pre-commit-hooks"
       },
       "locked": {
@@ -145,7 +147,9 @@
       "inputs": {
         "flake-utils": "flake-utils_2",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1610903206,
@@ -163,36 +167,6 @@
       }
     },
     "nixpkgs": {
-      "locked": {
-        "lastModified": 1615949961,
-        "narHash": "sha256-4H/yj5nXo/BztcYUyAaz5NkNmF1Gb02nxeQ6C2w95ig=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "8e1891d5b8d0b898db8890ddab73141f0cd3c2bc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1615289696,
-        "narHash": "sha256-eh9DWYEjgViRh+Cs9OjUcQdkHsFEuC2KA/pXyuXgHyw=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "a262124577f4e14a83cdb9125752bffb037b019e",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs_3": {
       "locked": {
         "lastModified": 1614792312,
         "narHash": "sha256-LSUtjvYOxcSP1ewymGYp4AawiWDISKZHuCTxsaXir4k=",
@@ -244,7 +218,7 @@
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-on-droid": "nix-on-droid",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs",
         "nur": "nur"
       }
     }
