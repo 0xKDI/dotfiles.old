@@ -683,7 +683,7 @@ in
         kg = "kubectl get";
         kd = "kubectl describe";
         ke = "kubectl explain";
-        kdel = "kubectl delete";
+        kdl = "kubectl delete";
       } // optionalAttrs (has pkgs.du-dust) {
         dst = "dust -r";
       } // optionalAttrs (has pkgs.ddgr) {
