@@ -619,7 +619,9 @@ in
         eval $(minikube completion zsh)
       '' + optionalString (has pkgs.kops) ''
         source <(kops completion zsh) # doesn't work with eval
-        '';
+      '' + optionalString config.programs.aws.enable ''
+        source ${pkgs.awscli2}/share/zsh/site-functions/aws_zsh_completer.sh
+      '';
       shellAliases = {
         dkr = "docker";
 
