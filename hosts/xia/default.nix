@@ -73,10 +73,6 @@ in
           awscli2
           doctl
 
-          python39
-          python39Packages.ipython
-          python39Packages.pip
-
           terraform_0_14
           terraform-ls
 
@@ -113,6 +109,7 @@ in
         password-store.enable = true;
         zathura.enable = true;
         zsh.enable = true;
+        python.enable = true;
       };
       services = {
         gpg-agent.enable = true;

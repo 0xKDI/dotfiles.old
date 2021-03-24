@@ -27,9 +27,13 @@ let
 
   has = pkg: (any (_: _ == pkg) config.home.packages);
   hasTf = has pkgs.terraform_0_14;
-  hasPython = has pkgs.python39;
 in
 {
+  imports = [
+    ../modules
+  ];
+
+
   home = {
     packages = with pkgs; [
       coreutils
@@ -136,8 +140,7 @@ in
       # optionalAttrs (any (_: _ == pkgs.awscli2) homePkgs)
       AWS_SHARED_CREDENTIALS_FILE = "${configHome}/aws/credentials";
       AWS_CONFIG_FILE = "${configHome}/aws/config";
-    } // {
-      # optionalAttrs hasPython
+    } // optionalAttrs config.programs.python.enable {
       IPYTHONDIR = "${configHome}/jupyter";
       PYTHONSTARTUP = "${configHome}/pythonrc";
       JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
@@ -643,7 +646,7 @@ in
         vi = "nvim";
         v = "nvim";
         fs = "f -S";
-      } // optionalAttrs hasPython {
+      } // optionalAttrs config.programs.python.enable {
         py3 = "python3";
         py2 = "python2";
         py = "python3";
@@ -1187,7 +1190,7 @@ in
         command hint_focus hint -;
         bind ;C composite hint_focus; !s xdotool key Menu
       '';
-    } // optionalAttrs hasPython {
+    } // optionalAttrs config.programs.python.enable {
       "pythonrc.py".text = ''
         #!/usr/bin/env python3
 
