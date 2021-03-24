@@ -68,6 +68,7 @@ in
           minikube
           kubectl
           kubernetes-helm
+          kops
 
           awscli2
           doctl

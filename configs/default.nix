@@ -618,7 +618,9 @@ in
         eval "$(pandoc --bash-completion)"
       '' + optionalString (has pkgs.minikube) ''
         eval $(minikube completion zsh)
-      '';
+      '' + optionalString (has pkgs.kops) ''
+        source <(kops completion zsh) # doesn't work with eval
+        '';
       shellAliases = {
         dkr = "docker";
 
