@@ -129,10 +129,7 @@ in
       MANWIDTH = 999;
     } // optionalAttrs true {
       DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
-    } // {
-      # FIXME: for some reason it doesn't work with sessionVariables
-      # when checking against a pkg
-      # optionalAttrs (any (_: _ == pkgs.latex) homePkgs)
+    } // optionalAttrs config.programs.latex.enable {
       TEXMFHOME = "${dataHome}/texmf";
       TEXMFVAR = "${cacheHome}/texlive/texmf-var";
       TEXMFCONFIG = "${configHome}/texlive/texmf-config";
@@ -1207,7 +1204,7 @@ in
 
           atexit.register(readline.write_history_file, histfile)
       '';
-    } // optionalAttrs (has pkgs.latex) {
+    } // optionalAttrs config.programs.latex.enable {
       "latexmk/latexmkrc".text = ''
         $xelatex = "xelatex --shell-escape %O %S";
         $pdf_mode = 5;

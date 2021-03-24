@@ -79,7 +79,6 @@ in
           sxiv
           qrencode # for QR-code
 
-          latex
           python38Packages.pygments
           corefonts # Microsoft fonts
           pandoc
@@ -110,6 +109,7 @@ in
         zathura.enable = true;
         zsh.enable = true;
         python.enable = true;
+        latex.enable = true;
       };
       services = {
         gpg-agent.enable = true;
