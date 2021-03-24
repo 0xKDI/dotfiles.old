@@ -133,8 +133,7 @@ in
       TEXMFHOME = "${dataHome}/texmf";
       TEXMFVAR = "${cacheHome}/texlive/texmf-var";
       TEXMFCONFIG = "${configHome}/texlive/texmf-config";
-    } // {
-      # optionalAttrs (any (_: _ == pkgs.awscli2) homePkgs)
+    } // optionalAttrs config.programs.aws.enable {
       AWS_SHARED_CREDENTIALS_FILE = "${configHome}/aws/credentials";
       AWS_CONFIG_FILE = "${configHome}/aws/config";
     } // optionalAttrs config.programs.python.enable {

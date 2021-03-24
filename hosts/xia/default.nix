@@ -70,7 +70,6 @@ in
           kubernetes-helm
           kops
 
-          awscli2
           doctl
 
           terraform_0_14
@@ -110,6 +109,7 @@ in
         zsh.enable = true;
         python.enable = true;
         latex.enable = true;
+        aws.enable = true;
       };
       services = {
         gpg-agent.enable = true;
