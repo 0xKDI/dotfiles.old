@@ -60,10 +60,10 @@ function rebuild_machine() {
 function update() {
     if [[ "$@" ]]; then
         for flake in $@; do
-            run noti nix flake update --update-input "$flake" "$FLAKE"
+            run noti nix flake update "$flake" "$FLAKE"
         done
     else
-        run noti nix flake update --recreate-lock-file "$FLAKE"
+        run noti nix flake update  "$FLAKE"
     fi
 }
 
