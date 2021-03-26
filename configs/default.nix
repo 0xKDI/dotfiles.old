@@ -115,9 +115,6 @@ in
       # Ruby
       GEM_HOME = "${dataHome}/gem";
       GEM_SPEC_CACHE = "${cacheHome}/gem";
-    } // optionalAttrs config.programs.z-lua.enable {
-      _ZL_CMD = "q";
-      _ZL_DATA = "${dataHome}/zlua";
     } // optionalAttrs config.programs.fzf.enable {
       CM_LAUNCHER = "fzf";
       CM_HISTLENGTH = 150;
@@ -153,9 +150,9 @@ in
         theme = "Dracula";
       };
     };
-    z-lua = {
+    zoxide = {
       enableZshIntegration = true;
-      options = [ "fzf" ];
+      options = [ "--cmd q" ];
     };
     fzf = {
       enableZshIntegration = true;

@@ -93,7 +93,7 @@ in
         noti.enable = true;
         go.enable = true;
         bat.enable = true;
-        z-lua.enable = true;
+        zoxide.enable = true;
         fzf.enable = true;
         direnv.enable = true;
         starship.enable = true;
