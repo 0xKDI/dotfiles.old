@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Dedication and Love
+
+cd "$HOME/bks"
+book=$(fd .pdf | fzf)
+[[ -n $book ]] && setsid zathura "$book" &>/dev/null &
+sleep 0.01
+exit 0
