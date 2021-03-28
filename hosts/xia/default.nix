@@ -24,7 +24,7 @@ in
         homeDirectory = "${home}";
         packages = with pkgs; [
           xst
-          discord
+          stable.discord
           drawio
           tdesktop
           libreoffice-fresh
