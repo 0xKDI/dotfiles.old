@@ -5,5 +5,6 @@
     ./aws.nix
     ./python.nix
     ./latex.nix
+    ./sxhkd.nix
   ];
 }
