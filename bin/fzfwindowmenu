@@ -31,7 +31,7 @@ function get_window_id() {
 
 window_ids=$(bspc query -N)
 get_xclients
-chosen=$(printf '%s\n' "${windows[@]}" | fzf)
+chosen=$(printf '%s\n' "${windows[@]}" | fzfmenu)
 get_window_id
 bspc node "$window_id".window --focus
 

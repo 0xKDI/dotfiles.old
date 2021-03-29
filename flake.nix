@@ -6,7 +6,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/release-20.09";
     home-manager = {
-      url = "github:rycee/home-manager";
+      # url = "github:nix-community/home-manager";
+      url = "github:0qq/home-manager/sxhkd-fix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur = {

@@ -7,6 +7,6 @@ sqlite3 -separator $'\t' "$HOME/.local/share/buku/bookmarks.db" "SELECT id,URL,m
         else
             printf "%s \t\x1b[38;5;124m%s \t\x1b[38;5;208m%s\033[0m\n", $2, $4, $3
     }' |
-    fzf --tabstop 1 --ansi -d $'\t' --with-nth=2,3 \
+    fzfmenu --tabstop 1 --ansi -d $'\t' --with-nth=2,3 \
         --preview-window='bottom:10%' --preview 'printf "\x1b[38;5;117m%s\033[0m\n" {1}' |
         awk '{print $1}' | xargs -d '\n' -I{} -n1 -r xdg-open '{}'
