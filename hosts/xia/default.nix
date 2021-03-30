@@ -110,6 +110,7 @@ in
         python.enable = true;
         latex.enable = true;
         aws.enable = true;
+        sxhkd.enable = true;
       };
       services = {
         gpg-agent.enable = true;
