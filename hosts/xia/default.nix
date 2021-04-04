@@ -121,7 +121,6 @@ in
         clipmenu.enable = true;
         dunst.enable = true;
         polybar.enable = true;
-        sxhkd.enable = true;
       };
       gtk.enable = true;
       xdg = {
