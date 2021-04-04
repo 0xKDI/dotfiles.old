@@ -719,6 +719,8 @@ in
         "4." = "cd ../../../..";
         "5." = "cd ../../../../..";
         Q = "cd ~ ; clear";
+      } // optionalString (has pkgs.gnumake) {
+        mk = "make";
       } // optionalAttrs config.xsession.enable {
         y = "xclip -selection c";
         p = "xclip -selection c -o";
