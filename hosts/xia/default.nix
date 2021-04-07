@@ -241,15 +241,12 @@ in
   };
 
 
-  # nix-zsh-completions doesn't work without enabling zsh system wide
   programs = {
-    zsh = {
-      enable = true;
-      # useless since home-manager runs compinit anyway
-      enableGlobalCompInit = false;
-    };
     bash.interactiveShellInit = ''HISTFILE="$XDG_DATA_HOME"/bash/history'';
   };
+
+
+  environment.pathsToLink = [ "/share/zsh" ]; # get zsh completion for system packages
 
 
   virtualisation = {
