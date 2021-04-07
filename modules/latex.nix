@@ -58,7 +58,9 @@ in
     xstring
     framed
     upquote
-    totcount;
+    totcount
+    # required for beamer style
+    wrapfig;
   })
 ];
   };
