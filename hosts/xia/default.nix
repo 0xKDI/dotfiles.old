@@ -115,7 +115,6 @@ in
       services = {
         gpg-agent.enable = true;
         udiskie.enable = true;
-        screen-locker.enable = true;
         syncthing.enable = true;
         unclutter.enable = true;
         clipmenu.enable = true;

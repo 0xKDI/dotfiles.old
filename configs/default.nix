@@ -432,6 +432,7 @@ in
         "super + Home" = "${bin}/fzfbooks";
         "super + F11" = "${bin}/screenshot";
       } // {
+        "super + z" = "systemctl suspend; ${pkgs.xsecurelock}/bin/xsecurelock";
         "super + F6" = "${bin}/toggle_mute";
         "super + F3" = "${bin}/change_volume -i 5";
         "super + F2" = "${bin}/change_volume -d 5";
@@ -809,10 +810,6 @@ in
       automount = true;
       notify = true;
       tray = "never";
-    };
-    screen-locker = {
-      inactiveInterval = 10;
-      lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
     };
     dunst.settings = {
       global = {
