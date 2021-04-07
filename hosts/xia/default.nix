@@ -166,7 +166,7 @@ in
     '';
     autoOptimiseStore = true;
     trustedUsers = [ "root" "${user}" ];
-    maxJobs = 8;
+    maxJobs = 6;
   };
 
 
@@ -177,7 +177,7 @@ in
   systemd.services.NetworkManager-wait-online.enable = false;
 
 
-  powerManagement.cpuFreqGovernor = "performance";
+  powerManagement.cpuFreqGovernor = "powersave";
 
 
   time.timeZone = "Europe/Moscow";
