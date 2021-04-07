@@ -37,7 +37,6 @@ set expandtab
 " set smartindent
 set splitbelow
 set splitright
-set foldmethod=syntax
 set foldlevelstart=99
 set foldnestmax=10
 
