@@ -678,21 +678,24 @@ in
       initExtra = ''
         autoload -Uz edit-command-line; zle -N edit-command-line
         bindkey '^ ' edit-command-line
+        autoload -U +X bashcompinit && bashcompinit
       '' + optionalString config.programs.fzf.enable ''
         bindkey '\eq' fzf-cd-widget
         bindkey '\er' fzf-history-widget
       '' + optionalString hasTf ''
-        autoload -U +X bashcompinit && bashcompinit
         complete -o nospace -C ${pkgs.terraform_0_14}/bin/terraform terraform
       '' + optionalString (has pkgs.pandoc) ''
         eval "$(pandoc --bash-completion)"
-      '' + optionalString (has pkgs.minikube) ''
-        eval $(minikube completion zsh)
-      '' + optionalString (has pkgs.kops) ''
-        source <(kops completion zsh) # doesn't work with eval
       '' + optionalString config.programs.aws.enable ''
         source ${pkgs.awscli2}/share/zsh/site-functions/aws_zsh_completer.sh
       '';
+      # NOTE: These two are RIDICULOUSLY slow
+      # + optionalString (has pkgs.minikube) ''
+      # eval $(minikube completion zsh)
+      # '';
+      # + optionalString (has pkgs.kops) ''
+      #   source <(kops completion zsh) # doesn't work with eval
+      #   '';
       shellAliases = {
         dkr = "docker";
 
