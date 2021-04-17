@@ -256,6 +256,7 @@ in
     docker = {
       enable = true;
       enableOnBoot = false;
+      extraOptions = "--registry-mirror=https://mirror.gcr.io";
     };
   };
 
