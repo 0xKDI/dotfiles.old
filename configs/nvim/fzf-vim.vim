@@ -1,4 +1,5 @@
 " TODO: add fzf function for cd
+" https://github.com/junegunn/fzf/wiki/Examples-(vim)
 let g:fzf_layout = { "window": { "width": 0.8, "height": 0.6 } }
 
 autocmd! FileType fzf set laststatus=0 noshowmode noruler

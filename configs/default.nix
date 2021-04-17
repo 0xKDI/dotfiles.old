@@ -91,7 +91,7 @@ in
       let
         go = config.programs.go;
       in
-      [ "${binPath}" ] ++ optionals go.enable [
+      [ "${binPath}" "${home}/.local/bin" ] ++ optionals go.enable [
         "${home}/${go.goPath}/bin"
       ];
     sessionVariables = {
