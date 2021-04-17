@@ -24,6 +24,7 @@ in
         homeDirectory = "${home}";
         packages = with pkgs; [
           xst
+          sqlite # required for buku
           stable.discord
           drawio
           tdesktop
