@@ -73,7 +73,7 @@ in
 
           doctl
 
-          terraform_0_14
+          terraform_0_15
           terraform-ls
 
           sxiv

@@ -26,7 +26,7 @@ let
   cacheHome = config.xdg.cacheHome;
 
   has = pkg: (any (_: _ == pkg) config.home.packages);
-  hasTf = has pkgs.terraform_0_14;
+  hasTf = has pkgs.terraform_0_15;
 in
 {
   imports = [
