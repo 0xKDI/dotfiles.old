@@ -1185,6 +1185,7 @@ in
       rm -drf ~/.xsession-errors ~/.xsession-errors.old ~/.compose_cache
       ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${wallpapers}/nix-wallpaper-dracula.png &
       xset r rate 250 60
+      xset s off -dpms 
       sxhkd &
     '';
     windowManager.bspwm = {
