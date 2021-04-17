@@ -135,7 +135,7 @@ in
       AWS_CONFIG_FILE = "${configHome}/aws/config";
     } // optionalAttrs config.programs.python.enable {
       IPYTHONDIR = "${configHome}/jupyter";
-      PYTHONSTARTUP = "${configHome}/pythonrc";
+      PYTHONSTARTUP = "${configHome}/pythonrc.py";
       JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
     };
   };
@@ -1136,18 +1136,18 @@ in
       "pythonrc.py".text = ''
         #!/usr/bin/env python3
 
-          import atexit
-          import os
-          import readline
+        import atexit
+        import os
+        import readline
 
-          histfile = os.path.join(os.path.expanduser("~"), ".local/share/python_history")
-          try:
+        histfile = os.path.join(os.path.expanduser("~"), ".local/share/python_history")
+        try:
             readline.read_history_file(histfile)
             readline.set_history_length(1000)
-          except FileNotFoundError:
+        except FileNotFoundError:
             pass
 
-          atexit.register(readline.write_history_file, histfile)
+        atexit.register(readline.write_history_file, histfile)
       '';
     } // optionalAttrs config.programs.latex.enable {
       "latexmk/latexmkrc".text = ''
