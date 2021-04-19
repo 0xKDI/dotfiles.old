@@ -150,6 +150,7 @@ in
       "vboxusers"
       "docker"
       "plugdev"
+      "adbusers"
     ];
     shell = pkgs.zsh;
     initialPassword = "nix";
@@ -243,6 +244,7 @@ in
 
   programs = {
     bash.interactiveShellInit = ''HISTFILE="$XDG_DATA_HOME"/bash/history'';
+    adb.enable = true;
   };
 
 
