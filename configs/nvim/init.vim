@@ -27,6 +27,7 @@ set shiftwidth=4
 autocmd FileType plaintex set filetype=tex
 " autocmd FileType tex set tabstop=3 shiftwidth=3 softtabstop=3
 autocmd FileType yaml set tabstop=2 shiftwidth=2
+autocmd FileType helm set tabstop=2 shiftwidth=2
 autocmd FileType help wincmd L
 
 " for buku -w
