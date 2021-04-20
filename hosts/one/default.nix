@@ -21,11 +21,12 @@ in
         fzf.enable = true;
         direnv.enable = true;
         starship.enable = true;
-        vim.enable = true;
+        # neovim.enable = true;
         tmux.enable = true;
         git.enable = true;
         password-store.enable = true;
         zsh.enable = true;
+        latex.enable = true;
       };
 
 
