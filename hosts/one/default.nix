@@ -21,13 +21,7 @@ in
         fzf.enable = true;
         direnv.enable = true;
         starship.enable = true;
-        neovim = {
-          enable = true;
-          plugins = with pkgs.vimPlugins; [
-            vim-polyglot
-          ];
-          extraPackages = [];
-        };
+        vim.enable = true;
         tmux.enable = true;
         git.enable = true;
         password-store.enable = true;
