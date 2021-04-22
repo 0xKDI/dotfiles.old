@@ -34,6 +34,7 @@ in
           gimp
           graphviz
           docker-credential-helpers
+          docker-compose
           wally-cli
 
           gh
