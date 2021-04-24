@@ -4,7 +4,7 @@ with lib;
 
 let
 
-  cfg = config.programs.sxhkd;
+  cfg = config.modules.sxhkd;
 
   keybindingsStr = concatStringsSep "\n" (
     mapAttrsToList (hotkey: command:
@@ -19,7 +19,7 @@ let
 in
 
 {
-  options.programs.sxhkd = {
+  options.modules.sxhkd = {
     enable = mkEnableOption "simple X hotkey daemon";
 
     package = mkOption {

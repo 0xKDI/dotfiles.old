@@ -16,7 +16,7 @@ in
   home-manager = {
     users.${user} = {
       imports = [
-        ../../configs
+        ../common.nix
       ];
       home = {
         stateVersion = stateVersion;
@@ -77,14 +77,20 @@ in
           terraform_0_15
           terraform-ls
 
-          sxiv
           qrencode # for QR-code
 
-          python38Packages.pygments
-          corefonts # Microsoft fonts
           pandoc
           nixpkgs-fmt
         ];
+      };
+      modules = {
+        aws.enable = true;
+        python.enable = true;
+        latex.enable = true;
+        sxhkd.enable = true;
+        neovim.enable = true;
+        sxiv.enable = true;
+        tmux.enable = true;
       };
       programs = {
         home-manager.enable = true;
@@ -100,8 +106,6 @@ in
         direnv.enable = true;
         starship.enable = true;
         alacritty.enable = true;
-        neovim.enable = true;
-        tmux.enable = true;
         firefox.enable = true;
         browserpass.enable = true;
         git.enable = true;
@@ -109,10 +113,6 @@ in
         password-store.enable = true;
         zathura.enable = true;
         zsh.enable = true;
-        python.enable = true;
-        latex.enable = true;
-        aws.enable = true;
-        sxhkd.enable = true;
       };
       services = {
         gpg-agent.enable = true;

@@ -14,8 +14,6 @@ let
   wallpapers = ../wallpapers;
   binPath = ../bin;
 
-  nvimDir = builtins.toString ./nvim;
-
   user = config.home.username;
   home = config.home.homeDirectory;
   uid = "1000";
@@ -48,7 +46,7 @@ in
       progress
       tree
       cachix
-    ] ++ optionals config.programs.sxhkd.enable [
+    ] ++ optionals config.modules.sxhkd.enable [
       brightnessctl
       xkb-switch
       pamixer
@@ -118,7 +116,7 @@ in
     } // optionalAttrs config.programs.fzf.enable {
       CM_LAUNCHER = "fzf";
       CM_HISTLENGTH = 150;
-    } // optionalAttrs config.programs.neovim.enable {
+    } // optionalAttrs config.modules.neovim.enable {
       VISUAL = "nvim";
       EDITOR = "nvim";
       SUDO_EDITOR = "nvim";
@@ -126,17 +124,112 @@ in
       MANWIDTH = 999;
     } // optionalAttrs true {
       DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
-    } // optionalAttrs config.programs.latex.enable {
+    } // optionalAttrs config.modules.latex.enable {
       TEXMFHOME = "${dataHome}/texmf";
       TEXMFVAR = "${cacheHome}/texlive/texmf-var";
       TEXMFCONFIG = "${configHome}/texlive/texmf-config";
-    } // optionalAttrs config.programs.aws.enable {
+    } // optionalAttrs config.modules.aws.enable {
       AWS_SHARED_CREDENTIALS_FILE = "${configHome}/aws/credentials";
       AWS_CONFIG_FILE = "${configHome}/aws/config";
-    } // optionalAttrs config.programs.python.enable {
+    } // optionalAttrs config.modules.python.enable {
       IPYTHONDIR = "${configHome}/jupyter";
       PYTHONSTARTUP = "${configHome}/pythonrc.py";
       JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
+    };
+  };
+
+
+  modules = {
+    sxhkd = {
+      keybindings = let
+        bin = binPath;
+      in
+      {
+        "super + Return" = "${pkgs.xst}/bin/xst -e ${pkgs.tmux}/bin/tmux attach";
+        "super + shift + Return" = "${pkgs.xst}/bin/xst";
+        "super + space" = "${bin}/fzfappmenu";
+        "super + e" = "${bin}/fzfbuku";
+        "super + s" = "${bin}/fzfclipmenu";
+        "super + w" = "${bin}/fzfwindowmenu";
+        "super + Home" = "${bin}/fzfbooks";
+        "super + F11" = "${bin}/screenshot";
+      } // {
+        "super + z" = "systemctl suspend; ${pkgs.xsecurelock}/bin/xsecurelock";
+        "super + F6" = "${bin}/toggle_mute";
+        "super + F3" = "${bin}/change_volume -i 5";
+        "super + F2" = "${bin}/change_volume -d 5";
+        "super + F1" = "${bin}/change_volume -t";
+        "XF86AudioRaiseVolume" = "${bin}/change_volume -i 5";
+        "XF86AudioLowerVolume" = "${bin}/change_volume -d 5";
+        "XF86AudioMute" = "${bin}/change_volume -t";
+        "super + a" = "${pkgs.xkb-switch}/bin/xkb-switch -n";
+        "super + F4" = "${bin}/change_brightness 5%-";
+        "super + F5" = "${bin}/change_brightness +5%";
+        "XF86MonBrightnessUp" = "${bin}/change_brightness 5%-";
+        "XF86MonBrightnessDown" = "${bin}/change_brightness +5%";
+        # make sxhkd reload its configuration files:
+        "super + shift + r" = "pkill -USR1 -x sxhkd";
+      } // {
+        # BSPWM/general
+        # quit/restart bspwm
+        "super + alt + {q,r}" = "bspc {quit,wm -r}";
+        # close node
+        "super+ q" = "bspc node -c";
+        # kill node
+        "super + shift + q" = "bspc node -k";
+        # alternate between the tiled and monocle layout
+        "super + m" = "bspc desktop -l next";
+        # send the newest marked node to the newest preselected node
+        "super + y" = "bspc node newest.marked.local -n newest.!automatic.local";
+        # swap the current node and the biggest node
+        "super + g" = "bspc node -s biggest";
+        # rotate node by 90 deg
+        "super + r" = "bspc node -R 90";
+      } // {
+        # BSPWM/state
+        # set the window state
+        "super + {t,shift + t,shift + s,f}" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
+        # set the node flags
+        "super + ctrl + {m,x,y,z}" = "bspc node -g {marked,locked,sticky,private}";
+      } // {
+        # BSPWM/focus
+        # focus the node in the given direction
+        "super + {_,shift + }{h,j,k,l}" = "bspc node -{f,s} {west,south,north,east}";
+        # focus the node for the given path jump
+        "super + {p,b,comma,period}" = "bspc node -f @{parent,brother,first,second}";
+        # focus the next/previous node in the current desktop
+        "super + {_,shift + }d" = "bspc node -f {next,prev}.local";
+        # focus the next/previous desktop in the current monitor
+        "super + bracket{left,right}" = "bspc desktop -f {prev,next}.local";
+        # focus the desktop
+        "super + Tab" = "bspc desktop -f last";
+        # focus the older or newer node in the focus history
+        "super + {o,i}" = ''
+          bspc wm -h off; \
+          bspc node {older,newer} -f; \
+          bspc wm -h on
+        '';
+        # focus or send to the given desktop
+        "super + {_,shift + }{1-9,0}" = ''bspc {desktop -f,node -d} "^{1-9,10}"'';
+      } // {
+        # BSPWM/preselect
+        # preselect the direction
+        "super + ctrl + {h,j,k,l}" = "bspc node -p {west,south,north,east}";
+        # preselect the ratio
+        "super + ctrl + {1-9}" = "bspc node -o 0.{1-9}";
+        # cancel the preselection for the focused node
+        "super + ctrl + space" = "bspc node -p cancel";
+        # cancel the preselection for the focused desktop
+        "super + ctrl + shift + space" = "bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel";
+      } // {
+        # BSPWM/resize
+        # expand a window by moving one of its side outward
+        "super + {Left,Down,Up,Right}" = "bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}";
+        # contract a window by moving one of its side inward
+        "super + shift + {Left,Down,Up,Right}" = "bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}";
+        # move a floating window
+        "super + ctrl + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
+      };
     };
   };
 
@@ -288,225 +381,6 @@ in
         background_opacity = 0.95;
         selection.save_to_clipboard = false;
         mouse.hide_when_typing = true;
-      };
-    };
-    neovim = {
-      package = pkgs.neovim-nightly;
-      extraPackages = with pkgs; [
-        python38Packages.python-language-server # pyls
-        rnix-lsp
-        nodePackages.yaml-language-server
-        texlab
-        terraform-ls
-      ] ++ optionals config.programs.go.enable [ gopls ];
-      extraConfig = builtins.readFile "${nvimDir}/init.vim";
-      plugins = with pkgs.vimPlugins; [
-        {
-          plugin = vim-gitgutter;
-          config = ''
-            " Update sign column every 1/4 second
-            set updatetime=250
-            nmap <Leader>gn <Plug>(GitGutterNextHunk)
-            nmap <Leader>gp <Plug>(GitGutterPrevHunk)
-
-            nmap <Leader>ga <Plug>(GitGutterStageHunk)
-            nmap <Leader>gu <Plug>(GitGutterUndoHunk)
-          '';
-        }
-        {
-          plugin = vim-fugitive;
-          config = ''
-            nnoremap <leader>gg :tab G<CR>
-            nnoremap <leader>gl :tab Gllog<CR>
-            nnoremap <leader>grb :tab G rebase -i<CR>
-          '';
-        }
-        vim-sneak
-        vim-surround
-        vim-commentary
-        vim-repeat
-        vim-obsession # for resurrecting sessions
-        vim-devicons
-        vim-lion
-        auto-pairs
-        vim-snippets
-        vim-polyglot
-        fzfWrapper
-        completion-buffers
-        {
-          plugin = nvim-lspfuzzy;
-          config = ''
-            lua require('lspfuzzy').setup {}
-          '';
-        }
-        {
-          plugin = vim-tmux-navigator;
-          config = ''
-            let g:tmux_navigator_no_mappings = 1
-
-            nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
-            nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
-            nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
-            nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-            nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
-          '';
-        }
-        # {
-        #   plugin = nvim-treesitter;
-        #   config = "luafile ${nvimDir}/tree-sitter.lua";
-        # }
-        {
-          plugin = nvim-lspconfig;
-          config = "luafile ${nvimDir}/lspconfig.lua";
-        }
-        {
-          plugin = completion-nvim;
-          config = builtins.readFile "${nvimDir}/completion.vim";
-        }
-        {
-          plugin = nvim-colorizer;
-          config = "lua require'colorizer'.setup()";
-        }
-        {
-          plugin = fzf-vim;
-          config = builtins.readFile "${nvimDir}/fzf-vim.vim";
-        }
-        {
-          plugin = indent-guides-nvim;
-          config = "luafile ${nvimDir}/indent-guides.lua";
-        }
-        {
-          plugin = dracula-vim;
-          config = ''
-            packadd! dracula-vim
-            colorscheme dracula
-          '';
-        }
-        {
-          plugin = lightline-vim;
-          config = builtins.readFile "${nvimDir}/lightline-vim.vim";
-        }
-        {
-          plugin = ultisnips;
-          config = ''
-            let g:UltiSnipsSnippetDirectories=["${nvimDir}/snippets"]
-            let g:UltiSnipsExpandTrigger="<c-u>"
-          '';
-        }
-      ];
-    };
-    tmux = {
-      terminal = "tmux-256color";
-      newSession = true;
-      baseIndex = 1;
-      escapeTime = 0;
-      historyLimit = 50000;
-      keyMode = "vi";
-      plugins = with pkgs.tmuxPlugins; [
-        fzf-tmux-url
-        {
-          plugin = resurrect;
-          extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-        }
-        {
-          plugin = continuum;
-          extraConfig = ''
-            set -g @continuum-restore 'on'
-            set -g @continuum-save-interval '15'
-          '';
-        }
-      ];
-      extraConfig = builtins.readFile ./tmux.conf;
-    };
-    sxhkd = {
-      keybindings = let
-        bin = binPath;
-      in
-      {
-        "super + Return" = "${pkgs.xst}/bin/xst -e ${pkgs.tmux}/bin/tmux attach";
-        "super + shift + Return" = "${pkgs.xst}/bin/xst";
-        "super + space" = "${bin}/fzfappmenu";
-        "super + e" = "${bin}/fzfbuku";
-        "super + s" = "${bin}/fzfclipmenu";
-        "super + w" = "${bin}/fzfwindowmenu";
-        "super + Home" = "${bin}/fzfbooks";
-        "super + F11" = "${bin}/screenshot";
-      } // {
-        "super + z" = "systemctl suspend; ${pkgs.xsecurelock}/bin/xsecurelock";
-        "super + F6" = "${bin}/toggle_mute";
-        "super + F3" = "${bin}/change_volume -i 5";
-        "super + F2" = "${bin}/change_volume -d 5";
-        "super + F1" = "${bin}/change_volume -t";
-        "XF86AudioRaiseVolume" = "${bin}/change_volume -i 5";
-        "XF86AudioLowerVolume" = "${bin}/change_volume -d 5";
-        "XF86AudioMute" = "${bin}/change_volume -t";
-        "super + a" = "${pkgs.xkb-switch}/bin/xkb-switch -n";
-        "super + F4" = "${bin}/change_brightness 5%-";
-        "super + F5" = "${bin}/change_brightness +5%";
-        "XF86MonBrightnessUp" = "${bin}/change_brightness 5%-";
-        "XF86MonBrightnessDown" = "${bin}/change_brightness +5%";
-        # make sxhkd reload its configuration files:
-        "super + shift + r" = "pkill -USR1 -x sxhkd";
-      } // {
-        # BSPWM/general
-        # quit/restart bspwm
-        "super + alt + {q,r}" = "bspc {quit,wm -r}";
-        # close node
-        "super+ q" = "bspc node -c";
-        # kill node
-        "super + shift + q" = "bspc node -k";
-        # alternate between the tiled and monocle layout
-        "super + m" = "bspc desktop -l next";
-        # send the newest marked node to the newest preselected node
-        "super + y" = "bspc node newest.marked.local -n newest.!automatic.local";
-        # swap the current node and the biggest node
-        "super + g" = "bspc node -s biggest";
-        # rotate node by 90 deg
-        "super + r" = "bspc node -R 90";
-      } // {
-        # BSPWM/state
-        # set the window state
-        "super + {t,shift + t,shift + s,f}" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
-        # set the node flags
-        "super + ctrl + {m,x,y,z}" = "bspc node -g {marked,locked,sticky,private}";
-      } // {
-        # BSPWM/focus
-        # focus the node in the given direction
-        "super + {_,shift + }{h,j,k,l}" = "bspc node -{f,s} {west,south,north,east}";
-        # focus the node for the given path jump
-        "super + {p,b,comma,period}" = "bspc node -f @{parent,brother,first,second}";
-        # focus the next/previous node in the current desktop
-        "super + {_,shift + }d" = "bspc node -f {next,prev}.local";
-        # focus the next/previous desktop in the current monitor
-        "super + bracket{left,right}" = "bspc desktop -f {prev,next}.local";
-        # focus the desktop
-        "super + Tab" = "bspc desktop -f last";
-        # focus the older or newer node in the focus history
-        "super + {o,i}" = ''
-          bspc wm -h off; \
-          bspc node {older,newer} -f; \
-          bspc wm -h on
-        '';
-        # focus or send to the given desktop
-        "super + {_,shift + }{1-9,0}" = ''bspc {desktop -f,node -d} "^{1-9,10}"'';
-      } // {
-        # BSPWM/preselect
-        # preselect the direction
-        "super + ctrl + {h,j,k,l}" = "bspc node -p {west,south,north,east}";
-        # preselect the ratio
-        "super + ctrl + {1-9}" = "bspc node -o 0.{1-9}";
-        # cancel the preselection for the focused node
-        "super + ctrl + space" = "bspc node -p cancel";
-        # cancel the preselection for the focused desktop
-        "super + ctrl + shift + space" = "bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel";
-      } // {
-        # BSPWM/resize
-        # expand a window by moving one of its side outward
-        "super + {Left,Down,Up,Right}" = "bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}";
-        # contract a window by moving one of its side inward
-        "super + shift + {Left,Down,Up,Right}" = "bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}";
-        # move a floating window
-        "super + ctrl + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
       };
     };
     firefox = {
@@ -687,7 +561,7 @@ in
         complete -o nospace -C ${pkgs.terraform_0_14}/bin/terraform terraform
       '' + optionalString (has pkgs.pandoc) ''
         eval "$(pandoc --bash-completion)"
-      '' + optionalString config.programs.aws.enable ''
+      '' + optionalString config.modules.aws.enable ''
         source ${pkgs.awscli2}/share/zsh/site-functions/aws_zsh_completer.sh
       '';
       # NOTE: These two are RIDICULOUSLY slow
@@ -716,12 +590,12 @@ in
         n = "noti";
       } // optionalAttrs hasTf {
         tf = "terraform";
-      } // optionalAttrs config.programs.neovim.enable {
+      } // optionalAttrs config.modules.neovim.enable {
         vim = "nvim";
         vi = "nvim";
         v = "nvim";
         fs = "f -S";
-      } // optionalAttrs config.programs.python.enable {
+      } // optionalAttrs config.modules.python.enable {
         py3 = "python3";
         py2 = "python2";
         py = "python3";
@@ -743,7 +617,7 @@ in
         udisable = "systemctl --user disable";
       } // optionalAttrs config.programs.firefox.enable {
         b = "buku --suggest";
-      } // optionalAttrs (has pkgs.sxiv) {
+      } // optionalAttrs config.modules.sxiv.enable {
         sxiv = "sxiv -b";
         qr = ''
           xclip -selection c -o |
@@ -1132,7 +1006,7 @@ in
         command hint_focus hint -;
         bind ;C composite hint_focus; !s xdotool key Menu
       '';
-    } // optionalAttrs config.programs.python.enable {
+    } // optionalAttrs config.modules.python.enable {
       "pythonrc.py".text = ''
         #!/usr/bin/env python3
 
@@ -1149,20 +1023,6 @@ in
 
         atexit.register(readline.write_history_file, histfile)
       '';
-    } // optionalAttrs config.programs.latex.enable {
-      "latexmk/latexmkrc".text = ''
-        $xelatex = "xelatex --shell-escape %O %S";
-        $pdf_mode = 5;
-        $interaction = "nonstopmode";
-        $preview_continuous_mode = 1;
-        $pdf_previewer = "zathura %S";
-        $clean_ext = "_minted-%R/* _minted-%R";
-      '';
-    } // optionalAttrs (has pkgs.sxiv) {
-      "sxiv/exec/key-handler".source = ./sxiv/key-handler;
-      "sxiv/exec/image-info".source = ./sxiv/image-info;
-    } // optionalAttrs config.programs.neovim.enable {
-      "nvim/init.vim".text = "let g:polyglot_disabled = ['yaml']";
     };
   };
 

@@ -2,10 +2,10 @@
 
 with lib;
 let 
-  cfg = config.modules.python;
+  cfg = config.modules.sxiv;
 in
 {
-  options.modules.python = {
+  options.modules.sxiv = {
     enable = mkOption {
       type = types.bool;
       default = false;
@@ -15,9 +15,13 @@ in
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      python39
-      python39Packages.ipython
-      python39Packages.pip
+      sxiv
     ];
+
+
+    xdg.configFile = {
+      "sxiv/exec/key-handler".source = ./key-handler;
+      "sxiv/exec/image-info".source = ./image-info;
+    };
   };
 }

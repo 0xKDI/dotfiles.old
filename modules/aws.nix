@@ -2,10 +2,10 @@
 
 with lib;
 let 
-  cfg = config.programs.aws;
+  cfg = config.modules.aws;
 in
 {
-  options.programs.aws = {
+  options.modules.aws = {
     enable = mkOption {
       type = types.bool;
       default = false;

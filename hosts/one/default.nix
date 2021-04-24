@@ -7,8 +7,15 @@ in
   home-manager.config = { pkgs, ... }:
     {
       imports = [
-        ../../configs
+        ../common.nix
       ];
+
+
+      modules = {
+        # neovim.enable = true;
+        # tmux.enable = true;
+        # latex.enable = true;
+      };
 
 
       programs = {
@@ -19,14 +26,10 @@ in
         bat.enable = true;
         z-lua.enable = true;
         fzf.enable = true;
-        direnv.enable = true;
         starship.enable = true;
-        # neovim.enable = true;
-        tmux.enable = true;
         git.enable = true;
         password-store.enable = true;
         zsh.enable = true;
-        latex.enable = true;
       };
 
 
