@@ -572,7 +572,8 @@ in
       #   source <(kops completion zsh) # doesn't work with eval
       #   '';
       shellAliases = {
-        dkr = "docker";
+        d = "docker";
+        dc = "docker-compose";
 
         mkdir = "mkdir -p";
 
