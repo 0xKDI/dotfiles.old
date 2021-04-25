@@ -1142,9 +1142,8 @@ in
     "*.color7" = "#BFBFBF";
     "*.color15" = "#E6E6E6";
     "st.font" = "FantasqueSansMono nerd font:pixelsize=20:antialias=true:autohint=true";
-    "st.bold_font" = 1;
-    "st.italic_font" = 1;
-    "st.roman_font" = 1;
+    "st.disableitalics" = 1;
+    "st.disableroman" = 1;
     "st.termname" = "st-256color";
   };
 

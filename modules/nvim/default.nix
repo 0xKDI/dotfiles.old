@@ -33,7 +33,9 @@ in
         nodePackages.yaml-language-server
         texlab
         terraform-ls
+        tree-sitter
       ] ++ optionals config.programs.go.enable [ gopls ];
+      withNodeJs = true;
       extraConfig = lua ./init.lua;
       plugins = with pkgs.vimPlugins; [
         {
@@ -64,10 +66,10 @@ in
           plugin = vim-tmux-navigator;
           config = lua ./vim-tmux-navigator.lua;
         }
-        # {
-        #   plugin = nvim-treesitter;
-        #   config = lua ./tree-sitter.lua;
-        # }
+        {
+          plugin = nvim-treesitter;
+          config = lua ./nvim-treesitter.lua;
+        }
         {
           plugin = nvim-lspconfig;
           config = lua ./nvim-lspconfig.lua;
@@ -92,6 +94,7 @@ in
           plugin = dracula-vim;
           config = ''
             packadd! dracula-vim
+            let g:dracula_italic = 0
             colorscheme dracula
           '';
         }
