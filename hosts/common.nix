@@ -127,6 +127,7 @@ in
 
       PARALLEL_HOME = "${configHome}/parallel";
       CUDA_CACHE_PATH = "${cacheHome}/nv";
+      NPM_CONFIG_USERCONFIG = "${configHome}/npm/npmrc";
 
       # Ruby
       GEM_HOME = "${dataHome}/gem";
@@ -994,6 +995,12 @@ in
       };
     };
     configFile = {
+      "npm/npmrc".text = ''
+        prefix=''${XDG_DATA_HOME}/npm
+        cache=''${XDG_CACHE_HOME}/npm
+        tmp=''${XDG_RUNTIME_DIR}/npm
+        init-module=''${XDG_CONFIG_HOME}/npm/config/npm-init.js
+      '';
       "nixpkgs/config.nix".text = ''
         { allowUnfree = true; }
       '';

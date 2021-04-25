@@ -1,6 +1,4 @@
 { config, pkgs, lib, ... }:
-
-
 with lib;
 let
   cfg = config.modules.neovim;
@@ -114,7 +112,7 @@ in
 
 
     xdg.configFile = {
-      "nvim/init.vim".text = lua "vim.g.polyglot_disabled = {'yaml'}";
+      "nvim/init.vim".text = lua "vim.g.polyglot_disabled = {'yaml', 'nix'}";
     };
   };
 }
