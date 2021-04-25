@@ -122,20 +122,24 @@ in
   };
 
 
-  users.users.${user} = {
-    isNormalUser = true;
-    uid = uid;
-    extraGroups = [
-      "wheel"
-      "networkmanager"
-      "audio"
-      "vboxusers"
-      "docker"
-      "plugdev"
-      "adbusers"
-    ];
-    shell = pkgs.zsh;
-    initialPassword = "nix";
+  users = {
+    users.${user} = {
+      isNormalUser = true;
+      uid = uid;
+      group = "${user}";
+      extraGroups = [
+        "wheel"
+        "networkmanager"
+        "audio"
+        "vboxusers"
+        "docker"
+        "plugdev"
+        "adbusers"
+      ];
+      shell = pkgs.zsh;
+      initialPassword = "nix";
+    };
+    groups.${user} = { gid = uid; };
   };
 
 
