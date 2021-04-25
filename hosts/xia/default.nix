@@ -24,48 +24,34 @@ in
         homeDirectory = "${home}";
         packages = with pkgs; [
           xst
-          sqlite # required for buku
           stable.discord
           drawio
           tdesktop
           libreoffice-fresh
           spotifywm
-          mpvc # a mpc-like control interface for mpv
           gimp
-          graphviz
-          docker-credential-helpers
-          docker-compose
-          wally-cli
+          syncthing-cli #stcli
 
-          gh
-          libqalculate
+          mpvc # a mpc-like control interface for mpv
+          graphviz
+          wally-cli
+          imagemagick
+          pandoc
 
           transmission
+          youtube-dl
 
-          du-dust # du + rust
           ddgr # DuckDuckGo-cli
           googler
-
-          lsof
-          nmap
-          openssl
-          tcpdump
-          acpi
-          inotify-tools
-
-          syncthing-cli #stcli
-          gnumake
-          gcc
-          gdb
-
-          scc
-          tealdeer # faster tldr
-          manix
-          youtube-dl
-          imagemagick
+          gh
 
           unrar
           p7zip
+          inotify-tools
+          libqalculate
+
+          docker-credential-helpers
+          docker-compose
 
           minikube
           kubectl
@@ -76,11 +62,6 @@ in
 
           terraform_0_15
           terraform-ls
-
-          qrencode # for QR-code
-
-          pandoc
-          nixpkgs-fmt
         ];
       };
       modules = {

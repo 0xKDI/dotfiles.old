@@ -39,22 +39,40 @@ in
       killall
       curl
       wget
+      gnumake
+      gdb
+      gcc
+      progress
+
       exa
       fd
       sd
       ripgrep
-      progress
-      tree
+      scc
+      tealdeer # faster tldr
+      manix
+      du-dust # du + rust
+
       cachix
+      nixpkgs-fmt
+      nixpkgs-review
+      nixfmt
+
+      lsof
+      nmap
+      openssl
+      tcpdump
     ] ++ optionals config.modules.sxhkd.enable [
       brightnessctl
       xkb-switch
       pamixer
       maim
       dunst # required for dunstify
+      acpi
     ] ++ optionals config.programs.firefox.enable [
       tridactyl-native
       buku
+      sqlite # required for buku
     ] ++ optionals config.programs.go.enable [
       gopls
     ] ++ optionals config.xsession.enable [
