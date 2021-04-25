@@ -627,6 +627,7 @@ in
       } // optionalAttrs config.programs.git.enable {
         g = "git";
         gs = "git status";
+        c = "git commit -m";
       } // optionalAttrs config.programs.zathura.enable {
         zt = "devour zathura";
       } // optionalAttrs (has pkgs.kubectl) {
