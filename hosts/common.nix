@@ -1152,6 +1152,7 @@ in
     "st.disableitalics" = 1;
     "st.disableroman" = 1;
     "st.termname" = "st-256color";
+    "st.cursorfg" = "#ffb86c";
   };
 
 
