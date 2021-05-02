@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# speed up wifi reconnect process
+
+SSID="$1"
+
+while
+    nmcli d wifi rescan
+    nmcli d wifi connect $SSID
+    [[ $? -ne 0 ]]
+do true; done
