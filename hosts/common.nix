@@ -62,7 +62,7 @@ in
       nmap
       openssl
       tcpdump
-    ] ++ optionals config.modules.sxhkd.enable [
+    ] ++ optionals config.services.sxhkd.enable [
       brightnessctl
       xkb-switch
       pamixer
@@ -159,97 +159,6 @@ in
 
 
   modules = {
-    sxhkd = {
-      keybindings = let
-        bin = binPath;
-      in
-      {
-        "super + Return" = "${pkgs.xst}/bin/xst -e ${pkgs.tmux}/bin/tmux attach";
-        "super + shift + Return" = "${pkgs.xst}/bin/xst";
-        "super + space" = "${bin}/fzfappmenu";
-        "super + e" = "${bin}/fzfbuku";
-        "super + s" = "${bin}/fzfclipmenu";
-        "super + w" = "${bin}/fzfwindowmenu";
-        "super + Home" = "${bin}/fzfbooks";
-        "super + F11" = "${bin}/screenshot";
-      } // {
-        "super + z" = "systemctl suspend; ${pkgs.xsecurelock}/bin/xsecurelock";
-        "super + F6" = "${bin}/toggle_mute";
-        "super + F3" = "${bin}/change_volume -i 5";
-        "super + F2" = "${bin}/change_volume -d 5";
-        "super + F1" = "${bin}/change_volume -t";
-        "XF86AudioRaiseVolume" = "${bin}/change_volume -i 5";
-        "XF86AudioLowerVolume" = "${bin}/change_volume -d 5";
-        "XF86AudioMute" = "${bin}/change_volume -t";
-        "super + a" = "${pkgs.xkb-switch}/bin/xkb-switch -n";
-        "super + F4" = "${bin}/change_brightness 5%-";
-        "super + F5" = "${bin}/change_brightness +5%";
-        "XF86MonBrightnessUp" = "${bin}/change_brightness 5%-";
-        "XF86MonBrightnessDown" = "${bin}/change_brightness +5%";
-        # make sxhkd reload its configuration files:
-        "super + shift + r" = "pkill -USR1 -x sxhkd";
-      } // {
-        # BSPWM/general
-        # quit/restart bspwm
-        "super + alt + {q,r}" = "bspc {quit,wm -r}";
-        # close node
-        "super+ q" = "bspc node -c";
-        # kill node
-        "super + shift + q" = "bspc node -k";
-        # alternate between the tiled and monocle layout
-        "super + m" = "bspc desktop -l next";
-        # send the newest marked node to the newest preselected node
-        "super + y" = "bspc node newest.marked.local -n newest.!automatic.local";
-        # swap the current node and the biggest node
-        "super + g" = "bspc node -s biggest";
-        # rotate node by 90 deg
-        "super + r" = "bspc node -R 90";
-      } // {
-        # BSPWM/state
-        # set the window state
-        "super + {t,shift + t,shift + s,f}" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
-        # set the node flags
-        "super + ctrl + {m,x,y,z}" = "bspc node -g {marked,locked,sticky,private}";
-      } // {
-        # BSPWM/focus
-        # focus the node in the given direction
-        "super + {_,shift + }{h,j,k,l}" = "bspc node -{f,s} {west,south,north,east}";
-        # focus the node for the given path jump
-        "super + {p,b,comma,period}" = "bspc node -f @{parent,brother,first,second}";
-        # focus the next/previous node in the current desktop
-        "super + {_,shift + }d" = "bspc node -f {next,prev}.local";
-        # focus the next/previous desktop in the current monitor
-        "super + bracket{left,right}" = "bspc desktop -f {prev,next}.local";
-        # focus the desktop
-        "super + Tab" = "bspc desktop -f last";
-        # focus the older or newer node in the focus history
-        "super + {o,i}" = ''
-          bspc wm -h off; \
-          bspc node {older,newer} -f; \
-          bspc wm -h on
-        '';
-        # focus or send to the given desktop
-        "super + {_,shift + }{1-9,0}" = ''bspc {desktop -f,node -d} "^{1-9,10}"'';
-      } // {
-        # BSPWM/preselect
-        # preselect the direction
-        "super + ctrl + {h,j,k,l}" = "bspc node -p {west,south,north,east}";
-        # preselect the ratio
-        "super + ctrl + {1-9}" = "bspc node -o 0.{1-9}";
-        # cancel the preselection for the focused node
-        "super + ctrl + space" = "bspc node -p cancel";
-        # cancel the preselection for the focused desktop
-        "super + ctrl + shift + space" = "bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel";
-      } // {
-        # BSPWM/resize
-        # expand a window by moving one of its side outward
-        "super + {Left,Down,Up,Right}" = "bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}";
-        # contract a window by moving one of its side inward
-        "super + shift + {Left,Down,Up,Right}" = "bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}";
-        # move a floating window
-        "super + ctrl + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
-      };
-    };
   };
 
 
@@ -696,6 +605,97 @@ in
 
 
   services = {
+    sxhkd = {
+      keybindings = let
+        bin = binPath;
+      in
+      {
+        "super + Return" = "${pkgs.xst}/bin/xst -e ${pkgs.tmux}/bin/tmux attach";
+        "super + shift + Return" = "${pkgs.xst}/bin/xst";
+        "super + space" = "${bin}/fzfappmenu";
+        "super + e" = "${bin}/fzfbuku";
+        "super + s" = "${bin}/fzfclipmenu";
+        "super + w" = "${bin}/fzfwindowmenu";
+        "super + Home" = "${bin}/fzfbooks";
+        "super + F11" = "${bin}/screenshot";
+      } // {
+        "super + z" = "systemctl suspend; ${pkgs.xsecurelock}/bin/xsecurelock";
+        "super + F6" = "${bin}/toggle_mute";
+        "super + F3" = "${bin}/change_volume -i 5";
+        "super + F2" = "${bin}/change_volume -d 5";
+        "super + F1" = "${bin}/change_volume -t";
+        "XF86AudioRaiseVolume" = "${bin}/change_volume -i 5";
+        "XF86AudioLowerVolume" = "${bin}/change_volume -d 5";
+        "XF86AudioMute" = "${bin}/change_volume -t";
+        "super + a" = "${pkgs.xkb-switch}/bin/xkb-switch -n";
+        "super + F4" = "${bin}/change_brightness 5%-";
+        "super + F5" = "${bin}/change_brightness +5%";
+        "XF86MonBrightnessUp" = "${bin}/change_brightness 5%-";
+        "XF86MonBrightnessDown" = "${bin}/change_brightness +5%";
+        # make sxhkd reload its configuration files:
+        "super + shift + r" = "pkill -USR1 -x sxhkd";
+      } // {
+        # BSPWM/general
+        # quit/restart bspwm
+        "super + alt + {q,r}" = "bspc {quit,wm -r}";
+        # close node
+        "super+ q" = "bspc node -c";
+        # kill node
+        "super + shift + q" = "bspc node -k";
+        # alternate between the tiled and monocle layout
+        "super + m" = "bspc desktop -l next";
+        # send the newest marked node to the newest preselected node
+        "super + y" = "bspc node newest.marked.local -n newest.!automatic.local";
+        # swap the current node and the biggest node
+        "super + g" = "bspc node -s biggest";
+        # rotate node by 90 deg
+        "super + r" = "bspc node -R 90";
+      } // {
+        # BSPWM/state
+        # set the window state
+        "super + {t,shift + t,shift + s,f}" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
+        # set the node flags
+        "super + ctrl + {m,x,y,z}" = "bspc node -g {marked,locked,sticky,private}";
+      } // {
+        # BSPWM/focus
+        # focus the node in the given direction
+        "super + {_,shift + }{h,j,k,l}" = "bspc node -{f,s} {west,south,north,east}";
+        # focus the node for the given path jump
+        "super + {p,b,comma,period}" = "bspc node -f @{parent,brother,first,second}";
+        # focus the next/previous node in the current desktop
+        "super + {_,shift + }d" = "bspc node -f {next,prev}.local";
+        # focus the next/previous desktop in the current monitor
+        "super + bracket{left,right}" = "bspc desktop -f {prev,next}.local";
+        # focus the desktop
+        "super + Tab" = "bspc desktop -f last";
+        # focus the older or newer node in the focus history
+        "super + {o,i}" = ''
+          bspc wm -h off; \
+          bspc node {older,newer} -f; \
+          bspc wm -h on
+        '';
+        # focus or send to the given desktop
+        "super + {_,shift + }{1-9,0}" = ''bspc {desktop -f,node -d} "^{1-9,10}"'';
+      } // {
+        # BSPWM/preselect
+        # preselect the direction
+        "super + ctrl + {h,j,k,l}" = "bspc node -p {west,south,north,east}";
+        # preselect the ratio
+        "super + ctrl + {1-9}" = "bspc node -o 0.{1-9}";
+        # cancel the preselection for the focused node
+        "super + ctrl + space" = "bspc node -p cancel";
+        # cancel the preselection for the focused desktop
+        "super + ctrl + shift + space" = "bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel";
+      } // {
+        # BSPWM/resize
+        # expand a window by moving one of its side outward
+        "super + {Left,Down,Up,Right}" = "bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}";
+        # contract a window by moving one of its side inward
+        "super + shift + {Left,Down,Up,Right}" = "bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}";
+        # move a floating window
+        "super + ctrl + {Left,Down,Up,Right}" = "bspc node -v {-20 0,0 20,0 -20,20 0}";
+      };
+    };
     gpg-agent = {
       enableSshSupport = true;
       defaultCacheTtl = 28800;
@@ -779,7 +779,6 @@ in
           "settings" = {
             throttle-output = 5;
             throttle-output-for = 10;
-            throttle-input-for = 30;
             screenchange-reload = true;
             compositing-background = "over";
             compositing-foreground = "over";
@@ -933,7 +932,7 @@ in
             ramp-capacity-4 = " ";
             format-charging-prefix = " ";
             format-charging = "<animation-charging> <label-charging>";
-            format-charging-foreground = "#fd4ca";
+            format-charging-foreground = "#f1fa8c";
             label-charging = "\${self.label-discharging}";
             animation-charging-0 = " ";
             animation-charging-1 = " ";
@@ -1073,7 +1072,6 @@ in
       ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${wallpapers}/nix-wallpaper-dracula.png &
       xset r rate 250 60
       xset s off -dpms 
-      sxhkd &
     '';
     windowManager.bspwm = {
       monitors = { "eDP1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };

@@ -68,7 +68,6 @@ in
         aws.enable = true;
         python.enable = true;
         latex.enable = true;
-        sxhkd.enable = true;
         neovim.enable = true;
         sxiv.enable = true;
         tmux.enable = true;
@@ -96,6 +95,7 @@ in
         zsh.enable = true;
       };
       services = {
+        sxhkd.enable = true;
         gpg-agent.enable = true;
         udiskie.enable = true;
         syncthing.enable = true;

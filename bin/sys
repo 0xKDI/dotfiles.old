@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# Elegant wrapper for nix{os} utils to make
-# system manage easier
+# Elegant wrapper for nix{os} utils to make system management easier
 
 
 function run {

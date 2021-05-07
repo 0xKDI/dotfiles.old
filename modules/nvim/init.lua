@@ -58,6 +58,7 @@ vim.api.nvim_set_keymap('n', '<leader>b', ':tabnew %<CR>', { noremap = true, sil
 
 vim.api.nvim_set_keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true })
 vim.api.nvim_set_keymap('v', 'K', ':m \'<-2<CR>gv=gv', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>cd', ':cd %:h<CR>', { noremap = true })
 
 
 -- visual
@@ -96,6 +97,7 @@ vim.api.nvim_exec([[
     autocmd FileType help wincmd L
     autocmd BufNewFile,BufRead buku-edit-* set filetype=conf
     autocmd BufNewFile,BufRead .envrc set filetype=sh
+    autocmd BufNewFile,BufRead *.nix set filetype=nix
 ]], false)
 
 vim.api.nvim_exec([[
