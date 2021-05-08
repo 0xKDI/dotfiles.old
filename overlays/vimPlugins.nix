@@ -1,17 +1,6 @@
 { pkgs, ... }:
 
 {
-  nvim-colorizer = pkgs.vimUtils.buildVimPlugin {
-    pname = "nvim-colorizer";
-    version = "2020-11-09";
-    src = pkgs.fetchFromGitHub {
-      owner = "norcalli";
-      repo = "nvim-colorizer.lua";
-      rev = "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6";
-      sha256 = "0gvqdfkqf6k9q46r0vcc3nqa6w45gsvp8j4kya1bvi24vhifg2p9";
-    };
-  };
-
   nvim-lspfuzzy = pkgs.vimUtils.buildVimPlugin {
     pname = "nvim-lspfuzzy";
     version = "2020-12-14";

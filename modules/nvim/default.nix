@@ -77,7 +77,7 @@ in
           config = source ./completion-nvim.vim;
         }
         {
-          plugin = nvim-colorizer;
+          plugin = nvim-colorizer-lua;
           config = lua "require'colorizer'.setup()";
         }
         {

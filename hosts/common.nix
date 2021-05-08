@@ -94,7 +94,7 @@ in
       noto-fonts-cjk
       noto-fonts-emoji
     ];
-    file = optionalAttrs config.programs.firefox.enable
+    file = { } // optionalAttrs config.programs.firefox.enable
       {
         ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
         ".local/share/tridactyl/native_main.py".source = "${pkgs.tridactyl-native}/share/tridactyl/native_main.py";
@@ -153,6 +153,7 @@ in
     } // optionalAttrs config.modules.python.enable {
       IPYTHONDIR = "${configHome}/jupyter";
       PYTHONSTARTUP = "${configHome}/pythonrc.py";
+      PYTHONPATH = "${home}/.local/lib/python3.9/site-packages";
       JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
     };
   };
