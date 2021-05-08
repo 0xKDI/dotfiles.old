@@ -112,7 +112,7 @@ in
 
 
     xdg.configFile = {
-      "nvim/init.vim".text = lua "vim.g.polyglot_disabled = {'yaml', 'nix'}";
+      "nvim/init.vim".text = lua "vim.g.polyglot_disabled = {'yaml'}";
     };
   };
 }
