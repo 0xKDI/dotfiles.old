@@ -513,6 +513,9 @@ in
         Q = "cd ~ ; clear";
       } // optionalAttrs (has pkgs.gnumake) {
         mk = "make";
+      } // optionalAttrs config.programs.tmux.tmuxp.enable {
+        tm = "tmuxp";
+        tml = "tmuxp load";
       } // optionalAttrs config.xsession.enable {
         y = "xclip -selection c";
         p = "xclip -selection c -o";
