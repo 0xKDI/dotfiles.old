@@ -62,6 +62,7 @@ in
 
           terraform_0_15
           terraform-ls
+          ansible
         ];
       };
       modules = {
