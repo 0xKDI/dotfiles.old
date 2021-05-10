@@ -514,8 +514,9 @@ in
       } // optionalAttrs (has pkgs.gnumake) {
         mk = "make";
       } // optionalAttrs config.programs.tmux.tmuxp.enable {
-        tm = "tmuxp";
-        tml = "tmuxp load";
+        t = "tmuxp";
+        tl = "tmuxp load -a";
+        tll = "tmuxp load -y";
       } // optionalAttrs config.xsession.enable {
         y = "xclip -selection c";
         p = "xclip -selection c -o";
