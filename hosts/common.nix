@@ -807,7 +807,7 @@ in
             modules-left = "bspwm";
             modules-center = "xwindow";
             modules-right = "wlan backlight pulseaudio xkeyboard memory cpu battery date";
-            tray-position = "right";
+            tray-position = "left";
             tray-padding = 0;
             tray-background = "#1e2029";
             cursor-click = "pointer";
@@ -816,7 +816,10 @@ in
           };
           "module/bspwm" = {
             type = "internal/bspwm";
-            format = "<label-state>";
+            format = "<label-state>";
+            format-margin = 1;
+            format-foreground = "#50fa7b";
+
             label-padding = 1;
             ws-icon-0 = "1; ";
             ws-icon-1 = "2; ";
