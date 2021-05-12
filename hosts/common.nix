@@ -825,8 +825,8 @@ in
             ws-icon-4 = "5; ";
             ws-icon-5 = "6; ";
             ws-icon-6 = "7; ";
-            ws-icon-7 = "8; ";
-            ws-icon-8 = "9; ";
+            ws-icon-7 = "8; ";
+            ws-icon-8 = "9; ";
 
             label-focused = "%icon%";
             label-focused-foreground = "#ff79c6";
@@ -1118,10 +1118,13 @@ in
         presel_feedback_color = "#6272a4";
       };
       rules = {
-        "firefox".desktop = "^1";
         "Firefox".desktop = "^1";
-        "TelegramDesktop".state = "floating";
-        "Spotify".desktop = "^9";
+        "Skype".desktop = "^9";
+        "TelegramDesktop" = {
+          desktop = "^9";
+          state = "tiled";
+        };
+        "Spotify".desktop = "^8";
         "Zathura".state = "tiled";
         "fzfmenu".state = "floating";
         "clipmenu".state = "floating";

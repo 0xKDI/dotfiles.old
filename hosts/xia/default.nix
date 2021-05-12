@@ -63,6 +63,9 @@ in
           terraform_0_15
           terraform-ls
           ansible
+
+          openfortivpn
+          skypeforlinux
         ];
       };
       modules = {
@@ -238,6 +241,7 @@ in
   programs = {
     bash.interactiveShellInit = ''HISTFILE="$XDG_DATA_HOME"/bash/history'';
     adb.enable = true;
+    java.enable = true;
   };
 
 
