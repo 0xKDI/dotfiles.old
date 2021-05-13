@@ -107,7 +107,3 @@ vim.api.nvim_exec([[
         au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=100}
     augroup END
 ]], false)
-
-vim.api.nvim_exec([[
-    execute "set colorcolumn=" . join(range(81,335), ',')
-]], false)
