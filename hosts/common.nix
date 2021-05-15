@@ -578,10 +578,9 @@ in
       } // optionalAttrs (has pkgs.transmission) {
         trr = "transmission-remote";
       } // optionalAttrs (has pkgs.exa) {
-        l = "exa -al --group-directories-first";
-        ll = "exa -a --group-directories-first";
-        lt = "exa -a --tree --group-directories-first";
-        L = "exa -l --group-directories-first";
+        l = "exa -al --group-directories-first -g";
+        ll = "exa -a --group-directories-first -g";
+        lt = "exa -a --tree --group-directories-first -g";
       };
       plugins = with pkgs; [
         {
