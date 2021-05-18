@@ -380,7 +380,7 @@ in
     browserpass.browsers = [ "firefox" ];
     git = {
       userEmail = email;
-      userName = user;
+      userName = "Dmitry Kulikov";
       ignores = [
         "Session.vim"
       ];
@@ -580,7 +580,7 @@ in
       } // optionalAttrs (has pkgs.exa) {
         l = "exa -al --group-directories-first -g";
         ll = "exa -a --group-directories-first -g";
-        lt = "exa -a --tree --group-directories-first -g";
+        lt = "exa -a --tree --group-directories-first -g -I .git";
       };
       plugins = with pkgs; [
         {
