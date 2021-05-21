@@ -623,7 +623,7 @@ in
         "super + Home" = "${bin}/fzfbooks";
         "super + F11" = "${bin}/screenshot";
       } // {
-        "super + z" = "systemctl suspend; ${pkgs.xsecurelock}/bin/xsecurelock";
+        "super + z" = "xset dpms force off; ${pkgs.xsecurelock}/bin/xsecurelock";
         "super + F6" = "${bin}/toggle_mute";
         "super + F3" = "${bin}/change_volume -i 5";
         "super + F2" = "${bin}/change_volume -d 5";
@@ -1078,7 +1078,6 @@ in
       rm -drf ~/.xsession-errors ~/.xsession-errors.old ~/.compose_cache
       ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${wallpapers}/nix-wallpaper-dracula.png &
       xset r rate 250 60
-      xset s off -dpms 
     '';
     windowManager.bspwm = {
       monitors = { "eDP1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
