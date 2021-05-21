@@ -3,9 +3,9 @@
 
 SSID="$1"
 
+echo "Connecting to $SSID ..."
 while
     nmcli d wifi rescan
-    echo "Connecting to $SSID ..."
     sleep 0.1
     nmcli d wifi connect $SSID 2> /dev/null
     [[ $? -ne 0 ]]
