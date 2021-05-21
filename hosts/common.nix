@@ -427,8 +427,11 @@ in
         save-position-on-quit = true;
       };
     };
-    password-store.settings = {
-      PASSWORD_STORE_DIR = "${home}/.password-store";
+    password-store = {
+      package = pkgs.gopass;
+      settings = {
+        PASSWORD_STORE_DIR = "${home}/.password-store";
+      };
     };
     zathura = {
       options = {
@@ -581,6 +584,8 @@ in
         l = "exa -al --group-directories-first -g";
         ll = "exa -a --group-directories-first -g";
         lt = "exa -a --tree --group-directories-first -g -I .git";
+      }// optionalAttrs config.programs.password-store.enable {
+        pass = "gopass";
       };
       plugins = with pkgs; [
         {
