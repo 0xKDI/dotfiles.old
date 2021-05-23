@@ -614,6 +614,17 @@ in
 
 
   services = {
+    screen-locker = {
+      lockCmd = "systemctl suspend";
+      inactiveInterval = 15;
+      xssLockExtraOptions = [
+        "-n"
+        "${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
+        "-l"
+        "--"
+        "${pkgs.xsecurelock}/bin/xsecurelock"
+      ];
+    };
     sxhkd = {
       keybindings = let
         bin = binPath;
@@ -628,7 +639,7 @@ in
         "super + Home" = "${bin}/fzfbooks";
         "super + F11" = "${bin}/screenshot";
       } // {
-        "super + z" = "xset dpms force off; ${pkgs.xsecurelock}/bin/xsecurelock";
+        "super + z" = "xset s activate";
         "super + F6" = "${bin}/toggle_mute";
         "super + F3" = "${bin}/change_volume -i 5";
         "super + F2" = "${bin}/change_volume -d 5";
@@ -1082,7 +1093,8 @@ in
     initExtra = ''
       rm -drf ~/.xsession-errors ~/.xsession-errors.old ~/.compose_cache
       ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${wallpapers}/nix-wallpaper-dracula.png &
-      xset r rate 250 60
+      xset r rate 250 60 &
+      xset s 300 10
     '';
     windowManager.bspwm = {
       monitors = { "eDP1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
@@ -1178,7 +1190,7 @@ in
           "PATH=${pkgs.libnotify}/bin:
           ${pkgs.acpi}/bin:
           ${pkgs.coreutils}/bin:
-          ${pkgs.gnugrep}/bin "
+          ${pkgs.gnugrep}/bin"
         '';
         ExecStart = "${binPath}/check_battery";
       };
