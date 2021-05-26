@@ -25,6 +25,7 @@ in
         packages = with pkgs; [
           xst
           stable.discord
+          skypeforlinux
           drawio
           tdesktop
           libreoffice-fresh
@@ -49,9 +50,11 @@ in
           p7zip
           inotify-tools
           libqalculate
+          sshfs
 
           docker-credential-helpers
           docker-compose
+          kompose
 
           minikube
           kubectl
@@ -65,7 +68,8 @@ in
           ansible
 
           openfortivpn
-          skypeforlinux
+          openvpn
+          samba
         ];
       };
       modules = {
