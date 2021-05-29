@@ -195,6 +195,8 @@ in
       allowedUDPPorts = [ 80 443 ];
     };
   };
+  # TODO: enable when https://github.com/NixOS/nixpkgs/issues/124215
+  # is resolved
   documentation.info.enable = false;
 
 
