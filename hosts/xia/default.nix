@@ -68,7 +68,6 @@ in
           ansible
 
           openfortivpn
-          openvpn
           samba
         ];
       };
@@ -196,6 +195,7 @@ in
       allowedUDPPorts = [ 80 443 ];
     };
   };
+  documentation.info.enable = false;
 
 
   services = {
@@ -211,6 +211,11 @@ in
       resyncTimer = "30min";
     };
     tlp.enable = true;
+    openvpn.servers.work  = {
+      config = '' config /root/nixos/openvpn/work.conf ''; 
+      autoStart = false;
+      updateResolvConf = true;
+    };
   };
 
 
