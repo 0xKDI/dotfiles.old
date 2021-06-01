@@ -49,7 +49,7 @@ in
         vim-commentary
         vim-repeat
         vim-obsession # for resurrecting sessions
-        vim-devicons
+        nvim-web-devicons
         vim-lion
         auto-pairs
         vim-snippets
