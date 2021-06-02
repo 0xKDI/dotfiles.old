@@ -732,7 +732,7 @@ in
         monitor = 0;
         follow = "mouse";
         geometry = "0x5-30+50";
-        max_icon_size = 25;
+        max_icon_size = 30;
         indicate_hidden = "yes";
         shrink = "no";
         transparency = 0;
