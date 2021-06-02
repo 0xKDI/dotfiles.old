@@ -383,6 +383,7 @@ in
       userName = "Dmitry Kulikov";
       ignores = [
         "Session.vim"
+        ".envrc"
       ];
       aliases = {
         s = "status";
