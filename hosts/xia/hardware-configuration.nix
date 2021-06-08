@@ -71,7 +71,10 @@
         unload-module module-esound-protocol-unix
       '';
     };
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      package = pkgs.bluezFull;
+    };
     opengl = {
       enable = true;
       extraPackages = with pkgs; [
