@@ -507,6 +507,7 @@ in
       shellAliases = {
         d = "docker";
         dc = "docker-compose";
+        rr = "rm -rf";
 
         mkdir = "mkdir -p";
 
