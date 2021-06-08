@@ -69,6 +69,7 @@ in
 
           openfortivpn
           samba
+          maven
         ];
       };
       modules = {
@@ -253,7 +254,10 @@ in
   programs = {
     bash.interactiveShellInit = ''HISTFILE="$XDG_DATA_HOME"/bash/history'';
     adb.enable = true;
-    java.enable = true;
+    java = {
+      enable = true;
+      package = pkgs.jdk11;
+    };
   };
 
 
