@@ -618,7 +618,7 @@ in
   services = {
     screen-locker = {
       lockCmd = "vlock & xset s activate";
-      inactiveInterval = 15;
+      inactiveInterval = 10;
       xssLockExtraOptions = [
         "-n"
         "${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
