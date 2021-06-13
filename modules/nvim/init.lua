@@ -1,46 +1,3 @@
-vim.o.clipboard = "unnamedplus"
-vim.o.ignorecase = true
-vim.o.smartcase = true
-vim.o.formatoptions="tcqjr"
-vim.wo.relativenumber = true
-vim.wo.number = true
-vim.o.mouse = "a"
-vim.wo.cursorline = true
-vim.o.showmode = false
-vim.o.swapfile = false
-vim.o.hidden = true
-vim.o.t_Co = "256"
-vim.o.termguicolors = true
-
-
--- Update sign column every 1/4 second
-vim.o.updatetime = 250
-
-vim.o.langmap="ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz"
-
-vim.o.lazyredraw = true -- fix slow scrolling
-
-vim.o.tabstop = 4
-vim.o.softtabstop = 4
-vim.o.shiftwidth = 4
-
-vim.o.expandtab = true
--- vim.o.smartindent = true
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.foldlevelstart = 99
-vim.o.foldnestmax = 10
-
--- netrw
-vim.g.netrw_banner = false
-vim.g.netrw_home = vim.env.XDG_CACHE_HOME ..'/nvim'
-vim.g.netrw_winsize = 30
-
-
-vim.g.mapleader = " "
-
-vim.api.nvim_set_keymap('n', '<leader>=', '<C-W>=', { noremap = true })
-
 -- resize 
 vim.api.nvim_set_keymap('n', '<C-left>', ':vertical resize +3<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-Right>', ':vertical resize -3<CR>', { noremap = true, silent = true })
@@ -54,6 +11,9 @@ vim.api.nvim_set_keymap('n', '<leader>]', ':tabnext<CR>', { noremap = true, sile
 vim.api.nvim_set_keymap('n', '<leader>[', ':tabprevious<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>b', ':tabnew %<CR>', { noremap = true, silent = true })
 
+
+
+vim.api.nvim_set_keymap('n', '<leader>=', '<C-W>=', { noremap = true })
 
 
 vim.api.nvim_set_keymap('v', 'J', ':m \'>+1<CR>gv=gv', { noremap = true })
@@ -80,8 +40,8 @@ vim.api.nvim_set_keymap('n', '<leader>8', '8gt', { noremap = true, silent = true
 vim.api.nvim_set_keymap('n', '<leader>9', '9gt', { noremap = true, silent = true })
 
 -- Faster up/down movement
-vim.api.nvim_set_keymap('', '<C-j>', '8j', { silent = true })
-vim.api.nvim_set_keymap('', '<C-k>', '8k', { silent = true })
+vim.api.nvim_set_keymap('', '<C-j>', '8j', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('', '<C-k>', '8k', { noremap  = true, silent = true })
 
 
 vim.api.nvim_exec([[

@@ -37,6 +37,22 @@ in
       extraConfig = lua ./init.lua;
       plugins = with pkgs.vimPlugins; [
         {
+          plugin = nvim-web-devicons;
+          config = lua ./_before.lua;
+        }
+        {
+          plugin = dracula-vim;
+          config = ''
+            packadd! dracula-vim
+            let g:dracula_italic = 0
+            colorscheme dracula
+          '';
+        }
+        {
+          plugin = indent-guides-nvim;
+          config = lua ./indent-guides-nvim.lua;
+        }
+        {
           plugin = vim-gitgutter;
           config = lua ./vim-gitgutter.lua;
         }
@@ -49,11 +65,21 @@ in
         vim-commentary
         vim-repeat
         vim-obsession # for resurrecting sessions
-        nvim-web-devicons
         vim-lion
         auto-pairs
         vim-snippets
-        vim-polyglot
+        {
+          plugin = vim-polyglot;
+          optional = true;
+          config = ''
+            let g:polyglot_disabled = ['yaml']
+            packadd! vim-polyglot
+          '';
+        }
+        {
+          plugin = fzf-vim;
+          config = lua ./fzf-vim.lua;
+        }
         fzfWrapper
         completion-buffers
         {
@@ -81,22 +107,6 @@ in
           config = lua "require'colorizer'.setup()";
         }
         {
-          plugin = fzf-vim;
-          config = lua ./fzf-vim.lua;
-        }
-        {
-          plugin = indent-guides-nvim;
-          config = lua ./indent-guides-nvim.lua;
-        }
-        {
-          plugin = dracula-vim;
-          config = ''
-            packadd! dracula-vim
-            let g:dracula_italic = 0
-            colorscheme dracula
-          '';
-        }
-        {
           plugin = lightline-vim;
           config = source ./lightline-vim.vim;
         }
@@ -108,11 +118,6 @@ in
           '';
         }
       ];
-    };
-
-
-    xdg.configFile = {
-      "nvim/init.vim".text = lua "vim.g.polyglot_disabled = {'yaml'}";
     };
   };
 }

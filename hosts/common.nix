@@ -617,7 +617,7 @@ in
 
   services = {
     screen-locker = {
-      lockCmd = "systemctl suspend";
+      lockCmd = "vlock & xset s activate";
       inactiveInterval = 15;
       xssLockExtraOptions = [
         "-n"
@@ -1097,7 +1097,7 @@ in
       rm -drf ~/.xsession-errors ~/.xsession-errors.old ~/.compose_cache
       ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${wallpapers}/nix-wallpaper-dracula.png &
       xset r rate 250 60 &
-      xset s 300 10
+      xset +dpms s 300 10
     '';
     windowManager.bspwm = {
       monitors = { "eDP1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };

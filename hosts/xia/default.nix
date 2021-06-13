@@ -196,16 +196,23 @@ in
       allowedUDPPorts = [ 80 443 ];
     };
   };
-  # TODO: enable when https://github.com/NixOS/nixpkgs/issues/124215
-  # is resolved
-  documentation.info.enable = false;
 
 
   services = {
     dbus.packages = [ pkgs.gnome3.dconf ];
     # remap the most useless key to the most useful one
     # (Caps lock become Ctrl when used with another key and Esc when used without one)
-    interception-tools.enable = true;
+    # https://github.com/NixOS/nixpkgs/issues/126681
+    interception-tools = {
+    enable = true;
+    plugins = [ pkgs.interception-tools-plugins.caps2esc ];
+    udevmonConfig = ''
+      - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
+        DEVICE:
+          EVENTS:
+            EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+    '';
+  };
     logind.extraConfig = ''
       HandlePowerKey=suspend
     '';
@@ -262,7 +269,6 @@ in
 
 
   environment.pathsToLink = [ "/share/zsh" ]; # get zsh completion for system packages
-
 
   virtualisation = {
     virtualbox.host = {
