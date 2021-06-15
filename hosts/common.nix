@@ -631,10 +631,13 @@ in
     sxhkd = {
       keybindings = let
         bin = binPath;
+        xst = "${pkgs.xst}/bin/xst";
+        tmux = "${pkgs.tmux}/bin/tmux";
+        xkb-switch = "${pkgs.xkb-switch}/bin/xkb-switch";
       in
       {
-        "super + Return" = "${pkgs.xst}/bin/xst -e ${pkgs.tmux}/bin/tmux attach";
-        "super + shift + Return" = "${pkgs.xst}/bin/xst";
+        "super + Return" = "${xst} -e ${tmux} attach";
+        "super + shift + Return" = xst;
         "super + space" = "${bin}/fzfappmenu";
         "super + e" = "${bin}/fzfbuku";
         "super + s" = "${bin}/fzfclipmenu";
@@ -642,7 +645,7 @@ in
         "super + Home" = "${bin}/fzfbooks";
         "super + F11" = "${bin}/screenshot";
       } // {
-        "super + z" = "xset s activate";
+        "super + z" = "vlock & xset s activate";
         "super + F6" = "${bin}/toggle_mute";
         "super + F3" = "${bin}/change_volume -i 5";
         "super + F2" = "${bin}/change_volume -d 5";
@@ -650,7 +653,7 @@ in
         "XF86AudioRaiseVolume" = "${bin}/change_volume -i 5";
         "XF86AudioLowerVolume" = "${bin}/change_volume -d 5";
         "XF86AudioMute" = "${bin}/change_volume -t";
-        "super + a" = "${pkgs.xkb-switch}/bin/xkb-switch -n";
+        "super + a" = "${xkb-switch} -n";
         "super + F4" = "${bin}/change_brightness 5%-";
         "super + F5" = "${bin}/change_brightness +5%";
         "XF86MonBrightnessUp" = "${bin}/change_brightness 5%-";
