@@ -104,7 +104,7 @@ in
         zsh.enable = true;
       };
       services = {
-        screen-locker.enable = true;
+        # screen-locker.enable = true;
         sxhkd.enable = true;
         gpg-agent.enable = true;
         udiskie.enable = true;

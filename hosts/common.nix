@@ -1101,7 +1101,14 @@ in
       rm -drf ~/.xsession-errors ~/.xsession-errors.old ~/.compose_cache
       ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${wallpapers}/nix-wallpaper-dracula.png &
       xset r rate 250 60 &
-      xset +dpms s 300 10
+      xset +dpms s 300 10 &
+      ${pkgs.xss-lock}/bin/xss-lock \
+      -n \
+      ${pkgs.xsecurelock}/libexec/xsecurelock/dimmer \
+      -l \
+      -- \
+      ${pkgs.xsecurelock}/bin/xsecurelock &
+      vlock &
     '';
     windowManager.bspwm = {
       monitors = { "eDP1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
