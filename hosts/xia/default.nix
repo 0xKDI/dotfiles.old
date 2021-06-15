@@ -70,6 +70,7 @@ in
           openfortivpn
           samba
           maven
+          groovy
         ];
       };
       modules = {
