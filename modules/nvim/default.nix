@@ -53,12 +53,12 @@ in
           config = lua ./indent-guides-nvim.lua;
         }
         {
-          plugin = vim-gitgutter;
-          config = lua ./vim-gitgutter.lua;
-        }
-        {
           plugin = vim-fugitive;
           config = lua ./vim-fugitive.lua;
+        }
+        {
+          plugin = vim-gitgutter;
+          config = lua ./vim-gitgutter.lua;
         }
         vim-sneak
         vim-surround
