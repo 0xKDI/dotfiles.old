@@ -53,13 +53,17 @@
         ]
       },
       "locked": {
-        "narHash": "sha256-FljfKt14Ayx9O1O3YNc2ZxD9WPpL+lrUEmQExAj0v4A=",
-        "path": "/home/qq/prj/home-manager",
-        "type": "path"
+        "lastModified": 1623778055,
+        "narHash": "sha256-Ff2oCuprlJ1LVvu+UZ7yy1PrKHWhLqk4ksZlDKjFFc4=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "9b39fd7eb4468781ac0e72c32fc5f86bc9f0f7ea",
+        "type": "github"
       },
       "original": {
-        "path": "/home/qq/prj/home-manager",
-        "type": "path"
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
       }
     },
     "home-manager_2": {

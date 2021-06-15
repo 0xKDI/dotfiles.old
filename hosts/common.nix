@@ -199,7 +199,7 @@ in
     };
     direnv = {
       enableZshIntegration = true;
-      enableNixDirenvIntegration = true;
+      nix-direnv.enable = true;
     };
     starship = {
       enableZshIntegration = true;
