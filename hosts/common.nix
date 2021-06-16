@@ -53,6 +53,7 @@ in
       tealdeer # faster tldr
       manix
       du-dust # du + rust
+      yq-go # yaml processor
 
       cachix
       nixpkgs-fmt
