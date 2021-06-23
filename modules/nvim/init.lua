@@ -58,6 +58,12 @@ vim.api.nvim_exec([[
     autocmd BufNewFile,BufRead buku-edit-* set filetype=conf
     autocmd BufNewFile,BufRead .envrc set filetype=sh
     autocmd BufNewFile,BufRead *.nix set filetype=nix
+    augroup ansible_vim_fthosts
+      autocmd!
+      autocmd BufNewFile,BufRead */tasks/*.yml setfiletype yaml.ansible
+      autocmd BufNewFile,BufRead */handlers/*.yml setfiletype yaml.ansible
+      autocmd BufNewFile,BufRead */default/*.yml setfiletype yaml.ansible
+    augroup END
 ]], false)
 
 vim.api.nvim_exec([[

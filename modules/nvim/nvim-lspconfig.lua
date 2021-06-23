@@ -33,7 +33,15 @@ end
 -- TODO : rewrite
 lspconfig.pyls.setup{ on_attach = on_attach }
 lspconfig.rnix.setup{ on_attach = on_attach }
-lspconfig.yamlls.setup{ on_attach = on_attach }
+lspconfig.yamlls.setup{
+	on_attach = on_attach,
+	settings = {
+		yaml = {
+			customTags = { "!vault" };
+			completion = false;
+		}
+	}
+}
 lspconfig.terraformls.setup{ on_attach = on_attach }
 lspconfig.texlab.setup{ on_attach = on_attach  }
 lspconfig.gopls.setup{ on_attach = on_attach }
