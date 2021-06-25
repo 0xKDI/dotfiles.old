@@ -507,6 +507,7 @@ in
       #   source <(kops completion zsh) # doesn't work with eval
       #   '';
       shellAliases = {
+        ssh = "TERM=xterm ssh";
         d = "docker";
         dc = "docker-compose";
         rr = "rm -rf";
