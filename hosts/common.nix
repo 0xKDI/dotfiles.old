@@ -434,6 +434,7 @@ in
       package = pkgs.gopass;
       settings = {
         PASSWORD_STORE_DIR = "${home}/.password-store";
+        GOPASS_NO_NOTIFY = "true";
       };
     };
     zathura = {
