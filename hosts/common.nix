@@ -520,6 +520,22 @@ in
         "4." = "cd ../../../..";
         "5." = "cd ../../../../..";
         Q = "cd ~ ; clear";
+
+        se = "sudoedit";
+
+        start = "sudo systemctl start";
+        stop = "sudo systemctl stop";
+        restart = "sudo systemctl restart";
+        status = "sudo systemctl status";
+        enable = "sudo systemctl enable";
+        disable = "sudo systemctl disable";
+
+        ustart = "systemctl --user start";
+        ustop = "systemctl --user stop";
+        urestart = "systemctl --user restart";
+        ustatus = "systemctl --user status";
+        uenable = "systemctl --user enable";
+        udisable = "systemctl --user disable";
       } // optionalAttrs (has pkgs.gnumake) {
         mk = "make";
       } // optionalAttrs config.programs.tmux.tmuxp.enable {
@@ -542,22 +558,6 @@ in
         py3 = "python3";
         py2 = "python2";
         py = "python3";
-      } // optionalAttrs (config.systemd.user.startServices == "legacy") {
-        se = "sudoedit";
-
-        start = "sudo systemctl start";
-        stop = "sudo systemctl stop";
-        restart = "sudo systemctl restart";
-        status = "sudo systemctl status";
-        enable = "sudo systemctl enable";
-        disable = "sudo systemctl disable";
-
-        ustart = "systemctl --user start";
-        ustop = "systemctl --user stop";
-        urestart = "systemctl --user restart";
-        ustatus = "systemctl --user status";
-        uenable = "systemctl --user enable";
-        udisable = "systemctl --user disable";
       } // optionalAttrs config.programs.firefox.enable {
         b = "buku --suggest";
       } // optionalAttrs config.modules.sxiv.enable {
