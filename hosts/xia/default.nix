@@ -125,7 +125,6 @@ in
         enable = true;
         windowManager.bspwm.enable = true;
       };
-      systemd.user.startServices = "legacy";
     };
     useUserPackages = true;
     useGlobalPkgs = true;
