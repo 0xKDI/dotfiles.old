@@ -1032,14 +1032,12 @@ in
     } // optionalAttrs config.programs.firefox.enable {
       "tridactyl/tridactylrc".text = ''
         colourscheme quakelight
-        sanitise tridactyllocal tridactylsync
         bind j scrollline 4
         bind k scrollline -4
         bind : fillcmdline_notrail
         bind YU hint -y
         bind ,l fillcmdline_notrail tabopen http://localhost:
         bind ,g fillcmdline_notrail tabopen https://github.com/
-        bind ,s tabopen https://github.com/detailyang/awesome-cheatsheet
         set scrollduration 20
         set allowautofocus false
         set keytranslatemap {"о":"j", "л":"k"}
@@ -1049,9 +1047,6 @@ in
         " make d take you to the tab you were just on (I find it much less confusing)
         bind d composite tab #; tabclose #
         bind D tabclose
-        " Stupid workaround to let hint -; be used with composite which steals semi-colons
-        command hint_focus hint -;
-        bind ;C composite hint_focus; !s xdotool key Menu
       '';
     } // optionalAttrs config.modules.python.enable {
       "pythonrc.py".text = ''
