@@ -727,7 +727,7 @@ in
       global = {
         monitor = 0;
         follow = "mouse";
-        geometry = "0x5-30+50";
+        geometry = "=0x5-0+0";
         max_icon_size = 30;
         indicate_hidden = "yes";
         shrink = "no";
@@ -740,7 +740,7 @@ in
         frame_color = "#bd93f9";
         separator_color = "frame";
         sort = "yes";
-        font = "JetBrains 12";
+        font = "FiraCode Bold 14";
         idle_threshold = 120;
         line_height = 2;
         markup = "full";
