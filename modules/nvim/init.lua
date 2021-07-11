@@ -55,7 +55,6 @@ vim.api.nvim_exec([[
     autocmd FileType yaml set tabstop=2 shiftwidth=2
     autocmd FileType helm set tabstop=2 shiftwidth=2
     autocmd FileType help wincmd L
-    autocmd BufNewFile,BufRead buku-edit-* set filetype=conf
     autocmd BufNewFile,BufRead .envrc set filetype=sh
     autocmd BufNewFile,BufRead *.nix set filetype=nix
     augroup ansible_vim_fthosts

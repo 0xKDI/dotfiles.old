@@ -73,8 +73,6 @@ in
       acpi
     ] ++ optionals config.programs.firefox.enable [
       tridactyl-native
-      buku
-      sqlite # required for buku
     ] ++ optionals config.programs.go.enable [
       gopls
     ] ++ optionals config.xsession.enable [
@@ -558,8 +556,6 @@ in
         py3 = "python3";
         py2 = "python2";
         py = "python3";
-      } // optionalAttrs config.programs.firefox.enable {
-        b = "buku --suggest";
       } // optionalAttrs config.modules.sxiv.enable {
         sxiv = "sxiv -b";
         qr = ''
@@ -639,7 +635,6 @@ in
         "super + Return" = "${xst} -e ${tmux} attach";
         "super + shift + Return" = xst;
         "super + space" = "${bin}/fzfappmenu";
-        "super + e" = "${bin}/fzfbuku";
         "super + s" = "${bin}/fzfclipmenu";
         "super + w" = "${bin}/fzfwindowmenu";
         "super + Home" = "${bin}/fzfbooks";
