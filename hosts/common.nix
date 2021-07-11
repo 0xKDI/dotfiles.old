@@ -805,7 +805,7 @@ in
             compositing-border = "over";
           };
           "bar/${barname}" = {
-            monitor = "\${env:MONITOR:eDP1}";
+            monitor = "\${env:MONITOR:eDP-1}";
             width = "100%";
             bottom = false;
             height = 30;
@@ -1090,7 +1090,7 @@ in
       xset -dpms &
     '';
     windowManager.bspwm = {
-      monitors = { "eDP1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
+      monitors = { "eDP-1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
       startupPrograms = [
         # https://github.com/nix-community/home-manager/issues/195
         "systemctl --user restart polybar"
