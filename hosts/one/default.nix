@@ -14,7 +14,6 @@ in
       modules = {
         # neovim.enable = true;
         # tmux.enable = true;
-        # latex.enable = true;
       };
 
 

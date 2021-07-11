@@ -143,10 +143,6 @@ in
       MANWIDTH = 999;
     } // optionalAttrs true {
       DDGR_COLORS = "oCdgxf"; # duckduckgo-cli colors
-    } // optionalAttrs config.modules.latex.enable {
-      TEXMFHOME = "${dataHome}/texmf";
-      TEXMFVAR = "${cacheHome}/texlive/texmf-var";
-      TEXMFCONFIG = "${configHome}/texlive/texmf-config";
     } // optionalAttrs config.modules.aws.enable {
       AWS_SHARED_CREDENTIALS_FILE = "${configHome}/aws/credentials";
       AWS_CONFIG_FILE = "${configHome}/aws/config";

@@ -76,7 +76,6 @@ in
       modules = {
         aws.enable = true;
         python.enable = true;
-        latex.enable = true;
         neovim.enable = true;
         sxiv.enable = true;
         tmux.enable = true;
