@@ -219,7 +219,13 @@ in
       enable = true;
       resyncTimer = "30min";
     };
-    tlp.enable = true;
+    tlp = {
+      enable = true;
+      settings = {
+        RUNTIME_PM_DRIVER_BLACKLIST = "nouveau nvidia";
+        RUNTIME_PM_ON_AC = "auto";
+      };
+    };
     openvpn.servers.work  = {
       config = '' config /root/nixos/openvpn/work.conf ''; 
       autoStart = false;
