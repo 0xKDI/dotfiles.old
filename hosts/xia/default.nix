@@ -70,6 +70,10 @@ in
           samba
           maven
           groovy
+          mongodb-compass
+          # mongodb-4_2 # pls somebody push this to cachix
+          pgcli
+          mongodb-tools
         ];
       };
       modules = {
