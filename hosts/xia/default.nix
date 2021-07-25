@@ -177,8 +177,22 @@ in
   nixpkgs.config.allowUnfree = true;
 
 
-  # this is only increases boot time
-  systemd.services.NetworkManager-wait-online.enable = false;
+  systemd.services = {
+    NetworkManager-wait-online.enable = false; # this is only increases boot time
+    openfortivpn = {
+      enable = true;
+      after = [ "network-online.target" ];
+      description = "OpenFortiVPN for %I";
+      documentation = [ "man:openfortivpn(1)" ];
+      serviceConfig = {
+        Type = "simple";
+        PrivateTmp = true;
+        ExecStart = "${pkgs.openfortivpn}/bin/openfortivpn -c /root/nixos/openfortivpn/dit.conf";
+        OOMScoreAdjust = -100;
+      };
+      # wantedBy = [ "multi-user.target" ];
+    };
+  };
 
 
   powerManagement.cpuFreqGovernor = "powersave";
@@ -230,7 +244,7 @@ in
       };
     };
     openvpn.servers.work  = {
-      config = '' config /root/nixos/openvpn/work.conf ''; 
+      config = "config /root/nixos/openvpn/work.conf"; 
       autoStart = false;
       updateResolvConf = true;
     };
