@@ -56,9 +56,12 @@ in
           kompose
 
           minikube
-          kubectl
+          # kubectl # olready in openshift
           kubernetes-helm
           kops
+
+          minishift
+          openshift
 
           doctl
 
@@ -69,6 +72,7 @@ in
           openfortivpn
           samba
           maven
+          gradle
           groovy
           mongodb-compass
           # mongodb-4_2 # pls somebody push this to cachix
