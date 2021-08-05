@@ -531,59 +531,43 @@ in
         ustatus = "systemctl --user status";
         uenable = "systemctl --user enable";
         udisable = "systemctl --user disable";
-      } // optionalAttrs (has pkgs.gnumake) {
         mk = "make";
-      } // optionalAttrs config.programs.tmux.tmuxp.enable {
         t = "tmuxp";
         tl = "tmuxp load -a";
         tll = "tmuxp load -y";
-      } // optionalAttrs config.xsession.enable {
         y = "xclip -selection c";
         p = "xclip -selection c -o";
-      } // optionalAttrs config.programs.noti.enable {
         n = "noti";
-      } // optionalAttrs hasTf {
         tf = "terraform";
-      } // optionalAttrs config.modules.neovim.enable {
         vim = "nvim";
         vi = "nvim";
         v = "nvim";
         fs = "f -S";
-      } // optionalAttrs config.modules.python.enable {
         py3 = "python3";
         py2 = "python2";
         py = "python3";
-      } // optionalAttrs config.modules.sxiv.enable {
         sxiv = "sxiv -b";
         qr = ''
           xclip -selection c -o |
           qrencode -o /tmp/grencode.png;
           devour sxiv -b /tmp/grencode.png
         '';
-      } // optionalAttrs config.programs.git.enable {
         g = "git";
         gs = "git status";
         c = "git commit -m";
-      } // optionalAttrs config.programs.zathura.enable {
         zt = "devour zathura";
-      } // optionalAttrs (has pkgs.kubectl) {
         k = "kubectl";
         ka = "kubectl apply";
         kg = "kubectl get";
         kd = "kubectl describe";
         ke = "kubectl explain";
         kdl = "kubectl delete";
-      } // optionalAttrs (has pkgs.du-dust) {
         dst = "dust -r";
-      } // optionalAttrs (has pkgs.ddgr) {
         s = "ddgr";
-      } // optionalAttrs (has pkgs.transmission) {
         trr = "transmission-remote";
-      } // optionalAttrs (has pkgs.exa) {
         l = "exa -al --group-directories-first -g";
         ll = "exa -a --group-directories-first -g";
         lt = "exa -a --tree --group-directories-first -g -I .git";
-      }// optionalAttrs config.programs.password-store.enable {
         pass = "gopass";
       };
       plugins = with pkgs; [
