@@ -493,11 +493,12 @@ in
         eval "$(pandoc --bash-completion)"
       '' + optionalString config.modules.aws.enable ''
         source ${pkgs.awscli2}/share/zsh/site-functions/aws_zsh_completer.sh
+      '' + optionalString (has pkgs.minikube) ''
+        eval $(minikube completion zsh)
+      '' + optionalString (has pkgs.minishift) ''
+        eval $(minishift completion zsh)
       '';
       # NOTE: These two are RIDICULOUSLY slow
-      # + optionalString (has pkgs.minikube) ''
-      # eval $(minikube completion zsh)
-      # '';
       # + optionalString (has pkgs.kops) ''
       #   source <(kops completion zsh) # doesn't work with eval
       #   '';

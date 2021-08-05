@@ -56,7 +56,7 @@ in
           kompose
 
           minikube
-          # kubectl # olready in openshift
+          # kubectl # already in openshift
           kubernetes-helm
           kops
 
@@ -75,8 +75,9 @@ in
           gradle
           groovy
           mongodb-compass
-          # mongodb-4_2 # pls somebody push this to cachix
+          stable.mongodb-4_2 # pls somebody push this to cachix
           pgcli
+          postgresql_13
           mongodb-tools
         ];
       };
