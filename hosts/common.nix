@@ -505,6 +505,7 @@ in
         ssh = "TERM=xterm ssh";
         d = "docker";
         dc = "docker-compose";
+        dcl = "docker-compose logs -f --tail 1000";
         rr = "rm -rf";
 
         mkdir = "mkdir -p";

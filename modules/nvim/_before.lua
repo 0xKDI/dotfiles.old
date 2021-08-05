@@ -11,6 +11,7 @@ vim.o.swapfile = false
 vim.o.hidden = true
 -- vim.o.t_Co = "256"
 vim.o.termguicolors = true
+vim.diffopt = { "internal", "filler", "closeoff", "vertical" }
 
 
 -- Update sign column every 1/4 second
