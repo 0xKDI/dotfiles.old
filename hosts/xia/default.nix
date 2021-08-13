@@ -25,6 +25,7 @@ in
         packages = with pkgs; [
           xst
           stable.discord
+          tdesktop
           skypeforlinux
           drawio
           libreoffice-fresh
@@ -51,7 +52,7 @@ in
           libqalculate
           sshfs
 
-          docker-credential-helpers
+          # docker-credential-helpers
           docker-compose
           kompose
 
