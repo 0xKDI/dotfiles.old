@@ -36,6 +36,7 @@ in
     packages = with pkgs; [
       tree
       coreutils
+      pciutils
       file
       killall
       curl
@@ -765,12 +766,11 @@ in
         timeout = 0;
       };
     };
-    polybar =
-      let
-        barname = "main";
-      in
-      {
-        script = "polybar ${barname} &";
+    polybar = {
+        script = ''
+          polybar eDP-1 &
+          polybar HDMI-1 &
+        '';
         package = pkgs.polybar.override {
           pulseSupport = true;
           nlSupport = true;
@@ -790,8 +790,7 @@ in
             compositing-underline = "over";
             compositing-border = "over";
           };
-          "bar/${barname}" = {
-            monitor = "\${env:MONITOR:eDP-1}";
+          "bar/base" = {
             width = "100%";
             bottom = false;
             height = 30;
@@ -813,6 +812,14 @@ in
             cursor-scroll = "ns-resize";
             wm-restack = "bspwm";
           };
+          "bar/eDP-1" = {
+            "inherit" = "bar/base";
+            monitor = "eDP-1";
+          };
+          "bar/HDMI-1" = {
+            "inherit" = "bar/base";
+            monitor = "HDMI-1";
+          };
           "module/bspwm" = {
             type = "internal/bspwm";
             format = "<label-state>";
@@ -820,30 +827,21 @@ in
             format-foreground = "#50fa7b";
 
             label-padding = 1;
-            ws-icon-0 = "1; ";
-            ws-icon-1 = "2; ";
-            ws-icon-2 = "3; ";
-            ws-icon-3 = "4; ";
-            ws-icon-4 = "5; ";
-            ws-icon-5 = "6; ";
-            ws-icon-6 = "7; ";
-            ws-icon-7 = "8; ";
-            ws-icon-8 = "9; ";
 
-            label-focused = "%icon%";
+            label-focused = "%name%";
             label-focused-foreground = "#ff79c6";
             label-focused-underline = "#fba922";
             label-focused-padding = 1;
 
-            label-occupied = "%icon%";
+            label-occupied = "%name%";
             label-occupied-foreground = "#ff79c6";
             label-occupied-padding = 1;
 
-            label-empty = "%icon%";
+            label-empty = "%name%";
             label-empty-foreground = "#6272a4";
             label-empty-padding = 1;
 
-            label-urgent = "%icon%";
+            label-urgent = "%name%";
             label-urgent-foreground = "#ff5555";
             label-urgent-padding = 1;
 
@@ -1076,10 +1074,17 @@ in
       xset -dpms &
     '';
     windowManager.bspwm = {
-      monitors = { "eDP-1" = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" ]; };
+      monitors = {
+        "eDP-1" = [ "1" "2" "3" "4" "5" ];
+        "HDMI-1" = [ "6" "7" "8" "9" "0" ];
+      };
+      extraConfig = ''
+        bspc wm -O eDP-1 HDMI-1
+      '';
       startupPrograms = [
+        "xrandr --output DVI-I-1-1 --auto"
         # https://github.com/nix-community/home-manager/issues/195
-        "systemctl --user restart polybar"
+        "systemctl --user restart polybar.service"
       ];
       settings = {
         border_width = 2;
@@ -1116,12 +1121,12 @@ in
       };
       rules = {
         "Firefox".desktop = "^1";
-        "Skype".desktop = "^9";
+        "Skype".desktop = "^5";
         "TelegramDesktop" = {
-          desktop = "^9";
+          desktop = "^5";
           state = "tiled";
         };
-        "Spotify".desktop = "^8";
+        "Spotify".desktop = "^4";
         "Zathura".state = "tiled";
         "fzfmenu".state = "floating";
         "clipmenu".state = "floating";

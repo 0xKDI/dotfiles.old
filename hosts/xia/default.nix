@@ -259,7 +259,7 @@ in
 
   services.xserver = {
     enable = true;
-    videoDrivers = [ "modesettings" ];
+    videoDrivers = [ "displaylink" "modesettings" ];
     useGlamor = true;
     layout = "us,ru";
     # xkbOptions = "caps:escape";
