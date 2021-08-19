@@ -32,6 +32,7 @@ in
           spotifywm
           gimp
           syncthing-cli #stcli
+          stable.remmina
 
           mpvc # a mpc-like control interface for mpv
           graphviz
