@@ -2,7 +2,7 @@
 
 with lib;
 let
-  univercityDir = "${home}/uni";
+  workDir = "${home}/work";
   projectDir = "${home}/prj";
   booksDir = "${home}/bks";
   syncDir = "${home}/snc";
@@ -24,7 +24,7 @@ let
   cacheHome = config.xdg.cacheHome;
 
   has = pkg: (any (_: _ == pkg) config.home.packages);
-  hasTf = has pkgs.terraform_0_15;
+  hasTf = has pkgs.terraform;
 in
 {
   imports = [
@@ -968,7 +968,7 @@ in
 
   gtk = {
     gtk3.bookmarks = [
-      "file://${univercityDir}"
+      "file://${workDir}"
       "file://${projectDir}"
       "file://${booksDir}"
       "file://${syncDir}"
@@ -1071,7 +1071,6 @@ in
       rm -drf ~/.xsession-errors ~/.xsession-errors.old ~/.compose_cache
       ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${wallpapers}/nix-wallpaper-dracula.png &
       xset r rate 250 60 &
-      xset -dpms &
     '';
     windowManager.bspwm = {
       monitors = {

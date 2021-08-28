@@ -67,7 +67,7 @@ in
 
           doctl
 
-          terraform_0_15
+          terraform
           terraform-ls
           ansible_2_10
 
