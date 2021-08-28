@@ -69,7 +69,7 @@ in
 
           terraform_0_15
           terraform-ls
-          ansible
+          ansible_2_10
 
           openfortivpn
           samba
@@ -81,6 +81,7 @@ in
           pgcli
           postgresql_13
           mongodb-tools
+          pavucontrol
         ];
       };
       modules = {
@@ -292,7 +293,8 @@ in
     adb.enable = true;
     java = {
       enable = true;
-      package = pkgs.jdk11;
+      # package = pkgs.jdk11;
+      package = pkgs.jdk8;
     };
   };
 
