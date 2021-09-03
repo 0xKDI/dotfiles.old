@@ -624,6 +624,7 @@ in
         "super + F11" = "${bin}/screenshot";
       } // {
         "super + z" = "vlock & xset s activate";
+        "super + Z" = "vlock & systemctl suspend";
         "super + F6" = "${bin}/toggle_mute";
         "super + F3" = "${bin}/change_volume -i 5";
         "super + F2" = "${bin}/change_volume -d 5";
@@ -1070,6 +1071,7 @@ in
     initExtra = ''
       rm -drf ~/.xsession-errors ~/.xsession-errors.old ~/.compose_cache
       ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${wallpapers}/nix-wallpaper-dracula.png &
+      xset s 300 5 &
       xset r rate 250 60 &
     '';
     windowManager.bspwm = {
