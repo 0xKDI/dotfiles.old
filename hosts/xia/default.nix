@@ -27,6 +27,7 @@ in
           stable.discord
           tdesktop
           skypeforlinux
+          slack
           drawio
           libreoffice-fresh
           spotifywm
