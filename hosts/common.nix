@@ -341,6 +341,7 @@ in
           "browser.search.region" = "US";
           "browser.search.geoSpecificDefaults" = false;
           "browser.urlbar.suggest.searches" = false;
+          "browser.bookmarks.autoExportHTML" = true;
 
           # Hardware video acceleration
           "media.ffmpeg.vaapi.enabled" = true;
