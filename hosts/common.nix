@@ -72,8 +72,6 @@ in
       maim
       dunst # required for dunstify
       acpi
-    ] ++ optionals config.programs.firefox.enable [
-      tridactyl-native
     ] ++ optionals config.programs.go.enable [
       gopls
     ] ++ optionals config.xsession.enable [
@@ -95,11 +93,7 @@ in
       noto-fonts-cjk
       noto-fonts-emoji
     ];
-    file = { } // optionalAttrs config.programs.firefox.enable
-      {
-        ".mozilla/native-messaging-hosts/tridactyl.json".source = "${pkgs.tridactyl-native}/lib/mozilla/native-messaging-hosts/tridactyl.json";
-        ".local/share/tridactyl/native_main.py".source = "${pkgs.tridactyl-native}/share/tridactyl/native_main.py";
-      } // optionalAttrs hasTf {
+    file = { } // optionalAttrs hasTf {
       ".terraformrc".text = ''
         plugin_cache_dir = "$HOME/.terraform.d/plugin-cache"
       '';
@@ -309,73 +303,7 @@ in
         mouse.hide_when_typing = true;
       };
     };
-    firefox = {
-      package = pkgs.firefox-bin;
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        stylus
-        ublock-origin
-        tridactyl
-        browserpass
-      ];
-      profiles.${user} = {
-        name = "${user}";
-        isDefault = true;
-        userContent = ''
-          :root{ scrollbar-width: none !important } 
-        '';
-        settings = {
-          "devtools.theme" = "dark";
-          "browser.downloadir" = "${home}/dl";
-          # bad
-          "general.smoothScroll" = false;
-
-          # Enable userContent.css and userChrome.css
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-
-          # annoying
-          "browser.tabs.warnOnClose" = false;
-          "browser.aboutConfig.showWarning" = false;
-          "browser.aboutwelcome.enabled" = false;
-
-          # search
-          "browser.search.region" = "US";
-          "browser.search.geoSpecificDefaults" = false;
-          "browser.urlbar.suggest.searches" = false;
-          "browser.bookmarks.autoExportHTML" = true;
-
-          # Hardware video acceleration
-          "media.ffmpeg.vaapi.enabled" = true;
-          "media.hardware-video-decoding.enabled" = true;
-          "media.hardware-video-decoding.force-enabled" = true;
-          # Enable OpenGL compositor
-          "layers.acceleration.force-enabled" = true;
-          # Enable WebRender compositor
-          "gfx.webrender.all" = true;
-
-          # Move disk cache to RAM
-          "browser.cache.disk.parent_directory" = "/run/user/${uid}/firefox";
-
-          # Disable pocket
-          "extensions.pocket.enabled" = false;
-
-          # tnx, no
-          "browser.newtabpage.activity-stream.feeds.telemetry" = false;
-          "browser.newtabpage.activity-stream.telemetry" = false;
-          "browser.newtabpage.activity-stream.telemetry.structuredIngestion.endpoint" = false;
-          "browser.ping-centre.telemetry" = false;
-          "dom.security.unexpected_system_load_telemetry_enabled" = false;
-          "security.app_menu.recordEventTelemetry" = false;
-          "security.certerrors.recordEventTelemetry" = false;
-          "security.identitypopup.recordEventTelemetry" = false;
-          "security.protectionspopup.recordEventTelemetry" = false;
-          "toolkit.telemetry.archive.enabled" = false;
-          "toolkit.telemetry.bhrPing.enabled" = false;
-          "toolkit.telemetry.firstShutdownPing.enabled" = false;
-          "full-screen-api.ignore-widgets" = true;
-        };
-      };
-    };
-    browserpass.browsers = [ "firefox" ];
+    # browserpass.browsers = [ "chrome" "chromium" ];
     git = {
       userEmail = email;
       userName = "Dmitry Kulikov";
@@ -507,6 +435,7 @@ in
       shellAliases = {
         ssh = "TERM=xterm ssh";
         d = "docker";
+        dl = "docker logs -f --tail 1000";
         dc = "docker-compose";
         dcl = "docker-compose logs -f --tail 1000";
         rr = "rm -rf";
@@ -704,8 +633,10 @@ in
     };
     gpg-agent = {
       enableSshSupport = true;
-      defaultCacheTtl = 28800;
-      defaultCacheTtlSsh = 28800;
+      defaultCacheTtl = 60480000;
+      defaultCacheTtlSsh = 60480000;
+      maxCacheTtl = 60480000;
+      maxCacheTtlSsh = 60480000;
     };
     udiskie = {
       automount = true;
@@ -1015,25 +946,6 @@ in
         substituters = https://cache.nixos.org https://nix-community.cachix.org
         trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
       '';
-    } // optionalAttrs config.programs.firefox.enable {
-      "tridactyl/tridactylrc".text = ''
-        colourscheme quakelight
-        bind j scrollline 4
-        bind k scrollline -4
-        bind : fillcmdline_notrail
-        bind YU hint -y
-        bind ,l fillcmdline_notrail tabopen http://localhost:
-        bind ,g fillcmdline_notrail tabopen https://github.com/
-        set scrollduration 20
-        set allowautofocus false
-        set keytranslatemap {"о":"j", "л":"k"}
-        set editorcmd ${pkgs.xst}/bin/xst -c nvimedit -e ${pkgs.neovim-nightly}/bin/nvim %f "+normal!%lGzv%c|"
-
-        " C-c C-p
-        " make d take you to the tab you were just on (I find it much less confusing)
-        bind d composite tab #; tabclose #
-        bind D tabclose
-      '';
     } // optionalAttrs config.modules.python.enable {
       "pythonrc.py".text = ''
         #!/usr/bin/env python3
@@ -1122,7 +1034,7 @@ in
         presel_feedback_color = "#6272a4";
       };
       rules = {
-        "Firefox".desktop = "^1";
+        "brave".desktop = "^1";
         "Skype".desktop = "^5";
         "TelegramDesktop" = {
           desktop = "^5";

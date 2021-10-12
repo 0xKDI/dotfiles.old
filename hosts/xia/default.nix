@@ -83,6 +83,7 @@ in
           postgresql_13
           mongodb-tools
           pavucontrol
+          cadaver
         ];
       };
       modules = {
@@ -106,8 +107,7 @@ in
         direnv.enable = true;
         starship.enable = true;
         alacritty.enable = true;
-        firefox.enable = true;
-        browserpass.enable = true;
+        # browserpass.enable = true;
         git.enable = true;
         mpv.enable = true;
         password-store.enable = true;
@@ -291,6 +291,7 @@ in
 
   programs = {
     bash.interactiveShellInit = ''HISTFILE="$XDG_DATA_HOME"/bash/history'';
+    browserpass.enable = true;
     adb.enable = true;
     java = {
       enable = true;
