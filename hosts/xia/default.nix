@@ -59,12 +59,9 @@ in
           kompose
 
           minikube
-          # kubectl # already in openshift
+          kubectl # already in openshift
           kubernetes-helm
           kops
-
-          minishift
-          openshift
 
           doctl
 
@@ -84,6 +81,7 @@ in
           mongodb-tools
           pavucontrol
           cadaver
+          sops
         ];
       };
       modules = {
@@ -311,7 +309,13 @@ in
     docker = {
       enable = true;
       enableOnBoot = false;
-      extraOptions = "--registry-mirror=https://mirror.gcr.io";
+      extraOptions = ''
+      --config-file=${pkgs.writeText "daemon.json" (builtins.toJSON
+      {
+        insecure-registries = ["localhost:8081"];
+      }
+      )}
+      '';
     };
   };
 
