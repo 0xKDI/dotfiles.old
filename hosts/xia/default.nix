@@ -82,6 +82,8 @@ in
           pavucontrol
           cadaver
           sops
+          vagrant
+          stable.pythonFull
         ];
       };
       modules = {
