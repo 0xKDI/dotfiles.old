@@ -40,6 +40,8 @@ in
           wally-cli
           imagemagick
           pandoc
+          pavucontrol
+          cadaver
 
           transmission
           youtube-dl
@@ -69,21 +71,24 @@ in
           terraform-ls
           ansible_2_10
 
-          openfortivpn
-          samba
           maven
           gradle
+
+          openfortivpn
+          samba
           groovy
+
           mongodb-compass
           stable.mongodb-4_2 # pls somebody push this to cachix
-          pgcli
-          postgresql_13
           mongodb-tools
-          pavucontrol
-          cadaver
+
+          stable.pgcli
+          postgresql_13
+
           sops
           vagrant
           stable.pythonFull
+          brave
         ];
       };
       modules = {

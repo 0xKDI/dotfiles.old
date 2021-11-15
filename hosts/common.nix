@@ -532,7 +532,7 @@ in
     screen-locker = {
       lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
       inactiveInterval = 10;
-      xautolockExtraOptions = [
+      xautolock.extraOptions = [
         "-notifier"
         "${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
       ];
@@ -994,6 +994,7 @@ in
       };
       extraConfig = ''
         bspc wm -O eDP-1 HDMI-1
+        bspc config pointer_follows_focus true
       '';
       startupPrograms = [
         "xrandr --output DVI-I-1-1 --auto"

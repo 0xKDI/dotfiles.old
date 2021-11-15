@@ -26,7 +26,7 @@ in
       enable = true;
       package = pkgs.neovim-nightly;
       extraPackages = with pkgs; [
-        python38Packages.python-language-server # pyls
+        stable.python38Packages.python-language-server # pyls
         rnix-lsp
         nodePackages.yaml-language-server
         texlab
