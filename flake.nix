@@ -18,10 +18,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-on-droid = {
-      url = "github:t184256/nix-on-droid/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
 
@@ -48,14 +44,5 @@
           { nixpkgs.overlays = overlays; }
         ];
       };
-
-
-      one = (inputs.nix-on-droid.lib.aarch64-linux.nix-on-droid {
-        config = { pkgs, config, ... }:
-        {
-          imports = [ ./hosts/one ];
-          home-manager.config.nixpkgs.overlays = overlays; 
-        };
-      }).activationPackage;
     };
 }

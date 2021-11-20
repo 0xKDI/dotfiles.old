@@ -31,21 +31,6 @@
         "type": "github"
       }
     },
-    "flake-utils_2": {
-      "locked": {
-        "lastModified": 1634851050,
-        "narHash": "sha256-N83GlSGPJJdcqhUxSCS/WwW5pksYf3VP1M13cDRTSVA=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "c91f3de5adaf1de973b797ef7485e441a65b8935",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -63,27 +48,6 @@
       "original": {
         "owner": "nix-community",
         "ref": "release-21.05",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "home-manager_2": {
-      "inputs": {
-        "nixpkgs": [
-          "nix-on-droid",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1636847964,
-        "narHash": "sha256-hH2lbDgOPwCtlWDwp0wVCcOK7x0mtLf4nrNWfvUWrA8=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "accfbdf215dbf39eac2fbae67b574dac0be83d51",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
         "repo": "home-manager",
         "type": "github"
       }
@@ -131,29 +95,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "type": "github"
-      }
-    },
-    "nix-on-droid": {
-      "inputs": {
-        "flake-utils": "flake-utils_2",
-        "home-manager": "home-manager_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1634897356,
-        "narHash": "sha256-ympsKl6H5v68A6+rW9OvmUlzeSDWffpGyZGY0Ms7otI=",
-        "owner": "t184256",
-        "repo": "nix-on-droid",
-        "rev": "5c838f508bfc71a5599522b6f181d9a9324506e2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "t184256",
-        "ref": "master",
-        "repo": "nix-on-droid",
         "type": "github"
       }
     },
@@ -208,7 +149,6 @@
       "inputs": {
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "nix-on-droid": "nix-on-droid",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
         "nur": "nur"
