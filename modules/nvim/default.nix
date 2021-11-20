@@ -24,12 +24,11 @@ in
   config = mkIf cfg.enable {
     programs.neovim = {
       enable = true;
-      package = pkgs.neovim-nightly;
+      package = pkgs.unstable.neovim-unwrapped;
       extraPackages = with pkgs; [
-        stable.python38Packages.python-language-server # pyls
+        python38Packages.python-language-server # pyls
         rnix-lsp
         nodePackages.yaml-language-server
-        texlab
         terraform-ls
         tree-sitter
       ] ++ optionals config.programs.go.enable [ gopls ];

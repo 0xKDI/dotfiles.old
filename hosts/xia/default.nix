@@ -24,7 +24,7 @@ in
         homeDirectory = "${home}";
         packages = with pkgs; [
           xst
-          stable.discord
+          discord
           tdesktop
           skypeforlinux
           slack
@@ -33,7 +33,7 @@ in
           spotifywm
           gimp
           syncthing-cli #stcli
-          stable.remmina
+          remmina
 
           mpvc # a mpc-like control interface for mpv
           graphviz
@@ -79,7 +79,7 @@ in
           groovy
 
           mongodb-compass
-          # stable.mongodb-4_2 # pls somebody push this to cachix
+          # mongodb-4_2 # pls somebody push this to cachix
           mongodb-tools
 
           pgcli
@@ -87,7 +87,7 @@ in
 
           sops
           vagrant
-          stable.pythonFull
+          # pythonFull
           brave
         ];
       };
@@ -172,7 +172,7 @@ in
 
 
   nix = {
-    package = pkgs.stable.nixFlakes;
+    package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';

@@ -3,8 +3,8 @@
 
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/release-21.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-21.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager/release-21.05";
       # url = "path:/home/qq/prj/home-manager";
@@ -14,10 +14,6 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
 
@@ -25,10 +21,9 @@
     let
       overlays = [
         inputs.nur.overlay
-        inputs.neovim-nightly-overlay.overlay
         (import ./overlays)
         (self: super: {
-          stable = import inputs.nixpkgs-stable {
+          unstable = import inputs.nixpkgs-unstable {
             system = "x86_64-linux";
             config.allowUnfree = true;
           };
