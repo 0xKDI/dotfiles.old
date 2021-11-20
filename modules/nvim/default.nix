@@ -116,6 +116,7 @@ in
             vim.g.UltiSnipsExpandTrigger = "<c-u>"
           '';
         }
+        which-key-nvim
       ];
     };
   };

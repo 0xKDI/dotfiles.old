@@ -5,6 +5,7 @@ vim.o.formatoptions="tcqjr"
 vim.wo.relativenumber = true
 vim.wo.number = true
 vim.o.mouse = "a"
+vim.o.timeoutlen = 500
 vim.wo.cursorline = true
 vim.o.showmode = false
 vim.o.swapfile = false
