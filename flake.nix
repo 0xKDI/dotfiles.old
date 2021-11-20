@@ -4,9 +4,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/release-20.09";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/release-21.05";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-21.05";
       # url = "path:/home/qq/prj/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };

@@ -79,10 +79,10 @@ in
           groovy
 
           mongodb-compass
-          stable.mongodb-4_2 # pls somebody push this to cachix
+          # stable.mongodb-4_2 # pls somebody push this to cachix
           mongodb-tools
 
-          stable.pgcli
+          pgcli
           postgresql_13
 
           sops
@@ -309,10 +309,10 @@ in
   environment.pathsToLink = [ "/share/zsh" ]; # get zsh completion for system packages
 
   virtualisation = {
-    virtualbox.host = {
-      enable = true;
-      enableExtensionPack = true;
-    };
+    # virtualbox.host = {
+    #   enable = true;
+    #   enableExtensionPack = true;
+    # };
     docker = {
       enable = true;
       enableOnBoot = false;

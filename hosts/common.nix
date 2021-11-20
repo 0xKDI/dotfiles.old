@@ -532,7 +532,7 @@ in
     screen-locker = {
       lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
       inactiveInterval = 10;
-      xautolock.extraOptions = [
+      xautolockExtraOptions = [
         "-notifier"
         "${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
       ];
