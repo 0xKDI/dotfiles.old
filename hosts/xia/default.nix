@@ -172,7 +172,7 @@ in
 
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.stable.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
