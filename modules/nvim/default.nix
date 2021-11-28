@@ -107,10 +107,14 @@ in
           config = lua "require'colorizer'.setup()";
         }
         {
-          plugin = lightline-vim;
-          config = source ./lightline-vim.vim;
+          plugin = lualine-nvim;
+          config = lua ./lualine-nvim.lua;
         }
         which-key-nvim
+        {
+          plugin = comment-nvim;
+          config = lua "require('Comment').setup()";
+        }
       ];
     };
   };

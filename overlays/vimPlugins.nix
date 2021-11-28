@@ -33,4 +33,15 @@
       sha256 = "1nw5w92hd98fkxm3kpdxb30v9sn2rgbl1m856mlk76n995d7bc0i";
     };
   };
+
+  comment-nvim = pkgs.vimUtils.buildVimPlugin {
+    pname = "comment-nvim";
+    version = "2021-11-28";
+    src = pkgs.fetchFromGitHub {
+      owner = "numToStr";
+      repo = "Comment.nvim";
+      rev = "a6e1c127fa7f19ec4e3edbffab1aacb2852b6db3";
+      sha256 = "0ds0z93gdqc7v6ndgsc2jz5ac06s6vbf26p17cc4h4a6l0sgn9pw";
+    };
+  };
 }
