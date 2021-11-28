@@ -1,4 +1,6 @@
-vim.api.nvim_set_keymap('n', '<leader>gn', '<Plug>(GitGutterNextHunk)', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>gp', '<Plug>(GitGutterPrevHunk)', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>ga', '<Plug>(GitGutterStageHunk)', { noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>gu', '<Plug>(GitGutterUndoHunk)', { noremap = true })
+vim.api.nvim_exec([[
+nmap <leader>gn <Plug>(GitGutterNextHunk)
+nmap <leader>gp <Plug>(GitGutterPrevHunk)
+nmap <leader>ga <Plug>(GitGutterStageHunk)
+nmap <leader>gu <Plug>(GitGutterUndoHunk)
+]], false)

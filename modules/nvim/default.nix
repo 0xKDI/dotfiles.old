@@ -31,7 +31,7 @@ in
         nodePackages.yaml-language-server
         terraform-ls
         tree-sitter
-      ] ++ optionals config.programs.go.enable [ gopls ];
+      ] ++ optionals config.programs.go.enable [ unstable.gopls ];
       withNodeJs = true;
       extraConfig = lua ./init.lua;
       plugins = with pkgs.vimPlugins; [
@@ -65,8 +65,13 @@ in
         vim-repeat
         vim-obsession # for resurrecting sessions
         vim-lion
-        auto-pairs
-        vim-snippets
+        {
+          plugin = nvim-autopairs;
+          config = lua ''
+          local npairs = require('nvim-autopairs')
+          npairs.setup({ map_cr = false })
+          '';
+        }
         {
           plugin = vim-polyglot;
           optional = true;
@@ -80,7 +85,6 @@ in
           config = lua ./fzf-vim.lua;
         }
         fzfWrapper
-        completion-buffers
         {
           plugin = nvim-lspfuzzy;
           config = lua "require('lspfuzzy').setup {}";
@@ -93,13 +97,10 @@ in
           plugin = nvim-treesitter;
           config = lua ./nvim-treesitter.lua;
         }
+        coq_nvim
         {
           plugin = nvim-lspconfig;
           config = lua ./nvim-lspconfig.lua;
-        }
-        {
-          plugin = completion-nvim;
-          config = source ./completion-nvim.vim;
         }
         {
           plugin = nvim-colorizer-lua;
@@ -108,13 +109,6 @@ in
         {
           plugin = lightline-vim;
           config = source ./lightline-vim.vim;
-        }
-        {
-          plugin = ultisnips;
-          config = lua ''
-            vim.g.UltiSnipsSnippetDirectories = {"${nvimDir}/snippets"}
-            vim.g.UltiSnipsExpandTrigger = "<c-u>"
-          '';
         }
         which-key-nvim
       ];

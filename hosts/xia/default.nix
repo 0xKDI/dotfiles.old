@@ -63,6 +63,7 @@ in
           minikube
           kubectl # already in openshift
           kubernetes-helm
+          unstable.helmfile
           kops
 
           doctl
@@ -70,6 +71,7 @@ in
           terraform
           terraform-ls
           ansible_2_10
+          minio-client
 
           maven
           gradle
@@ -314,6 +316,7 @@ in
     #   enableExtensionPack = true;
     # };
     docker = {
+      package = pkgs.unstable.docker;
       enable = true;
       enableOnBoot = false;
       extraOptions = ''

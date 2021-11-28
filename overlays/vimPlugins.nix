@@ -22,4 +22,15 @@
       sha256 = "01zzc445sl1sznliggszsdg1bi4i10s0qnjqp9hmxz3p6a1wd8c6";
     };
   };
+
+  coq_nvim = pkgs.vimUtils.buildVimPlugin {
+    pname = "coq_nvim";
+    version = "2021-11-21";
+    src = pkgs.fetchFromGitHub {
+      owner = "ms-jpq";
+      repo = "coq_nvim";
+      rev = "1750957bd2629ee57de8b3e5a2691b2a3232ef1d";
+      sha256 = "1nw5w92hd98fkxm3kpdxb30v9sn2rgbl1m856mlk76n995d7bc0i";
+    };
+  };
 }

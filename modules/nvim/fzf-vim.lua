@@ -6,13 +6,13 @@ vim.api.nvim_exec([[
     autocmd! FileType fzf set laststatus=0 noshowmode noruler | autocmd BufLeave <buffer> set laststatus=2 showmode ruler
 ]], false)
 
-vim.api.nvim_set_keymap('n', '<leader>ff', ':Files!<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fh', ':History!<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>f', ':Files!<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>h', ':History!<CR>', { noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n', '<leader>,', ':Windows!<CR>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>w', ':Buffers!<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>b', ':Buffers!<CR>', { noremap = true, silent = true})
 
-vim.api.nvim_set_keymap('n', '<leader>p', ':cd ', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>p', ':cd %:p:h <CR>:pwd<CR>', { noremap = true, silent = true})
 
 vim.api.nvim_set_keymap('n', '<leader>/', ':BLines!<CR>', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>?', ':Lines!<CR>', { noremap = true, silent = true})
