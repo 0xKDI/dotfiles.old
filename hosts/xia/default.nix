@@ -50,6 +50,8 @@ in
           googler
           gh
 
+          unstable.delve
+
           unrar
           p7zip
           inotify-tools

@@ -433,11 +433,26 @@ in
       #   source <(kops completion zsh) # doesn't work with eval
       #   '';
       shellAliases = {
-        ssh = "TERM=xterm ssh";
+        ap = "ansible-playbook";
+        av = "ansible-vault";
+        a = "ansible";
+
+        vg = "vagrant";
+
+        k = "kubectl";
+        ka = "kubectl apply";
+        kg = "kubectl get";
+        kd = "kubectl describe";
+        ke = "kubectl explain";
+        kdl = "kubectl delete";
+
         d = "docker";
         dl = "docker logs -f --tail 1000";
         dc = "docker-compose";
         dcl = "docker-compose logs -f --tail 1000";
+
+        tf = "terraform";
+
         rr = "rm -rf";
 
         mkdir = "mkdir -p";
@@ -449,6 +464,8 @@ in
         Q = "cd ~ ; clear";
 
         se = "sudoedit";
+
+        ssh = "TERM=xterm ssh";
 
         start = "sudo systemctl start";
         stop = "sudo systemctl stop";
@@ -470,7 +487,6 @@ in
         y = "xclip -selection c";
         p = "xclip -selection c -o";
         n = "noti";
-        tf = "terraform";
         vim = "nvim";
         vi = "nvim";
         v = "nvim";
@@ -488,12 +504,6 @@ in
         gs = "git status";
         c = "git commit -m";
         zt = "devour zathura";
-        k = "kubectl";
-        ka = "kubectl apply";
-        kg = "kubectl get";
-        kd = "kubectl describe";
-        ke = "kubectl explain";
-        kdl = "kubectl delete";
         dst = "dust -r";
         s = "ddgr";
         trr = "transmission-remote";
