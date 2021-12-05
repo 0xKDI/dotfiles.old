@@ -25,6 +25,7 @@ in
       keyMode = "vi";
       plugins = with pkgs.tmuxPlugins; [
         fzf-tmux-url
+        extrakto
       ];
       extraConfig = builtins.readFile ./tmux.conf;
     };

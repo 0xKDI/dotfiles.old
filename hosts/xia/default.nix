@@ -25,7 +25,7 @@ in
         packages = with pkgs; [
           xst
           discord
-          tdesktop
+          unstable.tdesktop
           skypeforlinux
           slack
           drawio
@@ -59,9 +59,11 @@ in
           # docker-credential-helpers
           docker-compose
           kompose
+          podman
+          cntr
 
           minikube
-          kubectl # already in openshift
+          kubectl
           kubernetes-helm
           unstable.helmfile
           kops
@@ -70,7 +72,8 @@ in
 
           terraform
           terraform-ls
-          ansible_2_10
+          ansible
+          ansible-lint
           minio-client
 
           maven
