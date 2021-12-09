@@ -46,7 +46,6 @@ end
 local servers = {
 	'pylsp',
 	'rnix',
-	'yamlls',
 	'terraformls',
 	'gopls'
 }
@@ -55,3 +54,11 @@ for _, lsp in ipairs(servers) do
 		on_attach = on_attach
 	}))
 end
+nvim_lsp['yamlls'].setup(coq.lsp_ensure_capabilities({
+		on_attach = on_attach,
+        settings = {
+          yaml = {
+            customTags = { "!vault" }
+          }
+        }
+  }))
