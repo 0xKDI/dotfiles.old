@@ -316,10 +316,10 @@ in
   environment.pathsToLink = [ "/share/zsh" ]; # get zsh completion for system packages
 
   virtualisation = {
-    # virtualbox.host = {
-    #   enable = true;
-    #   enableExtensionPack = true;
-    # };
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+    };
     docker = {
       package = pkgs.unstable.docker;
       enable = true;
