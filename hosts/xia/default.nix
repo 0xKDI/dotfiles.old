@@ -74,7 +74,7 @@ in
 
           terraform
           terraform-ls
-          ansible
+          unstable.ansible
           ansible-lint
           minio-client
 
@@ -327,7 +327,7 @@ in
       extraOptions = ''
       --config-file=${pkgs.writeText "daemon.json" (builtins.toJSON
       {
-        insecure-registries = ["localhost:8081"];
+        insecure-registries = ["localhost:8081" "10.15.61.1:5007"];
       }
       )}
       '';

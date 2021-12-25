@@ -48,11 +48,14 @@ vim.api.nvim_exec([[
 
 vim.api.nvim_exec([[
     autocmd FileType plaintex set filetype=tex
+    autocmd FileType plaintex set filetype=tex
     autocmd FileType yaml set tabstop=2 shiftwidth=2
     autocmd FileType helm set tabstop=2 shiftwidth=2
     autocmd FileType help wincmd L
     autocmd BufNewFile,BufRead .envrc set filetype=sh
     autocmd BufNewFile,BufRead *.nix set filetype=nix
+    autocmd BufNewFile,BufRead *.gotmpl setfiletype helm
+    autocmd BufNewFile,BufRead helmfile*.yaml setfiletype helm
     augroup ansible_vim_fthosts
       autocmd!
       autocmd BufNewFile,BufRead */tasks/*.yml setfiletype yaml.ansible
