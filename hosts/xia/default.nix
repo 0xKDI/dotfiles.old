@@ -23,6 +23,7 @@ in
         username = "${user}";
         homeDirectory = "${home}";
         packages = with pkgs; [
+          telnet
           xst
           discord
           unstable.tdesktop
@@ -232,6 +233,9 @@ in
       allowedTCPPorts = [ 80 443 ];
       allowedUDPPorts = [ 80 443 ];
     };
+    extraHosts = ''
+      10.206.247.50 ipev2-infr-k8s-01t.data.corp 
+    '';
   };
 
 

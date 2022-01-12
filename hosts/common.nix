@@ -144,7 +144,7 @@ in
     } // optionalAttrs config.modules.python.enable {
       IPYTHONDIR = "${configHome}/jupyter";
       PYTHONSTARTUP = "${configHome}/pythonrc.py";
-      PYTHONPATH = "${home}/.local/lib/python3.9/site-packages";
+      # PYTHONPATH = "${home}/.local/lib/python3.9/site-packages";
       JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
     };
   };
