@@ -24,9 +24,9 @@ in
   config = mkIf cfg.enable {
     programs.neovim = {
       enable = true;
-      package = pkgs.unstable.neovim-unwrapped;
+      package = pkgs.neovim-unwrapped;
       extraPackages = with pkgs; [
-        python38Packages.python-language-server # pyls
+        python-language-server # pyls
         rnix-lsp
         nodePackages.yaml-language-server
         terraform-ls

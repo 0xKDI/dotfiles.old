@@ -5,7 +5,7 @@ let
   host = baseNameOf ./.;
   uid = 1000;
   home = "/home/${user}";
-  stateVersion = "21.05";
+  stateVersion = "21.11";
 in
 {
   imports = [
@@ -323,7 +323,7 @@ in
   virtualisation = {
     virtualbox.host = {
       enable = true;
-      enableExtensionPack = true;
+      # enableExtensionPack = true;
     };
     docker = {
       package = pkgs.unstable.docker;

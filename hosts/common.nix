@@ -2,8 +2,7 @@
 
 with lib;
 let
-  workDir = "${home}/work";
-  projectDir = "${home}/prj";
+  workDir = "${home}/wrk";
   booksDir = "${home}/bks";
   syncDir = "${home}/snc";
   downloadDir = "${home}/dl";
@@ -542,7 +541,7 @@ in
     screen-locker = {
       lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
       inactiveInterval = 10;
-      xautolockExtraOptions = [
+      xautolock.extraOptions = [
         "-notifier"
         "${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
       ];
