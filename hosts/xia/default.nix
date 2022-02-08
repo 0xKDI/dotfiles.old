@@ -77,7 +77,7 @@ in
           terraform-ls
           unstable.ansible
           ansible-lint
-          minio-client
+          unstable.minio-client
 
           maven
           gradle
@@ -235,6 +235,7 @@ in
     };
     extraHosts = ''
       10.206.247.50 ipev2-infr-k8s-01t.data.corp 
+      10.206.213.168 ipev2-infr-k8s-01p
     '';
   };
 
