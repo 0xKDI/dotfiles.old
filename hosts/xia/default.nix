@@ -241,7 +241,6 @@ in
 
 
   services = {
-    dbus.packages = [ pkgs.gnome3.dconf ];
     # remap the most useless key to the most useful one
     # (Caps lock become Ctrl when used with another key and Esc when used without one)
     # https://github.com/NixOS/nixpkgs/issues/126681
@@ -308,6 +307,7 @@ in
 
   programs = {
     bash.interactiveShellInit = ''HISTFILE="$XDG_DATA_HOME"/bash/history'';
+    dconf.enable = true;
     browserpass.enable = true;
     adb.enable = true;
     java = {

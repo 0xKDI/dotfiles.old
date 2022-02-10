@@ -10,17 +10,12 @@
       # url = "path:/home/qq/prj/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
 
   outputs = { self, ... }@inputs:
     let
       overlays = [
-        inputs.nur.overlay
         (import ./overlays)
         (self: super: {
           unstable = import inputs.nixpkgs-unstable {

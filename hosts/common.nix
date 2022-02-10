@@ -911,7 +911,6 @@ in
   gtk = {
     gtk3.bookmarks = [
       "file://${workDir}"
-      "file://${projectDir}"
       "file://${booksDir}"
       "file://${syncDir}"
     ];
