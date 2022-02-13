@@ -87,7 +87,7 @@ in
         fzfWrapper
         {
           plugin = nvim-lspfuzzy;
-          config = lua "require('lspfuzzy').setup {}";
+          config = lua "require('lspfuzzy').setup{}";
         }
         {
           plugin = vim-tmux-navigator;
@@ -110,7 +110,10 @@ in
           plugin = lualine-nvim;
           config = lua ./lualine-nvim.lua;
         }
-        which-key-nvim
+        {
+          plugin = which-key-nvim;
+          config = lua "require('which-key').setup()";
+        }
         {
           plugin = comment-nvim;
           config = lua "require('Comment').setup()";
