@@ -44,6 +44,7 @@ in
       gdb
       gcc
       progress
+      bind
 
       exa
       fd
@@ -437,6 +438,7 @@ in
         a = "ansible";
 
         vg = "vagrant";
+        vlt = "vault";
 
         k = "kubectl";
         ka = "kubectl apply";
@@ -447,8 +449,8 @@ in
 
         d = "docker";
         dl = "docker logs -f --tail 1000";
-        dc = "docker-compose";
-        dcl = "docker-compose logs -f --tail 1000";
+        dc = "docker compose";
+        dcl = "docker compose logs -f --tail 1000";
 
         tf = "terraform";
 
