@@ -97,6 +97,7 @@ in
           vagrant
           # pythonFull
           brave
+          vault
         ];
       };
       modules = {
@@ -257,10 +258,6 @@ in
     logind.extraConfig = ''
       HandlePowerKey=suspend
     '';
-    psd = {
-      enable = true;
-      resyncTimer = "30min";
-    };
     tlp = {
       enable = true;
       settings = {
