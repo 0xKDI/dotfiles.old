@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-# open file with respective application
-
-application=$1
-setsid -f xdg-open "$application" > /dev/null 2>&1 &

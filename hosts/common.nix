@@ -102,9 +102,9 @@ in
       let
         go = config.programs.go;
       in
-      [ "${binPath}" "${home}/.local/bin" ] ++ optionals go.enable [
+      [ "${home}/.local/bin" ] ++ optionals go.enable [
         "${home}/${go.goPath}/bin"
-      ];
+      ] ++ [ "${binPath}" ];
     sessionVariables = {
       DOCKER_CONFIG = "${configHome}/docker";
 

@@ -98,6 +98,8 @@ in
           # pythonFull
           brave
           vault
+
+          asciinema
         ];
       };
       modules = {
@@ -329,7 +331,11 @@ in
       extraOptions = ''
       --config-file=${pkgs.writeText "daemon.json" (builtins.toJSON
       {
-        insecure-registries = ["localhost:8081" "10.15.61.1:5007"];
+        insecure-registries = [
+          "localhost:8081"
+          "10.15.61.1:5007"
+          "10.15.61.1:5002"
+        ];
       }
       )}
       '';
