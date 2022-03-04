@@ -560,8 +560,8 @@ in
         "super + shift + Return" = xst;
         "super + space" = "${bin}/fzfappmenu";
         "super + s" = "${bin}/fzfclipmenu";
-        "super + shift + s" = "${bin}/swap_desktops";
-        "super + w" = "${bin}/fzfwindowmenu";
+        "super + w" = "${bin}/swap_desktops";
+        "super + e" = "${bin}/fzfwindowmenu";
         "super + Home" = "${bin}/fzfbooks";
         "super + F11" = "${bin}/screenshot";
       } // {
