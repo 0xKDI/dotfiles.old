@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# get current monitor
+focused_monitor_name=$(bspc query -T -m |jq -r .name)
+
+
+# find second monitor
+for monitor in $(bspc query -M --names); do
+    if [[ "$focused_monitor_name" != "$monitor" ]]; then
+        second_monitor="$monitor"
+        break
+    fi
+done
+
+# get focused desktop id on second monitor
+target_desktop_id=$(bspc query -T -m "$second_monitor" |jq .focusedDesktopId)
+
+# get focused desktop name on second monitor
+target_desktop_name=$(bspc query -T -m "$second_monitor" | \
+    jq --raw-output ".desktops[] | select(.id==${target_desktop_id})| .name")
+
+# swap current desktop with focused desktop on the second monitor
+bspc desktop --swap $target_desktop_name
+

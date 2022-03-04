@@ -560,6 +560,7 @@ in
         "super + shift + Return" = xst;
         "super + space" = "${bin}/fzfappmenu";
         "super + s" = "${bin}/fzfclipmenu";
+        "super + shift + s" = "${bin}/swap_desktops";
         "super + w" = "${bin}/fzfwindowmenu";
         "super + Home" = "${bin}/fzfbooks";
         "super + F11" = "${bin}/screenshot";
@@ -599,7 +600,7 @@ in
       } // {
         # BSPWM/state
         # set the window state
-        "super + {t,shift + t,shift + s,f}" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
+        "super + {t,shift + t,shift + f,f}" = "bspc node -t {tiled,pseudo_tiled,floating,fullscreen}";
         # set the node flags
         "super + ctrl + {m,x,y,z}" = "bspc node -g {marked,locked,sticky,private}";
       } // {
