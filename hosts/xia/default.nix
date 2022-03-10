@@ -171,6 +171,7 @@ in
         "docker"
         "plugdev"
         "adbusers"
+        "libvirtd"
       ];
       shell = pkgs.zsh;
       initialPassword = "nix";
@@ -320,6 +321,10 @@ in
   environment.pathsToLink = [ "/share/zsh" ]; # get zsh completion for system packages
 
   virtualisation = {
+    libvirtd = {
+      enable = true;
+      onBoot = "ignore";
+    };
     virtualbox.host = {
       enable = true;
       # enableExtensionPack = true;
