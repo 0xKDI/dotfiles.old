@@ -268,10 +268,17 @@ in
         RUNTIME_PM_ON_AC = "auto";
       };
     };
-    openvpn.servers.work  = {
-      config = "config /root/nixos/openvpn/work.conf"; 
-      autoStart = false;
-      updateResolvConf = true;
+    openvpn.servers= {
+      work  = {
+        config = "config /root/nixos/openvpn/work.conf"; 
+        autoStart = false;
+        updateResolvConf = true;
+      };
+      usa  = {
+        config = "config /root/nixos/openvpn/usa.conf"; 
+        autoStart = false;
+        updateResolvConf = true;
+      };
     };
   };
 
