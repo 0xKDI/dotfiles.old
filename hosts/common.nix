@@ -310,6 +310,7 @@ in
       ignores = [
         "Session.vim"
         ".envrc"
+        "__local__"
       ];
       aliases = {
         s = "status";
