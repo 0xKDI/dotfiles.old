@@ -18,6 +18,7 @@ in
       python39
       python39Packages.ipython
       python39Packages.pip
+      python39Packages.grip
       virtualenv
     ];
   };
