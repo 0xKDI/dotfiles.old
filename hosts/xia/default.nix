@@ -23,6 +23,7 @@ in
         username = "${user}";
         homeDirectory = "${home}";
         packages = with pkgs; [
+          envsubst
           telnet
           xst
           discord
