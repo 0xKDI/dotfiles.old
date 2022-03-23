@@ -7,6 +7,7 @@
 
 
   boot = {
+    kernelParams = [ "intel_idle.max_cstate=1" ];
     kernel.sysctl = {
       "vm.max_map_count" = 262144;
     };
