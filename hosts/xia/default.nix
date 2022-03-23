@@ -67,6 +67,7 @@ in
           cntr
 
           minikube
+          docker-machine-kvm2
           kubectl
           kubernetes-helm
           unstable.helmfile
