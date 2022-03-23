@@ -107,6 +107,7 @@ in
       ] ++ [ "${binPath}" ];
     sessionVariables = {
       DOCKER_CONFIG = "${configHome}/docker";
+      LIBVIRT_DEFAULT_URI= "qemu:///system";
 
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
 
