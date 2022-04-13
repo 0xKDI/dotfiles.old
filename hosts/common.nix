@@ -366,7 +366,7 @@ in
     zathura = {
       options = {
         page-padding = 2;
-        recolor = "true";
+        recolor = "false";
 
         completion-bg = "#282a36";
         completion-fg = "#f8f8f2";
