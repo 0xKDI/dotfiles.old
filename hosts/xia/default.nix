@@ -23,6 +23,7 @@ in
         username = "${user}";
         homeDirectory = "${home}";
         packages = with pkgs; [
+          openldap
           envsubst
           telnet
           xst
@@ -62,9 +63,9 @@ in
 
           # docker-credential-helpers
           docker-compose
+          runc
           kompose
           podman
-          cntr
 
           minikube
           docker-machine-kvm2
