@@ -449,6 +449,9 @@ in
         ke = "kubectl explain";
         kdl = "kubectl delete";
 
+        hlm = "helm";
+        hf = "helmfile";
+
         d = "docker";
         dl = "docker logs -f --tail 1000";
         dc = "docker compose";
