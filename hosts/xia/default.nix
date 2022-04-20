@@ -23,6 +23,7 @@ in
         username = "${user}";
         homeDirectory = "${home}";
         packages = with pkgs; [
+          ipcalc
           openldap
           envsubst
           telnet
