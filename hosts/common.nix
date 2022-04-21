@@ -462,6 +462,7 @@ in
         rr = "rm -rf";
 
         mkdir = "mkdir -p";
+        tch = "touch";
 
         "2." = "cd ../..";
         "3." = "cd ../../..";
