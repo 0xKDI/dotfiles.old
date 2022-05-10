@@ -58,11 +58,11 @@ nvim_lsp['yamlls'].setup(coq.lsp_ensure_capabilities({
       on_attach = on_attach,
       settings = {
         yaml = {
-          customTags = { "!vault" }
-        }
-        redhat = {
-          telemetry = {
-            enabled = false
+          customTags = { "!vault" },
+          redhat = {
+            telemetry = {
+              enabled = false
+            }
           }
         }
       }
