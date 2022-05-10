@@ -959,9 +959,10 @@ in
         { allowUnfree = true; }
       '';
       "nix/nix.conf".text = ''
-        experimental-features = nix-command flakes ca-references
+        experimental-features = nix-command flakes
+        allow-import-from-derivation = true
         substituters = https://cache.nixos.org https://nix-community.cachix.org
-        trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+        trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
       '';
     } // optionalAttrs config.modules.python.enable {
       "pythonrc.py".text = ''
@@ -1006,15 +1007,16 @@ in
     '';
     windowManager.bspwm = {
       monitors = {
-        "eDP-1" = [ "1" "2" "3" "4" "5" ];
-        "HDMI-1" = [ "6" "7" "8" "9" "0" ];
+        "HDMI-1" = [ "1" "2" "3" "4" "5" ];
+        "eDP-1" = [ "6" "7" "8" "9" "0" ];
       };
       extraConfig = ''
-        bspc wm -O eDP-1 HDMI-1
+        xrandr --output HDMI-1 --above eDP-1
         bspc config pointer_follows_focus true
+        [[ $(xrandr --listactivemonitors| head -n1) == "Monitors: 1" ]] && \
+          bspc monitor 'eDP-1' -d '1' '2' '3' '4' '5' '6' '7' '8' '9' '0'
       '';
       startupPrograms = [
-        "xrandr --output DVI-I-1-1 --auto"
         # https://github.com/nix-community/home-manager/issues/195
         "systemctl --user restart polybar.service"
       ];

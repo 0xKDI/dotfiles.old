@@ -55,10 +55,15 @@ for _, lsp in ipairs(servers) do
 	}))
 end
 nvim_lsp['yamlls'].setup(coq.lsp_ensure_capabilities({
-		on_attach = on_attach,
-        settings = {
-          yaml = {
-            customTags = { "!vault" }
+      on_attach = on_attach,
+      settings = {
+        yaml = {
+          customTags = { "!vault" }
+        }
+        redhat = {
+          telemetry = {
+            enabled = false
           }
         }
+      }
   }))

@@ -23,6 +23,7 @@ in
         username = "${user}";
         homeDirectory = "${home}";
         packages = with pkgs; [
+          arandr
           ipcalc
           openldap
           envsubst
@@ -169,6 +170,7 @@ in
       group = "${user}";
       extraGroups = [
         "wheel"
+        "wireshark"
         "networkmanager"
         "audio"
         "vboxusers"
@@ -321,6 +323,10 @@ in
     dconf.enable = true;
     browserpass.enable = true;
     adb.enable = true;
+    wireshark = {
+      enable = true;
+      package = pkgs.wireshark;
+    };
     java = {
       enable = true;
       # package = pkgs.jdk11;
