@@ -344,7 +344,7 @@ in
     };
     virtualbox.host = {
       enable = true;
-      # enableExtensionPack = true;
+      enableExtensionPack = true;
     };
     docker = {
       package = pkgs.unstable.docker;
