@@ -27,6 +27,7 @@ in
       package = pkgs.neovim-unwrapped;
       extraPackages = with pkgs; [
         python-language-server # pyls
+        python39Packages.python-lsp-server
         rnix-lsp
         nodePackages.yaml-language-server
         terraform-ls
