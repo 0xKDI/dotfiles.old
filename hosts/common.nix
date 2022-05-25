@@ -158,6 +158,7 @@ in
   programs = {
     go = {
       goPath = ".local/share/go";
+      package = pkgs.go_1_17;
     };
     bat = {
       config = {
