@@ -23,6 +23,8 @@ in
         username = "${user}";
         homeDirectory = "${home}";
         packages = with pkgs; [
+          unstable.gns3-server
+          unstable.gns3-gui
           arandr
           ipcalc
           openldap
@@ -211,18 +213,42 @@ in
 
   systemd.services = {
     NetworkManager-wait-online.enable = false; # this is only increases boot time
-    openfortivpn = {
+    # https://wiki.archlinux.org/title/OpenVPN#Client_daemon_not_reconnecting_after_suspend
+    openvpn-reconnect = {
+      enable = true;
+      description = "Restart OpenVPN after suspend";
+      serviceConfig = {
+        ExecStart = "${pkgs.procps}/bin/pkill --signal SIGHUP --exact openvpn";
+      };
+      wantedBy = [ "multi-user.target" "sleep.target" ];
+    };
+    openfortivpn-dit = {
       enable = true;
       after = [ "network-online.target" ];
-      description = "OpenFortiVPN for %I";
+      description = "OpenFortiVPN for dit";
       documentation = [ "man:openfortivpn(1)" ];
       serviceConfig = {
-        Type = "simple";
+        Type = "notify";
         PrivateTmp = true;
-        ExecStart = "${pkgs.openfortivpn}/bin/openfortivpn -c /root/nixos/openfortivpn/dit.conf";
+        ExecStart = "${pkgs.openfortivpn}/bin/openfortivpn -c /root/nixos/openfortivpn/dit/default.conf";
         OOMScoreAdjust = -100;
       };
-      # wantedBy = [ "multi-user.target" ];
+      requires = [ "openfortivpn-dit-routes.service" ];
+    };
+    openfortivpn-dit-routes = {
+      enable = true;
+      path = [
+        "${pkgs.bash}"
+        "${pkgs.coreutils}"
+        "${pkgs.iproute2}"
+        "${pkgs.gawk}"
+      ];
+      after = [ "openfortivpn-dit.service" ];
+      description = "Add dit custom vpn routes";
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "/root/nixos/openfortivpn/dit/custom-routes.sh";
+      };
     };
   };
 
@@ -240,12 +266,13 @@ in
     networkmanager.enable = true;
     hostName = "${host}";
     firewall = {
-      allowedTCPPorts = [ 80 443 ];
+      allowedTCPPorts = [ 80 443 22000 ];
       allowedUDPPorts = [ 80 443 ];
     };
     extraHosts = ''
       10.206.247.50 ipev2-infr-k8s-01t.data.corp 
       10.206.213.168 ipev2-infr-k8s-01p
+      10.206.249.1 ipev2-infr-k8s-01i.data.corp
     '';
   };
 
@@ -274,17 +301,15 @@ in
         RUNTIME_PM_ON_AC = "auto";
       };
     };
-    openvpn.servers= {
-      work  = {
-        config = "config /root/nixos/openvpn/work.conf"; 
+    openvpn.servers = let vpnCfg = dst: {
+        config = "config /root/nixos/openvpn/${dst}/default.conf"; 
         autoStart = false;
         updateResolvConf = true;
-      };
-      usa  = {
-        config = "config /root/nixos/openvpn/usa.conf"; 
-        autoStart = false;
-        updateResolvConf = true;
-      };
+    }; in {
+      td  = vpnCfg "td";
+      usa  = vpnCfg "usa";
+      uk  = vpnCfg "uk";
+      tmp  = vpnCfg "tmp";
     };
   };
 

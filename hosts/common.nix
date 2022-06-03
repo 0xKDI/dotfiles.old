@@ -96,6 +96,15 @@ in
     file = { } // optionalAttrs hasTf {
       ".terraformrc".text = ''
         plugin_cache_dir = "$HOME/.terraform.d/plugin-cache"
+        provider_installation {
+          network_mirror {
+            url = "https://terraform-mirror.yandexcloud.net/"
+            include = ["registry.terraform.io/*/*"]
+          }
+          direct {
+            exclude = ["registry.terraform.io/*/*"]
+          }
+        }
       '';
     };
     sessionPath =
@@ -124,7 +133,6 @@ in
       PARALLEL_HOME = "${configHome}/parallel";
       CUDA_CACHE_PATH = "${cacheHome}/nv";
       NPM_CONFIG_USERCONFIG = "${configHome}/npm/npmrc";
-
       # Ruby
       GEM_HOME = "${dataHome}/gem";
       GEM_SPEC_CACHE = "${cacheHome}/gem";
@@ -549,7 +557,7 @@ in
   services = {
     screen-locker = {
       lockCmd = "${pkgs.xsecurelock}/bin/xsecurelock";
-      inactiveInterval = 10;
+      inactiveInterval = 60;
       xautolock.extraOptions = [
         "-notifier"
         "${pkgs.xsecurelock}/libexec/xsecurelock/dimmer"
@@ -1003,7 +1011,8 @@ in
     initExtra = ''
       rm -drf ~/.xsession-errors ~/.xsession-errors.old ~/.compose_cache
       ${pkgs.xwallpaper}/bin/xwallpaper --zoom ${wallpapers}/nix-wallpaper-dracula.png &
-      xset s 300 5 &
+      # xset s 300 5 &
+      xset s off -dpms &
       xset r rate 250 60 &
     '';
     windowManager.bspwm = {
