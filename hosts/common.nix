@@ -156,12 +156,18 @@ in
       # PYTHONPATH = "${home}/.local/lib/python3.9/site-packages";
       JUPYTER_CONFIG_DIR = "${configHome}/jupyter";
     };
+    pointerCursor = {
+      package = pkgs.capitaine-cursors;
+      size = 20;
+      name = "capitaine-cursors";
+      x11.enable = true;
+      gtk.enable = true;
+    };
   };
 
 
   modules = {
   };
-
 
   programs = {
     go = {
@@ -179,9 +185,9 @@ in
     };
     fzf = {
       enableZshIntegration = true;
-      changeDirWidgetCommand = "fd -HL --type d --exclude .git";
+      changeDirWidgetCommand = "fd --strip-cwd-prefix -HL --type d --exclude .git";
       changeDirWidgetOptions = [ "--preview 'tree -C {} | head -200'" ];
-      defaultCommand = "fd --type f --hidden --follow --exclude .git";
+      defaultCommand = "fd --strip-cwd-prefix --type f --hidden --follow --exclude .git";
       defaultOptions = [
         "--reverse"
         "--multi"
@@ -190,7 +196,7 @@ in
         "--color=fg:7,bg:-1,hl:#5fff87,fg+:15,bg+:-1,hl+:#ffaf5f"
         "--color=info:#af87ff,prompt:#5fff87,pointer:#ff87d7,marker:#ff87d7,spinner:#ff87d7"
       ];
-      fileWidgetCommand = "fd -H -t f";
+      fileWidgetCommand = "fd --strip-cwd-prefix --type f";
       fileWidgetOptions = [
         "--preview='bat"
         "--style=numbers"
@@ -213,55 +219,55 @@ in
         };
         line_break.disabled = true;
         python.python_binary = "python3";
-        format = [
-          "username"
-          "hostname"
-          "shlvl"
-          "kubernetes"
-          "directory"
-          "git_branch"
-          "git_commit"
-          "git_state"
-          "git_status"
-          # "hg_branch"
-          "docker_context"
-          "package"
-          "cmake"
-          # "dart"
-          # "dotnet"
-          # "elixir"
-          # "elm"
+        format = lib.concatStrings [
+          "$username"
+          "$hostname"
+          "$shlvl"
+          "$kubernetes"
+          "$directory"
+          "$git_branch"
+          "$git_commit"
+          "$git_state"
+          "$git_status"
+          # "$hg_branch"
+          "$docker_context"
+          "$package"
+          "$cmake"
+          # "$dart"
+          # "$dotnet"
+          # "$elixir"
+          # "$elm"
           # "erlang"
-          "golang"
-          "helm"
-          "java"
-          # "julia"
-          # "nim"
-          "nodejs"
-          # "ocaml"
-          # "perl"
-          # "php"
-          # "purescript"
-          "python"
-          # "ruby"
-          # "rust"
-          # "swift"
-          "terraform"
-          # "zig"
-          "nix_shell"
-          # "conda"
-          # "memory_usage"
-          "aws"
-          "gcloud"
-          "env_var"
-          # "crystal"
-          "cmd_duration"
-          "custom"
-          "line_break"
-          "jobs"
-          "time"
-          "status"
-          "character"
+          "$golang"
+          "$helm"
+          "$java"
+          # "$julia"
+          # "$nim"
+          "$nodejs"
+          # "$ocaml"
+          # "$perl"
+          # "$php"
+          # "$purescript"
+          "$python"
+          # "$ruby"
+          # "$rust"
+          # "$swift"
+          "$terraform"
+          # "$zig"
+          "$nix_shell"
+          # "$conda"
+          # "$memory_usage"
+          "$aws"
+          "$gcloud"
+          "$env_var"
+          # "$crystal"
+          "$cmd_duration"
+          "$custom"
+          "$line_break"
+          "$jobs"
+          "$time"
+          "$status"
+          "$character"
         ];
       };
     };
@@ -741,8 +747,6 @@ in
             margin-bottom = 0;
           };
           "settings" = {
-            throttle-output = 5;
-            throttle-output-for = 10;
             screenchange-reload = true;
             compositing-background = "over";
             compositing-foreground = "over";
@@ -788,20 +792,20 @@ in
 
             label-padding = 1;
 
-            label-focused = "%name%";
+            label-focused = " ";
             label-focused-foreground = "#ff79c6";
             label-focused-underline = "#fba922";
             label-focused-padding = 1;
 
-            label-occupied = "%name%";
+            label-occupied = " ";
             label-occupied-foreground = "#ff79c6";
             label-occupied-padding = 1;
 
-            label-empty = "%name%";
+            label-empty = " ";
             label-empty-foreground = "#6272a4";
             label-empty-padding = 1;
 
-            label-urgent = "%name%";
+            label-urgent = " ";
             label-urgent-foreground = "#ff5555";
             label-urgent-padding = 1;
 
@@ -995,11 +999,6 @@ in
 
 
   xsession = {
-    pointerCursor = {
-      package = pkgs.capitaine-cursors;
-      size = 20;
-      name = "capitaine-cursors";
-    };
     scriptPath = ".xsession";
     importedVariables = [
       "PATH"

@@ -5,7 +5,7 @@ let
   host = baseNameOf ./.;
   uid = 1000;
   home = "/home/${user}";
-  stateVersion = "21.11";
+  stateVersion = "22.05";
 in
 {
   imports = [
@@ -29,7 +29,7 @@ in
           ipcalc
           openldap
           envsubst
-          telnet
+          inetutils
           xst
           discord
           unstable.tdesktop
