@@ -115,6 +115,8 @@ in
         "${home}/${go.goPath}/bin"
       ] ++ [ "${binPath}" ];
     sessionVariables = {
+      GTK_USE_PORTAL = "1";
+      QT_QPA_PLATFORMTHEME = "gtk3";
       DOCKER_CONFIG = "${configHome}/docker";
       LIBVIRT_DEFAULT_URI= "qemu:///system";
 
@@ -431,6 +433,7 @@ in
         autoload -Uz edit-command-line; zle -N edit-command-line
         bindkey '^ ' edit-command-line
         autoload -U +X bashcompinit && bashcompinit
+        unset SSH_ASKPASS
       '' + optionalString config.programs.fzf.enable ''
         bindkey '\eq' fzf-cd-widget
         bindkey '\er' fzf-history-widget
@@ -473,6 +476,7 @@ in
         dcl = "docker compose logs -f --tail 1000";
 
         tf = "terraform";
+        tg = "terragrunt";
 
         rr = "rm -rf";
 
@@ -584,6 +588,7 @@ in
         "super + w" = "${bin}/swap_desktops";
         "super + e" = "${bin}/fzfwindowmenu";
         "super + Home" = "${bin}/fzfbooks";
+        "super + n" = "${pkgs.dunst}/bin/dunstctl close-all";
         "super + F11" = "${bin}/screenshot";
       } // {
         "super + z" = "vlock & xset s activate";

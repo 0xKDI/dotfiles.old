@@ -23,6 +23,15 @@ in
         username = "${user}";
         homeDirectory = "${home}";
         packages = with pkgs; [
+          libsForQt5.kdenlive
+          unstable.istioctl
+          unstable.fluxcd
+          rclone
+          openconnect
+          teams
+          pdftk
+          sysstat
+          lftp
           unstable.gns3-server
           unstable.gns3-gui
           arandr
@@ -38,6 +47,7 @@ in
           drawio
           libreoffice-fresh
           spotifywm
+          sysstat
           gimp
           syncthing-cli #stcli
           remmina
@@ -51,7 +61,7 @@ in
           cadaver
 
           transmission
-          youtube-dl
+          unstable.youtube-dl
 
           ddgr # DuckDuckGo-cli
           googler
@@ -82,6 +92,7 @@ in
 
           terraform
           terraform-ls
+          terragrunt
           unstable.ansible
           ansible-lint
           unstable.minio-client
