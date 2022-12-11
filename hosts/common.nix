@@ -174,7 +174,7 @@ in
   programs = {
     go = {
       goPath = ".local/share/go";
-      package = pkgs.go_1_17;
+      package = pkgs.go;
     };
     bat = {
       config = {
@@ -438,7 +438,7 @@ in
         bindkey '\eq' fzf-cd-widget
         bindkey '\er' fzf-history-widget
       '' + optionalString hasTf ''
-        complete -o nospace -C ${pkgs.terraform_0_14}/bin/terraform terraform
+        complete -o nospace -C ${pkgs.terraform}/bin/terraform terraform
       '' + optionalString (has pkgs.pandoc) ''
         eval "$(pandoc --bash-completion)"
       '' + optionalString config.modules.aws.enable ''
@@ -1025,7 +1025,7 @@ in
         "eDP-1" = [ "6" "7" "8" "9" "0" ];
       };
       extraConfig = ''
-        xrandr --output HDMI-1 --above eDP-1
+        xrandr --output HDMI-1 --below eDP-1
         bspc config pointer_follows_focus true
         [[ $(xrandr --listactivemonitors| head -n1) == "Monitors: 1" ]] && \
           bspc monitor 'eDP-1' -d '1' '2' '3' '4' '5' '6' '7' '8' '9' '0'

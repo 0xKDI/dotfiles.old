@@ -5,7 +5,7 @@ let
   host = baseNameOf ./.;
   uid = 1000;
   home = "/home/${user}";
-  stateVersion = "22.05";
+  stateVersion = "22.11";
 in
 {
   imports = [
@@ -32,8 +32,6 @@ in
           pdftk
           sysstat
           lftp
-          unstable.gns3-server
-          unstable.gns3-gui
           arandr
           ipcalc
           openldap
@@ -85,7 +83,7 @@ in
           docker-machine-kvm2
           kubectl
           kubernetes-helm
-          unstable.helmfile
+          helmfile
           kops
 
           doctl
@@ -109,7 +107,7 @@ in
           mongodb-tools
 
           pgcli
-          postgresql_13
+          postgresql_14
 
           sops
           vagrant
@@ -207,15 +205,17 @@ in
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
-    autoOptimiseStore = true;
-    trustedUsers = [ "root" "${user}" ];
-    maxJobs = 6;
-    binaryCaches = [
-      "https://nix-community.cachix.org"
-    ];
-    binaryCachePublicKeys = [
-      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    ];
+    settings = {
+      trusted-users = [ "root" "${user}" ];
+      max-jobs = 6;
+      substituters = [
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
+      auto-optimise-store = true;
+    };
   };
 
 
@@ -225,14 +225,14 @@ in
   systemd.services = {
     NetworkManager-wait-online.enable = false; # this is only increases boot time
     # https://wiki.archlinux.org/title/OpenVPN#Client_daemon_not_reconnecting_after_suspend
-    openvpn-reconnect = {
-      enable = true;
-      description = "Restart OpenVPN after suspend";
-      serviceConfig = {
-        ExecStart = "${pkgs.procps}/bin/pkill --signal SIGHUP --exact openvpn";
-      };
-      wantedBy = [ "multi-user.target" "sleep.target" ];
-    };
+    # openvpn-reconnect = {
+    #   enable = true;
+    #   description = "Restart OpenVPN after suspend";
+    #   serviceConfig = {
+    #     ExecStart = "${pkgs.procps}/bin/pkill --signal SIGHUP --exact openvpn";
+    #   };
+    #   wantedBy = [ "multi-user.target" "sleep.target" ];
+    # };
     openfortivpn-dit = {
       enable = true;
       after = [ "network-online.target" ];
@@ -292,16 +292,16 @@ in
     # remap the most useless key to the most useful one
     # (Caps lock become Ctrl when used with another key and Esc when used without one)
     # https://github.com/NixOS/nixpkgs/issues/126681
-    interception-tools = {
-    enable = true;
-    plugins = [ pkgs.interception-tools-plugins.caps2esc ];
-    udevmonConfig = ''
-      - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-        DEVICE:
-          EVENTS:
-            EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
-    '';
-  };
+    # interception-tools = {
+    # enable = true;
+    # plugins = [ pkgs.interception-tools-plugins.caps2esc ];
+    # udevmonConfig = ''
+    #   - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
+    #     DEVICE:
+    #       EVENTS:
+    #         EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+    # '';
+  # };
     logind.extraConfig = ''
       HandlePowerKey=suspend
     '';
@@ -328,7 +328,6 @@ in
   services.xserver = {
     enable = true;
     videoDrivers = [ "modesettings" ];
-    useGlamor = true;
     layout = "us,ru";
     # xkbOptions = "caps:escape";
     displayManager = {
